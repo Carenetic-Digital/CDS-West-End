@@ -33,6 +33,19 @@ Run a comprehensive review of all generated pages and report findings. Fix what 
 - No overlapping elements or cut-off text
 - Navigation works on mobile (hamburger menu, etc.)
 
+### 3b. Internal Link Convention (trailing slashes)
+
+Run the enforcement check — it scans the BUILD OUTPUT so dynamically-generated
+links are covered:
+
+```bash
+npm run build && npm run check:links
+```
+
+If it fails, fix static links with `node scripts/fix-trailing-slashes.mjs .`
+and template-literal/dynamic links by hand, then re-run until green. Every
+slash-less internal link costs a 307 redirect on Cloudflare.
+
 ### 4. Scripts & Launch Readiness
 
 **Important:** Read `docs/third-party-scripts.md` for the full guide. When adding or checking scripts:

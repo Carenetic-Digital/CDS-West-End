@@ -106,7 +106,7 @@ See `docs/third-party-scripts.md` for the full guide, common scripts and their C
 - Pages follow `state.pages.planned` list
 - Design system documented in `src/DESIGN.md`
 - All images go in `public/images/` — never hotlink to external URLs
-- All internal links must end with a trailing slash (e.g. `/about/`, not `/about`) — Cloudflare resolves trailing-slash URLs directly while non-trailing URLs incur a redirect
+- All internal links must end with a trailing slash (e.g. `/about/`, not `/about`) — Cloudflare resolves trailing-slash URLs directly while non-trailing URLs incur a redirect. **Enforced**: `npm run check:links` scans the build output (run by `/review` and `/launch`); fix violations with `node scripts/fix-trailing-slashes.mjs .`
 - Redirects go in `public/_redirects` (Cloudflare format)
 - Use `compound-engineering:frontend-design` skill for page generation
 
@@ -115,7 +115,37 @@ See `docs/third-party-scripts.md` for the full guide, common scripts and their C
 - `npm run dev` — Start development server (localhost:4321)
 - `npm run build` — Build for production
 - `npm run test` — Run Playwright tests
-- `npm run deploy` — Build and deploy to Cloudflare Workers
+- `npm run check:links` — Enforce trailing-slash convention against the build output
+- `npm run deploy` — Build and deploy to Cloudflare Workers (postdeploy auto-verifies the Approximated workaround on the staging origin)
+
+## Deployment
+
+Deployment has two phases:
+
+**Build phase (now):** deploys are manual — `npm run deploy` (`astro build &&
+wrangler deploy`). The site serves at `https://<name>.spark0.io/` (staging
+custom domain, dashboard-managed) and `https://<name>.<account>.workers.dev`.
+Pushing to `origin/main` does NOT deploy during this phase — that's
+intentional; WIP commits shouldn't publish.
+
+**Launch phase:** `/launch` step 0 activates CI — copy `docs/launch/deploy.yml`
+to `.github/workflows/deploy.yml`, enable Actions on the repo, set + verify
+the repo secrets. From then on every push to main deploys (the CF Worker and,
+after CMS onboarding, the fly.io staging box both depend on it — CMS publishes
+ride this pipeline).
+
+**Safety rails already in this template (do not remove):**
+- `wrangler.jsonc` pins `workers_dev: true` and declares NO routes — a
+  declared route flips wrangler's default and every deploy silently disables
+  the workers.dev URL, which is what Approximated targets in production
+  (caused a real outage, 2026-08-06)
+- `worker/index.js` + `! ETag` in `public/_headers` + the postdeploy verify =
+  the Approximated blank-page workaround (both halves required)
+- `not_found_handling: "404-page"` serves the branded 404 (without it,
+  unknown URLs return an empty body and browsers show their own error page)
+- `gen-lockfile.sh` regenerates the site-local `package-lock.json` outside any
+  npm-workspace context — run it after ANY dependency change or CI's `npm ci`
+  breaks
 
 ## Process Documentation
 

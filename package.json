@@ -7,7 +7,9 @@
     "build": "astro build",
     "preview": "astro preview",
     "test": "playwright test",
-    "deploy": "astro build && wrangler deploy"
+    "deploy": "astro build && wrangler deploy",
+    "postdeploy": "bash scripts/verify-approximated-fix.sh",
+    "check:links": "bash scripts/check-trailing-slashes.sh"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.2.0",

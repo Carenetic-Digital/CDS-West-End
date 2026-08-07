@@ -27,3 +27,11 @@ playwright-report/
 # Wrangler
 .wrangler/
 .playwright-mcp/
+
+# Sparkable CMS — runtime state (users.db, pending changes). Lives on the
+# fly.io staging volume once the CMS is onboarded; must NOT be committed or
+# a sync `git reset --hard` wipes every CMS user login.
+.sparkable/
+
+# cf-review local screenshots
+.cf-review/

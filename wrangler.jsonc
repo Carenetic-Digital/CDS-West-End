@@ -1,7 +1,29 @@
 {
   "name": "spark-site-template",
   "compatibility_date": "2026-02-01",
+
+  // Strips ETag/Last-Modified conditionals so the Approximated.app proxy
+  // (which fronts every production domain) can never serve its buggy
+  // empty-body revalidation responses. See worker/index.js.
+  "main": "worker/index.js",
+
+  // CRITICAL: Approximated proxy targets are the workers.dev URL. When routes
+  // are declared and workers_dev is NOT explicitly true, every `wrangler
+  // deploy` silently DISABLES the workers.dev URL and takes production down
+  // (crestwooddental.ca outage 2026-08-06). Do not remove this line.
+  "workers_dev": true,
+
+  // Do NOT declare routes/custom domains here. The <slug>.spark0.io staging
+  // domain is dashboard-managed: the shared CI CLOUDFLARE_API_TOKEN is
+  // account-scoped, and declared routes make CI `wrangler deploy` call the
+  // zone APIs, which 401.
+
   "assets": {
-    "directory": "./dist"
+    "directory": "./dist",
+    "binding": "ASSETS",
+    // Required: without this, asset requests bypass the Worker and keep ETags.
+    "run_worker_first": true,
+    // Serve the branded 404 page instead of an empty-body 404.
+    "not_found_handling": "404-page"
   }
 }

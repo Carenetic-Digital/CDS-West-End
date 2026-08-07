@@ -1,4 +1,8 @@
+# `! ETag` — never emit a validator: the Approximated proxy fronting
+# production intermittently mangles 304s into blank pages. Pairs with
+# worker/index.js (request-side strip). Do not remove.
 /*
+  ! ETag
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin

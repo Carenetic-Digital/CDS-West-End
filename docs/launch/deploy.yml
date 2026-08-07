@@ -1,0 +1,133 @@
+name: Deploy to Production (CF) and CMS (Fly.io)
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Configure npm for GitHub Packages
+        run: |
+          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GH_PACKAGES_TOKEN }}" >> ~/.npmrc
+          echo "@sparkable-cms:registry=https://npm.pkg.github.com" >> ~/.npmrc
+          # Fail loudly if the token is missing or can't read the package, instead
+          # of letting `npm ci` silently skip the optional @sparkable-cms/cms dep
+          # (which then trips the CI build guard in astro.config.mjs).
+          if [ -z "${{ secrets.GH_PACKAGES_TOKEN }}" ]; then
+            echo "::error::GH_PACKAGES_TOKEN secret is empty"; exit 1
+          fi
+          CODE=$(curl -s -o /dev/null -w '%{http_code}' \
+            -H "Authorization: Bearer ${{ secrets.GH_PACKAGES_TOKEN }}" \
+            https://npm.pkg.github.com/@sparkable-cms/cms)
+          echo "GitHub Packages auth check: HTTP $CODE"
+          if [ "$CODE" != "200" ]; then
+            echo "::error::Cannot read @sparkable-cms/cms (HTTP $CODE) — token lacks read:packages or org access"; exit 1
+          fi
+
+      - name: Install dependencies
+        run: npm ci --include=optional
+
+      - name: Assert CMS package installed
+        run: |
+          # Only enforce once the site actually depends on @sparkable-cms/cms
+          # (CMS onboarding pending — this becomes a hard gate automatically
+          # the moment the dependency is added to package.json).
+          if ! node -e "const p=require('./package.json'); const has=(p.dependencies&&p.dependencies['@sparkable-cms/cms'])||(p.optionalDependencies&&p.optionalDependencies['@sparkable-cms/cms']); process.exit(has?0:1)"; then
+            echo "::notice::@sparkable-cms/cms not (yet) a dependency of this site — skipping assert."
+            exit 0
+          fi
+          if [ ! -d node_modules/@sparkable-cms/cms ]; then
+            echo "::error::@sparkable-cms/cms did not install — npm silently skipped the optional dep. Check registry auth."
+            exit 1
+          fi
+          echo "✅ @sparkable-cms/cms present: $(node -p "require('@sparkable-cms/cms/package.json').version")"
+
+      - name: Build
+        run: npm run build
+
+      - name: Deploy to Cloudflare Workers
+        run: npx wrangler deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+      # Retry: right after a Workers deploy there's a short propagation window
+      # where the new version's _headers rules aren't applied yet and the asset
+      # layer's default ETag leaks through. The request-side strip in
+      # worker/index.js still protects clients during the window (a leaked ETag
+      # can never earn a 304), so a transient FAIL here is noise — only a
+      # persistent one is real.
+      - name: Verify Approximated workaround on live origin
+        run: |
+          for attempt in 1 2 3; do
+            if bash scripts/verify-approximated-fix.sh https://{{SITE_SLUG}}.spark0.io/; then
+              exit 0
+            fi
+            echo "verify failed (attempt $attempt/3) — waiting 45s for deploy propagation"
+            sleep 45
+          done
+          echo "::error::Approximated verify still failing after 3 attempts — this one is real."
+          exit 1
+
+      # Tell the staging CMS on fly.io to pull the merged commit and re-apply
+      # any unpublished client edits. Non-fatal: if the CMS is cold-starting or
+      # unreachable, startup sync in entrypoint.sh will catch up on the next
+      # container boot. FLY_CMS_URL is the base URL (e.g. https://app.fly.dev)
+      # and SPARKABLE_SYNC_SECRET must also be set on the fly app.
+      - name: Sync CMS (fly.io)
+        env:
+          FLY_CMS_URL: ${{ secrets.FLY_CMS_URL }}
+          SPARKABLE_SYNC_SECRET: ${{ secrets.SPARKABLE_SYNC_SECRET }}
+        run: |
+          if [ -z "$FLY_CMS_URL" ] || [ -z "$SPARKABLE_SYNC_SECRET" ]; then
+            echo "::notice::FLY_CMS_URL or SPARKABLE_SYNC_SECRET not set — skipping CMS sync."
+            exit 0
+          fi
+          HTTP_STATUS=$(curl -sS -o /tmp/sync-response.json -w '%{http_code}' \
+            -X POST "${FLY_CMS_URL%/}/_sparkable/api/sync" \
+            -H "X-Sparkable-Sync-Secret: $SPARKABLE_SYNC_SECRET" \
+            --max-time 120) || true
+          echo "Response status: $HTTP_STATUS"
+          echo "Response body:"
+          cat /tmp/sync-response.json || true
+          echo
+          if [ "$HTTP_STATUS" != "200" ]; then
+            echo "::warning::CMS sync returned $HTTP_STATUS — the fly container will reconcile on next boot."
+          fi
+
+      # Restart the fly machine so Astro re-loads modules from the freshly-pulled
+      # source. The sync POST above advances the volume's working tree, but the
+      # running Astro process keeps its already-imported modules in memory —
+      # the editor preview can keep serving pre-merge code until the process
+      # restarts. The entrypoint mints a fresh GitHub App token on boot, which
+      # also sidesteps the "sync silently returns 200 against an expired token"
+      # gotcha (CLAUDE.md gotcha #10). Non-fatal: a flaky restart shouldn't
+      # block a deploy that already succeeded. Soft-skips when FLY_API_TOKEN
+      # is missing so the deploy still works before the CMS is wired up.
+      - name: Restart fly machine
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+          FLY_APP_NAME: v08-{{SITE_SLUG}}
+        run: |
+          if [ -z "$FLY_API_TOKEN" ]; then
+            echo "::notice::FLY_API_TOKEN not set — skipping fly machine restart."
+            exit 0
+          fi
+          curl -L https://fly.io/install.sh | sh
+          export PATH="$HOME/.fly/bin:$PATH"
+          MACHINE_ID=$(flyctl machines list --app "$FLY_APP_NAME" --json | jq -r '.[0].id')
+          if [ -z "$MACHINE_ID" ] || [ "$MACHINE_ID" = "null" ]; then
+            echo "::warning::No machines found in $FLY_APP_NAME — skipping restart."
+            exit 0
+          fi
+          echo "Restarting machine $MACHINE_ID..."
+          flyctl machine restart "$MACHINE_ID" --app "$FLY_APP_NAME" || \
+            echo "::warning::flyctl machine restart failed — entrypoint will sync on next boot."
