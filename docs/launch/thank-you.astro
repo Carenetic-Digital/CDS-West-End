@@ -1,0 +1,85 @@
+---
+// DORMANT — copy to src/pages/thank-you.astro ONLY if this site needs it.
+//
+// Jotform offers two post-submit behaviours, and which one a given form uses
+// lives in the FORM's settings, not in this repo:
+//
+//   1. Inline — the embed swaps itself for a thank-you message. No page
+//      needed. (pierreruralfm.org works this way.)
+//   2. Redirect — the browser goes to a URL such as <domain>/thank-you.
+//      That page MUST exist or real submitters land on a 404.
+//      (ablefamilydental and crestwooddental.ca both shipped without it.)
+//
+// Nothing in the repo distinguishes the two, so preflight cannot infer it.
+// Check each form's post-submit setting in Jotform, then record the answer in
+// .preflight.json so it is verified once and asserted on every build after:
+//
+//   "formRedirectTargets": []                  // checked: all forms inline
+//   "formRedirectTargets": ["/thank-you/"]     // checked: this must resolve
+//
+// Per site when you do copy it: set the phone number, and swap the three
+// next-step cards for pages this site actually has. Keep noindex — this page
+// should never appear in search results. Keep the trailing slashes.
+// (import path is relative to src/pages/ — where this file is copied to)
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Thank You"
+  description="We've received your submission and will be in touch shortly."
+  noindex={true}
+>
+  <main class="min-h-screen flex items-center justify-center bg-neutral-50 py-20">
+    <div class="text-center px-4 max-w-3xl">
+      <p class="text-sm font-bold uppercase tracking-widest text-primary mb-3">
+        Message received
+      </p>
+      <h1 class="text-4xl font-display font-bold text-neutral-900 mb-4">
+        Thank you!
+      </h1>
+      <p class="text-neutral-600 mb-4 max-w-lg mx-auto">
+        We've received your submission and someone will be in touch shortly —
+        usually within one business day.
+      </p>
+      <p class="text-neutral-600 mb-10 max-w-lg mx-auto">
+        Need to reach us sooner? Call
+        <a href="tel:+10000000000" class="font-semibold text-primary">
+          [Phone]
+        </a>
+        during business hours.
+      </p>
+
+      {/* Swap these for real pages on this site — every href keeps its trailing slash. */}
+      <div class="grid sm:grid-cols-3 gap-4 text-left mb-10">
+        <a
+          href="/services/"
+          class="flex flex-col rounded-xl bg-white border border-neutral-200 p-5 transition-shadow hover:shadow-md"
+        >
+          <h2 class="font-display font-bold text-neutral-900 text-base mb-1">Services</h2>
+          <p class="text-neutral-600 text-sm">What we offer and who it's for.</p>
+        </a>
+        <a
+          href="/about/"
+          class="flex flex-col rounded-xl bg-white border border-neutral-200 p-5 transition-shadow hover:shadow-md"
+        >
+          <h2 class="font-display font-bold text-neutral-900 text-base mb-1">About us</h2>
+          <p class="text-neutral-600 text-sm">Who we are and how we work.</p>
+        </a>
+        <a
+          href="/contact/"
+          class="flex flex-col rounded-xl bg-white border border-neutral-200 p-5 transition-shadow hover:shadow-md"
+        >
+          <h2 class="font-display font-bold text-neutral-900 text-base mb-1">Contact</h2>
+          <p class="text-neutral-600 text-sm">Hours, location, and directions.</p>
+        </a>
+      </div>
+
+      <a
+        href="/"
+        class="inline-block px-6 py-3 bg-primary text-white font-medium rounded-lg hover:bg-primary/90 transition-colors"
+      >
+        Return Home
+      </a>
+    </div>
+  </main>
+</BaseLayout>
