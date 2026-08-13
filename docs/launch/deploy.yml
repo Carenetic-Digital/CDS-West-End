@@ -50,8 +50,23 @@ jobs:
           fi
           echo "✅ @sparkable-cms/cms present: $(node -p "require('@sparkable-cms/cms/package.json').version")"
 
+      # The launch audit, as a gate. Static first so a config problem fails in
+      # seconds rather than after a full build: workers_dev pinned, no routes
+      # declared, run_worker_first on, the front worker stripping conditionals,
+      # form redirect targets declared. Blockers fail the job; warnings don't.
+      - name: Preflight (static)
+        run: npx --no-install sparkable-preflight
+
       - name: Build
         run: npm run build
+
+      # The gate that matters: assert the BUILD before it can reach production.
+      # Catches what source inspection can't — slash-less internal links
+      # (crestwood shipped 127), staging URLs left in canonicals and JSON-LD,
+      # a staging noindex that never got flipped, a declared form redirect
+      # target that didn't build.
+      - name: Preflight (build output)
+        run: npx --no-install sparkable-preflight --build
 
       - name: Deploy to Cloudflare Workers
         run: npx wrangler deploy
