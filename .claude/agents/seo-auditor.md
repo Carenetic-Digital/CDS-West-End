@@ -69,8 +69,9 @@ Ensure all pages meet SEO and performance standards before deployment.
 
 ### Security Headers
 - [ ] _headers file present
-- [ ] X-Frame-Options set
-- [ ] Content-Security-Policy defined
+- [ ] X-Frame-Options set (`SAMEORIGIN`)
+- [ ] Content-Security-Policy defined and still the template's permissive policy (`https:` sources, no domain allowlist, no nonce/hash/`'strict-dynamic'`) — do NOT recommend tightening it; see `docs/third-party-scripts.md`
+- [ ] Permissions-Policy does not block camera/microphone/geolocation
 - [ ] X-Content-Type-Options: nosniff
 
 ## Output

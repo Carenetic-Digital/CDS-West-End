@@ -1,10 +1,8 @@
 # Adding Third-Party Scripts
 
-This project uses a Content Security Policy (CSP) in `public/_headers` and Astro's script processing. Both can block third-party scripts silently. Follow this guide when adding any external script.
+Follow this guide when adding any external script (GTM, GA, BugHerd, Hotjar, chat widgets, embedded forms, etc.).
 
-## Two things that will break scripts
-
-### 1. Astro script processing (CORS errors)
+## 1. Use `is:inline` (Astro script processing)
 
 Astro processes `<script>` tags by default — it tries to bundle external scripts, which causes CORS failures. Any external script loaded via `src="https://..."` needs the `is:inline` directive.
 
@@ -18,72 +16,66 @@ Astro processes `<script>` tags by default — it tries to bundle external scrip
 
 Add scripts to `src/layouts/BaseLayout.astro` inside `<head>` so they load on every page.
 
-### 2. Content Security Policy (CSP errors)
+## 2. You do NOT need to edit the CSP
 
-The CSP in `public/_headers` controls which external domains the browser will allow. If the console shows `violates the following Content Security Policy directive`, you need to add the domain to the right CSP directive.
+The Content-Security-Policy and Permissions-Policy in `public/_headers` are **permissive on purpose**. Any `https:` script, style, image, font, frame, or connection is allowed, so adding a script needs no header change.
 
-**CSP directives and what they control:**
+### Why permissive
 
-| Directive | What it covers | Example scripts that need it |
-|-----------|---------------|------------------------------|
-| `script-src` | JavaScript files | GA, GTM, BugHerd, Hotjar, Intercom |
-| `style-src` | CSS / stylesheets | Fonts, widget styling |
-| `connect-src` | XHR, fetch, WebSocket | Analytics beacons, real-time connections |
-| `img-src` | Images | Tracking pixels, CDN images |
-| `font-src` | Font files | Google Fonts, custom font CDNs |
-| `frame-src` | iframes | Embedded forms, videos, chat widgets |
+Site maintenance is shared with the client. Clients and their marketing vendors add and change tags in Google Tag Manager (Meta Pixel, LinkedIn Insight, CallRail, chat widgets, A/B testing tools) whenever they want, with no deploy and often without telling us. A per-domain allowlist blocks those tags **silently**: the only sign is a console error, so the client thinks tracking works and we find out weeks later. Vendors also move their sub-resources to new domains over time, so even a correct allowlist goes stale.
 
-**How to find what domains to add:**
+We accept a looser CSP in exchange for tags that just work. Consent management, not CSP, is what controls what third-party tags may do (see issue #15).
 
-1. Add the script tag with `is:inline`
-2. Open the site in Chrome, open DevTools Console
-3. Look for CSP violation errors — they tell you exactly which directive and domain is blocked
-4. Add each blocked domain to the correct directive in `public/_headers`
-5. Repeat until clean — scripts often load sub-dependencies from other domains
+### What the policy still enforces
 
-**Tip:** Use wildcards (`https://*.example.com`) to cover subdomains. Many services use multiple subdomains (e.g., BugHerd uses `www.bugherd.com` and `sidebar.bugherd.com`).
+| Directive / header | Value | Why it stays |
+|--------------------|-------|--------------|
+| `object-src` | `'none'` | Blocks `<object>`/`<embed>` plugins; no modern tag uses them |
+| `base-uri` | `'self'` | Stops injected `<base>` tags from rewriting relative URLs |
+| `form-action` | `'self' https:` | Forms can post to any HTTPS service (Mailchimp, HubSpot), never plain HTTP |
+| `frame-ancestors` + `X-Frame-Options` | `'self'` / `SAMEORIGIN` | Other sites can't frame ours (clickjacking); same-origin framing still works |
+| `upgrade-insecure-requests` | — | Hardcoded `http://` resource URLs are upgraded to HTTPS instead of blocked as mixed content |
+| `X-Content-Type-Options` | `nosniff` | No MIME sniffing |
+| `Referrer-Policy` | `strict-origin-when-cross-origin` | Full URLs aren't leaked cross-origin |
 
-## Common scripts and their CSP requirements
+What's allowed that a strict policy would block, and the tags that need it:
 
-### Google Analytics / GTM
-```
-script-src: https://www.googletagmanager.com https://www.google-analytics.com
-connect-src: https://www.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com
-```
+- `script-src 'unsafe-inline'`: GTM Custom HTML tags and most vendor snippets inject inline script
+- `script-src 'unsafe-eval'`: GTM Custom JavaScript variables and some tag templates use `eval`
+- `blob:` in `script-src`/`worker-src`: session recording and chat tools (Hotjar, Clarity, LiveChat) spin up blob workers
+- `wss:` in `connect-src`: real-time widgets (Intercom, Pusher-backed tools like BugHerd, Hotjar)
+- `data:` in `img-src`/`font-src`/`media-src`: inlined pixels, icon fonts, and media
 
-### BugHerd
-Script tag:
-```astro
-<script is:inline type="text/javascript" src="https://www.bugherd.com/sidebarv2.js?apikey=YOUR_KEY" async="true"></script>
-```
-CSP domains required:
-```
-script-src: https://*.bugherd.com
-style-src:  https://*.bugherd.com
-font-src:   https://*.bugherd.com
-connect-src: https://*.bugherd.com https://*.bugsnag.com wss://*.pusher.com https://*.pusher.com
-frame-src:  https://*.bugherd.com
-```
+### Permissions-Policy
 
-### Hotjar
-```
-script-src: https://*.hotjar.com
-connect-src: https://*.hotjar.com wss://*.hotjar.com
-font-src: https://*.hotjar.com
-```
+`camera=*, microphone=*, geolocation=*` lets embedded tools use those features: telehealth/video-consult widgets, voice input in chat widgets, and "use my location" store locators. Cross-origin iframes still need their own `allow="camera; microphone; geolocation"` attribute (vendor embeds include it), and the browser still prompts the visitor. The old `camera=(), microphone=(), geolocation=()` value blocked those features outright, with no prompt shown.
 
-### Intercom
-```
-script-src: https://*.intercom.io https://*.intercomcdn.com
-connect-src: https://*.intercom.io wss://*.intercom.io https://*.intercomcdn.com
-frame-src: https://*.intercom.io
-```
+### Don't tighten it back
+
+- **Don't add domain allowlists** to replace `https:`. That brings back the silent-failure problem above.
+- **Don't add a `'nonce-…'`, `'sha256-…'`, or `'strict-dynamic'` to `script-src`.** When any of those is present, browsers ignore `'unsafe-inline'`, which breaks every GTM Custom HTML tag and inline vendor snippet at once.
+- **Don't add a `<meta http-equiv="Content-Security-Policy">`** to a layout. Browsers enforce both policies, so a meta CSP silently re-restricts the header's policy.
+- **Keep the CSP on one line.** Cloudflare `_headers` lines are capped at 2,000 characters.
+
+### What can still block a script
+
+The policy allows any `https:` (and `wss:`) source, so these are the only things that still fail:
+
+- Plain `http:` URLs are rewritten to `https:` by `upgrade-insecure-requests`. If the host doesn't serve HTTPS, the request fails as a network error, not a CSP violation. Ask the vendor for an HTTPS URL.
+- `<object>`/`<embed>` plugins (`object-src 'none'`).
+- `frame-ancestors 'self'`: if a client's tool loads **our site inside its own iframe** (e.g. VWO/Optimizely visual editors, some landing-page builders), the frame is refused. If a client genuinely needs this, add that tool's origin to `frame-ancestors` and change `X-Frame-Options` to match (or drop it, since `frame-ancestors` takes precedence in modern browsers).
+
+If the console shows `violates the following Content Security Policy directive`, it's one of the cases above. A plain `https://` domain being blocked means the header was tightened again; restore the template's policy.
+
+## Removing staging scripts at launch
+
+BugHerd and other staging-only tools need no CSP entries, so removing them at launch means removing just the `<script>` tag.
 
 ## Checklist for adding a new script
 
-1. Add `<script is:inline ...>` tag to `BaseLayout.astro` `<head>`
-2. Update `public/_headers` CSP with the script's domains
-3. Build and deploy
-4. Check browser console for CSP errors
-5. For each blocked domain, add to the appropriate directive in `public/_headers`
-6. Repeat until no CSP errors remain
+1. Add `<script is:inline ...>` tag to `BaseLayout.astro` `<head>` (or configure it in GTM)
+2. Build and deploy
+3. Smoke-test the **deployed** site in a browser (Playwright): load the pages that use the script and capture console messages and network requests. The CSP only exists on the Worker, so `npm run dev`/`npm run preview` can't show violations.
+4. Fix anything reported: CSP/Permissions-Policy violations, failed requests, iframes that don't render, JS errors from the script
+
+Even with a permissive policy, keep doing step 3. It catches drifted headers, the few directives that still block, and vendor scripts that simply fail.

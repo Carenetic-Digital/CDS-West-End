@@ -45,7 +45,7 @@ Prepare the site for production launch. Remove staging artifacts, verify all lau
 
 **Important:** Read `docs/third-party-scripts.md` before adding any scripts. All external scripts require:
 - `is:inline` directive on the `<script>` tag (Astro will CORS-fail without it)
-- CSP entries in `public/_headers` for the script's domains
+- NO CSP change — `public/_headers` allows any `https:` source on purpose
 
 Checks:
 - **GTM/GA** — read the container ID(s) from the OLD SITE'S LIVE `<head>`
@@ -55,7 +55,7 @@ Checks:
   If none found, ask for the ID.
 - **Reference site scripts** — check the reference site's `<head>` for scripts that should carry over (booking widgets, chat, call tracking). Report any found with: "The reference site has [script]. Is this needed on the new site?" Get an explicit yes/no per script.
 - **Verify all external `<script>` tags use `is:inline`**
-- **Verify `public/_headers` CSP includes domains for all installed scripts**
+- **Verify `public/_headers` still carries the template's permissive CSP and Permissions-Policy** — not tightened to a domain allowlist, no nonce/hash/`'strict-dynamic'` in `script-src`, no `<meta http-equiv="Content-Security-Policy">` in any layout. Restore the template values if they drifted; clients will add GTM tags after launch without telling us
 - **Verify all scripts from old site are accounted for** — either installed or explicitly declined.
 
 ### 3. Verify SEO Readiness
@@ -116,6 +116,12 @@ After deployment:
 - Spot-check a few redirects to confirm they work
 - Spot-check a form submission end-to-end (including its redirect target)
 - Verify an unknown URL serves the branded 404 page (not a blank one)
+- **Browser smoke test on the DEPLOYED site** — a permissive CSP makes violations rare, not impossible, and the headers only exist on the Worker (`npm run dev`/`npm run preview` send no CSP, so they can't catch this). With Playwright, load the homepage plus 3–5 representative pages (a form page, a page with embeds) on the staging URL and capture console messages and network requests. Report and fix:
+  - Any `Content-Security-Policy` or `Permissions-Policy` violation — it means the header drifted from the template, a meta CSP was added, or a resource is hitting `object-src`/`frame-ancestors`/`base-uri`
+  - Failed third-party requests (non-2xx, network errors, mixed content) and iframes (forms, maps, video) that don't render
+  - Uncaught JavaScript errors from third-party scripts
+
+  Do not proceed to DNS cutover until it's clean — failures found after cutover are visible to the client.
 
 ### 7. DNS Cutover (client/CDS side)
 

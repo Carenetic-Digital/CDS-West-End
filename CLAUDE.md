@@ -93,12 +93,13 @@ Agent definitions in `.claude/agents/` provide detailed instructions for special
 
 ## Third-Party Scripts
 
-When adding any external script (GTM, BugHerd, Hotjar, chat widgets, etc.), two things will break it:
+When adding any external script (GTM, BugHerd, Hotjar, chat widgets, etc.):
 
 1. **Always use `is:inline`** on external `<script>` tags — Astro will try to bundle them otherwise, causing CORS errors
-2. **Always update `public/_headers` CSP** — add the script's domains to the appropriate CSP directives
+2. **Do not edit the CSP** — `public/_headers` CSP and Permissions-Policy are permissive on purpose (any `https:` source) because clients add tags through GTM without a deploy. Never tighten them to a domain allowlist, and never add a nonce/hash/`'strict-dynamic'` to `script-src` (that disables `'unsafe-inline'` and breaks GTM Custom HTML tags)
+3. **Still smoke-test the deployed site in a browser** — capture console + network on the staging URL and fix any CSP violations, failed third-party requests, or broken iframes. The headers only exist on the Worker, so the dev server can't show these
 
-See `docs/third-party-scripts.md` for the full guide, common scripts and their CSP requirements, and troubleshooting steps.
+See `docs/third-party-scripts.md` for the full guide, what the policy still enforces, and troubleshooting steps.
 
 ## Conventions
 
@@ -141,6 +142,9 @@ ride this pipeline).
   (caused a real outage, 2026-08-06)
 - `worker/index.js` + `! ETag` in `public/_headers` + the postdeploy verify =
   the Approximated blank-page workaround (both halves required)
+- The permissive CSP/Permissions-Policy in `public/_headers` — tightening
+  them silently breaks client-managed GTM tags (see
+  `docs/third-party-scripts.md`)
 - `not_found_handling: "404-page"` serves the branded 404 (without it,
   unknown URLs return an empty body and browsers show their own error page)
 - `gen-lockfile.sh` regenerates the site-local `package-lock.json` outside any

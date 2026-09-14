@@ -1,13 +1,21 @@
 # `! ETag` — never emit a validator: the Approximated proxy fronting
 # production intermittently mangles 304s into blank pages. Pairs with
 # worker/index.js (request-side strip). Do not remove.
+#
+# CSP + Permissions-Policy are PERMISSIVE ON PURPOSE (see
+# docs/third-party-scripts.md). Clients add tags through GTM and similar
+# tools without a deploy or telling us, and a domain allowlist blocks
+# those tags silently. So we allow any https: source and keep only the
+# directives that never get in a tag manager's way. Do not tighten back
+# to a per-domain allowlist, and do not add a nonce/hash or
+# 'strict-dynamic' to script-src — any of those makes browsers ignore
+# 'unsafe-inline' and breaks GTM Custom HTML tags.
+# Cloudflare caps each _headers line at 2,000 characters.
 /*
   ! ETag
-  X-Frame-Options: DENY
+  X-Frame-Options: SAMEORIGIN
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Permissions-Policy: camera=*, microphone=*, geolocation=*
   X-XSS-Protection: 1; mode=block
-
-# CSP - start permissive, tighten as needed
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://cloudflareinsights.com; frame-src https://challenges.cloudflare.com
+  Content-Security-Policy: default-src 'self' https: data: blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https: blob:; style-src 'self' 'unsafe-inline' https:; img-src 'self' https: data: blob:; font-src 'self' https: data:; connect-src 'self' https: wss:; frame-src 'self' https:; media-src 'self' https: data: blob:; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self' https:; frame-ancestors 'self'; upgrade-insecure-requests

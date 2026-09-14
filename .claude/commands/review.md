@@ -50,14 +50,21 @@ slash-less internal link costs a 307 redirect on Cloudflare.
 
 **Important:** Read `docs/third-party-scripts.md` for the full guide. When adding or checking scripts:
 - All external `<script>` tags MUST use `is:inline` (Astro will CORS-fail without it)
-- All script domains MUST be in `public/_headers` CSP directives
-- Check `docs/third-party-scripts.md` for known CSP requirements for common scripts (GTM, BugHerd, Hotjar, Intercom)
+- Script domains do NOT go in the CSP — `public/_headers` allows any `https:` source on purpose (clients add tags through GTM without a deploy)
 
 Checks:
 - Check if GTM or GA is installed. If not, report: "GTM/GA not found. Need the GTM container ID or GA measurement ID to install."
 - Check the reference site's `<head>` for scripts that should carry over (chat widgets, tracking pixels, remarketing tags, heatmaps). Report any found with: "The reference site has [script]. Do you want this on the new site?"
 - Verify all external `<script>` tags in BaseLayout.astro use `is:inline`
-- Verify `public/_headers` CSP includes domains for all installed scripts
+- Verify `public/_headers` still carries the template's permissive CSP (`https:` in `script-src`/`connect-src`/`frame-src`, `'unsafe-inline'` + `'unsafe-eval'` in `script-src`, no nonce/hash/`'strict-dynamic'`) and Permissions-Policy (`camera=*, microphone=*, geolocation=*`). If it was tightened to a domain allowlist, restore it and flag it. No layout may add a `<meta http-equiv="Content-Security-Policy">`
+- Verify every loaded script uses `https:` (`http:` URLs get upgraded, and fail if the host has no HTTPS)
+
+**Browser smoke test on the DEPLOYED site** — a permissive CSP makes violations rare, not impossible, and the headers only exist on the Worker (`npm run dev`/`npm run preview` send no CSP, so they can't catch this). With Playwright, load the homepage plus 3–5 representative pages (a form page, a page with embeds) on the staging URL and capture console messages and network requests. Report and fix:
+- Any `Content-Security-Policy` or `Permissions-Policy` violation — it means the header drifted from the template, a meta CSP was added, or a resource is hitting `object-src`/`frame-ancestors`/`base-uri`
+- Failed third-party requests (non-2xx, network errors, mixed content) and iframes (forms, maps, video) that don't render
+- Uncaught JavaScript errors from third-party scripts
+
+If the site hasn't been deployed yet, say so and skip the smoke test rather than running it against the dev server.
 - Check if BugHerd script is still present. If so, flag: "BugHerd script still installed. Remove before launch."
 - Check if `noindex` meta tag is still present. If so, flag: "noindex still set. Remove before launch."
 
