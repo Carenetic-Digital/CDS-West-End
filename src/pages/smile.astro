@@ -1,0 +1,366 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { clinic } from '../data/clinic';
+
+const bookingUrl = clinic.bookingUrl;
+
+const serviceChips = [
+  'Family Dentistry',
+  'Invisalign®',
+  'Restorative Care',
+  'Cosmetic Dentistry',
+];
+
+const trustItems = [
+  {
+    title: 'Comprehensive',
+    subtitle: 'Dental Care',
+    icon: '<path d="M12 2c-1.5 2-4 4-4 7.5 0 2.5 1.5 4.5 3 6 .8.8 1.2 1.5 1 2.5-.2 1 .3 2 1 2s1.2-1 1-2c-.2-1 .2-1.7 1-2.5 1.5-1.5 3-3.5 3-6C18 6 15.5 4 14 2c-.5 1.5-1.5 2.5-2 3-.5-.5-1.5-1.5-2-3z"/><path d="M9 14c.5 1 1.2 1.8 2 2.2"/><path d="M15 14c-.5 1-1.2 1.8-2 2.2"/>',
+  },
+  {
+    title: 'Friendly',
+    subtitle: 'Comfortable Environment',
+    icon: '<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>',
+  },
+  {
+    title: 'Modern',
+    subtitle: 'Technology',
+    icon: '<rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 8h2"/><path d="M11 8h6"/><path d="M7 12h10"/>',
+  },
+  {
+    title: 'Direct Billing',
+    subtitle: 'Available',
+    icon: '<rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/>',
+  },
+];
+
+const featuredServices = [
+  {
+    title: 'Invisalign®',
+    body: 'Straighten your smile with clear aligners designed to fit comfortably into your everyday lifestyle.',
+  },
+  {
+    title: 'Cosmetic Dentistry',
+    body: 'Whitening, veneers, and bonding tailored to your goals and oral health.',
+  },
+  {
+    title: 'Restorative Care',
+    body: 'Fillings, crowns, bridges, and dentures to repair and replace teeth so they look and work the way they should.',
+  },
+  {
+    title: 'Preventive Dentistry',
+    body: 'Hygiene visits, fluoride, sealants, and custom guards that help keep small issues from becoming bigger ones.',
+  },
+];
+---
+
+<BaseLayout
+  title="Your Smile, Our Priority | West End Dental Centre"
+  description="West End Dental Centre welcomes new patients in West Edmonton. Family dentistry and Invisalign® — book online or call 780-944-2828."
+  noindex={true}
+  showHeader={false}
+  showFooter={false}
+  showPreFooter={false}
+  showMobileBar={true}
+  mobileRequestHref="#book"
+>
+
+  <!-- Notification bar -->
+  <div class="bg-[var(--color-brand-primary)] text-white text-xs sm:text-sm font-semibold">
+    <div class="container-wide flex items-center justify-between gap-4 py-2">
+      <p class="hidden sm:block">We are accepting new patients!</p>
+      <p class="mx-auto sm:mx-0 text-center sm:text-right">
+        Evening appointments available · Tuesday until 8:00 pm
+        <span class="mx-2 opacity-60" aria-hidden="true">|</span>
+        <a href={`tel:${clinic.phoneTel}`} class="underline-offset-2 hover:underline tabular-nums">{clinic.phoneDisplay}</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- Landing header -->
+  <header class="bg-white border-b border-[var(--color-border-soft)] sticky top-0 z-50">
+    <div class="container-wide flex items-center justify-between gap-4 py-3.5">
+      <a href="/" class="inline-flex items-center shrink-0" aria-label="West End Dental Centre home">
+        <img
+          src="/images/logos/west-end-logo.png"
+          alt="West End Dental Centre"
+          width="2089"
+          height="520"
+          class="h-10 sm:h-12 w-auto"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+        />
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-7 text-sm font-semibold uppercase tracking-wide text-[var(--color-text)]" aria-label="Smile page">
+        <a href="/about/our-clinic/" class="hover:text-[var(--color-brand-accent)] transition-colors">About</a>
+        <a href="/services/" class="hover:text-[var(--color-brand-accent)] transition-colors">Dental Services</a>
+        <a href="/new-patients/" class="hover:text-[var(--color-brand-accent)] transition-colors">Patient Info</a>
+        <a href="/contact/" class="hover:text-[var(--color-brand-accent)] transition-colors">Contact Us</a>
+      </nav>
+
+      <div class="flex items-center gap-3 sm:gap-4">
+        <a
+          href={`tel:${clinic.phoneTel}`}
+          class="hidden md:inline-flex text-lg font-bold text-[var(--color-brand-primary)] tabular-nums hover:text-[var(--color-brand-accent-hover)] transition-colors"
+        >
+          {clinic.phoneDisplay}
+        </a>
+        <a
+          href={bookingUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center rounded-md bg-[#c41e1e] hover:bg-[#a81818] text-white text-sm font-bold uppercase tracking-wide px-4 py-2.5 transition-colors"
+        >
+          Book Now
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="relative overflow-hidden bg-gradient-to-br from-white via-[var(--color-surface-cool)] to-[#eef4f8]">
+    <div class="container-wide py-14 lg:py-20">
+      <div class="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+        <div>
+          <p class="inline-flex items-center rounded-full bg-[#eef4f8] border border-[#b7d9e8] px-4 py-1.5 text-sm font-semibold text-[var(--color-brand-primary)]">
+            Caring for Edmonton Families
+          </p>
+          <h1 class="mt-5 font-display font-semibold text-[length:var(--text-5xl)] lg:text-[clamp(2.5rem,4.5vw,4rem)] leading-[1.05] tracking-tight text-[var(--color-text)]">
+            Comprehensive Dental Care for Every Stage of Life
+          </h1>
+          <p class="mt-5 text-lg text-[var(--color-text-muted)] leading-relaxed max-w-xl">
+            Proudly caring for Edmonton families with compassionate, personalized dental care. From routine preventive care to Invisalign® and restorative treatment, our team is here to help you smile with confidence.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="#book" class="btn btn-primary btn-lg">Book an Appointment</a>
+            <a href={`tel:${clinic.phoneTel}`} class="btn btn-outline btn-lg">Call Now</a>
+          </div>
+          <ul class="mt-8 flex flex-wrap gap-2.5" aria-label="Featured services">
+            {serviceChips.map((chip) => (
+              <li class="rounded-full bg-white border border-[#b7d9e8] px-4 py-2 text-sm font-medium text-[var(--color-text)]">
+                {chip}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="relative">
+          <div class="rounded-[1.75rem] overflow-hidden border-8 border-white shadow-xl">
+            <img
+              src="/images/hero/west-end-hero.jpg"
+              alt="West End Dental Centre exterior on 156 St NW in West Edmonton"
+              width="1449"
+              height="1086"
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
+              class="w-full aspect-[4/3] object-cover"
+            />
+          </div>
+
+          <div class="mt-4 grid sm:grid-cols-2 gap-3">
+            <a
+              href="/cdcp/"
+              class="rounded-2xl bg-white border border-[var(--color-border-soft)] border-l-4 border-l-[var(--color-brand-primary)] p-4 shadow-sm hover:shadow-md transition-shadow"
+            >
+              <p class="font-display font-semibold text-[var(--color-brand-primary)]">Now Accepting CDCP</p>
+              <p class="mt-1 text-sm text-[var(--color-text-muted)]">Canadian Dental Care Plan</p>
+            </a>
+            <a
+              href="/services/orthodontics/invisalign/"
+              class="rounded-2xl bg-[var(--color-brand-primary)] p-4 shadow-sm hover:bg-[var(--color-brand-primary-deep)] transition-colors"
+            >
+              <p class="font-display font-semibold text-white">Invisalign® at West End</p>
+              <p class="mt-1 text-sm text-white/90">Clear aligners — schedule a consultation today.</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Book an Appointment -->
+  <section id="book" class="section-y bg-[var(--color-surface-cool)] scroll-mt-24">
+    <div class="container-wide">
+      <div class="text-center max-w-3xl mx-auto">
+        <p class="eyebrow">Now Accepting New Patients</p>
+        <h2 class="mt-3 font-display font-semibold text-[length:var(--text-4xl)] leading-tight text-[var(--color-brand-primary)]">
+          Book an Appointment
+        </h2>
+        <p class="mt-4 text-lg text-[var(--color-text-muted)] leading-relaxed">
+          Whether you're looking for a new family dentist, interested in Invisalign®, or simply have questions about your oral health, our team is here to help.
+        </p>
+        <p class="mt-3 text-[var(--color-text-muted)]">
+          Select a convenient time below using our secure online booking system.
+        </p>
+      </div>
+
+      <div class="mt-12 grid lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] gap-8 items-start">
+        <div class="rounded-[1.75rem] bg-white border border-[var(--color-border-soft)] shadow-sm overflow-hidden p-2 sm:p-4">
+          <iframe
+            id="RecallMaxBooking"
+            title="Book an Appointment at West End Dental Centre"
+            src={bookingUrl}
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            class="w-full border-0 block"
+            style="min-height: 760px; height: 760px;"
+          ></iframe>
+          <p class="mt-3 px-2 pb-2 text-sm text-[var(--color-text-muted)]">
+            Having trouble booking online? Call
+            <a href={`tel:${clinic.phoneTel}`} class="font-semibold text-[var(--color-brand-primary)] hover:text-[var(--color-brand-accent-hover)] tabular-nums">{clinic.phoneDisplay}</a>
+            and we'll be happy to help.
+          </p>
+        </div>
+
+        <aside class="space-y-5 lg:sticky lg:top-28">
+          <div class="rounded-[1.75rem] overflow-hidden border border-[var(--color-border-soft)] shadow-sm">
+            <img
+              src="/images/west-end/clinic-03.jpg"
+              alt="Reception at West End Dental Centre"
+              width="800"
+              height="600"
+              loading="lazy"
+              decoding="async"
+              class="w-full aspect-[4/3] object-cover"
+            />
+          </div>
+          <div class="rounded-[1.75rem] bg-white border border-[var(--color-border-soft)] p-6 shadow-sm">
+            <p class="font-display font-semibold text-xl text-[var(--color-brand-primary)]">Welcome to West End</p>
+            <p class="mt-3 text-sm text-[var(--color-text-muted)] leading-relaxed">
+              New patients are always welcome. Call our reception team or book online — we're happy to answer questions before your first visit.
+            </p>
+            <ul class="mt-5 space-y-2.5 text-sm text-[var(--color-text)]">
+              <li class="flex gap-2.5">
+                <svg class="shrink-0 mt-0.5 text-[var(--color-brand-primary)]" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="5 12 10 17 19 7"/></svg>
+                Family dentistry for all ages
+              </li>
+              <li class="flex gap-2.5">
+                <svg class="shrink-0 mt-0.5 text-[var(--color-brand-primary)]" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="5 12 10 17 19 7"/></svg>
+                Tuesday evenings until 8:00 pm
+              </li>
+              <li class="flex gap-2.5">
+                <svg class="shrink-0 mt-0.5 text-[var(--color-brand-primary)]" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="5 12 10 17 19 7"/></svg>
+                Direct billing available
+              </li>
+            </ul>
+            <div class="mt-6 flex flex-col gap-2">
+              <a href={`tel:${clinic.phoneTel}`} class="btn btn-primary w-full text-center tabular-nums">{clinic.phoneDisplay}</a>
+              <a href="/new-patients/" class="btn btn-outline w-full text-center">New Patient Guide</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust cards -->
+  <section class="pb-16 bg-[var(--color-surface-cool)]">
+    <div class="container-wide">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {trustItems.map((item) => (
+          <div class="rounded-2xl bg-white border border-[var(--color-border-soft)] p-7 text-center shadow-sm">
+            <div class="mx-auto w-[4.5rem] h-[4.5rem] rounded-full bg-[var(--color-brand-primary)] flex items-center justify-center">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={item.icon} />
+            </div>
+            <h3 class="mt-5 font-display font-semibold text-xl text-[var(--color-brand-heading)]">{item.title}</h3>
+            <p class="mt-1 text-[var(--color-text-muted)]">{item.subtitle}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured services -->
+  <section class="section-y bg-white">
+    <div class="container-wide">
+      <div class="text-center max-w-3xl mx-auto">
+        <p class="eyebrow">Our Featured Services</p>
+        <h2 class="mt-3 font-display font-semibold text-[length:var(--text-4xl)] leading-tight text-[var(--color-brand-primary)]">
+          Care Tailored to Your Needs
+        </h2>
+        <p class="mt-4 text-lg text-[var(--color-text-muted)] leading-relaxed">
+          Whether you're visiting us for routine dental care or a more advanced treatment, our experienced team offers personalized solutions designed around your oral health goals.
+        </p>
+      </div>
+      <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {featuredServices.map((svc) => (
+          <div class="rounded-2xl bg-white border-2 border-[#c5d9e6] p-6">
+            <h3 class="font-display font-semibold text-xl text-[var(--color-brand-primary)]">{svc.title}</h3>
+            <p class="mt-3 text-sm text-[var(--color-text-muted)] leading-relaxed">{svc.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Consultation banner -->
+  <section class="relative min-h-[240px] lg:min-h-[280px] flex items-center justify-center overflow-hidden">
+    <img
+      src="/images/hero/west-end-hero.jpg"
+      alt=""
+      width="1536"
+      height="1024"
+      loading="lazy"
+      decoding="async"
+      class="absolute inset-0 w-full h-full object-cover object-[30%_center]"
+      aria-hidden="true"
+    />
+    <div class="absolute inset-0 bg-white/75" aria-hidden="true"></div>
+    <div class="relative container-wide text-center py-16">
+      <a
+        href="/book/"
+        class="inline-flex flex-col items-center gap-3 group"
+      >
+        <span class="block w-36 h-1.5 rounded-full bg-[var(--color-brand-primary)]" aria-hidden="true"></span>
+        <span class="font-display font-bold text-3xl sm:text-4xl text-[var(--color-text)] group-hover:text-[var(--color-brand-primary)] transition-colors inline-flex items-center gap-2">
+          Book a Consultation
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+        </span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Minimal footer -->
+  <footer class="bg-[var(--color-brand-primary-deep)] py-10">
+    <div class="container-wide">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 text-sm">
+        <div>
+          <p class="font-semibold text-white">{clinic.name}</p>
+          <p class="mt-2 text-[var(--color-text-on-dark-muted)] leading-relaxed">
+            {clinic.streetAddress}<br />
+            {clinic.city}, {clinic.regionAbbr}
+          </p>
+          <a href={`tel:${clinic.phoneTel}`} class="mt-3 inline-block font-semibold text-white hover:underline tabular-nums">{clinic.phoneDisplay}</a>
+        </div>
+        <div>
+          <p class="font-semibold text-white mb-3">Hours</p>
+          <ul class="space-y-1 text-[var(--color-text-on-dark-muted)]">
+            {clinic.hours.map((row) => (
+              <li class="flex justify-between gap-4 max-w-xs">
+                <span>{row.day}</span>
+                <span>{row.hours}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="sm:col-span-2 lg:col-span-1">
+          <p class="font-semibold text-white mb-3">Quick Links</p>
+          <ul class="space-y-2 text-[var(--color-text-on-dark-muted)]">
+            <li><a href="/about/our-clinic/" class="hover:text-white transition-colors">About</a></li>
+            <li><a href="/services/" class="hover:text-white transition-colors">Services</a></li>
+            <li><a href="/contact/" class="hover:text-white transition-colors">Contact</a></li>
+            <li><a href="/services/emergency/" class="hover:text-white transition-colors">Emergency Care</a></li>
+            <li><a href="/" class="hover:text-white transition-colors">Main Website</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="mt-10 pt-6 border-t border-white/15 text-xs text-[var(--color-text-on-dark-muted)] text-center sm:text-left">
+        © {new Date().getFullYear()} West End Dental Centre. All Rights Reserved.
+      </p>
+    </div>
+  </footer>
+
+</BaseLayout>

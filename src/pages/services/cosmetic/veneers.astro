@@ -1,0 +1,218 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Porcelain Veneers | West End Dental Centre Edmonton"
+  description="Porcelain veneers at West End Dental Centre in West Edmonton. Learn what veneers are, common uses, the procedure, longevity, and whether they may be suitable for you."
+>
+
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <section class="bg-[var(--color-brand-primary)] relative overflow-hidden">
+    <!-- Right-side image panel, desktop only -->
+    <div class="hidden lg:block absolute right-0 top-0 bottom-0 w-[50%] pointer-events-none" aria-hidden="true">
+      <img
+        src="/images/west-end/hero-veneers.jpg"
+        alt="Porcelain dental veneers"
+        width="1536"
+        height="1024"
+        loading="eager"
+          fetchpriority="high"
+        decoding="async"
+        class="w-full h-full object-cover"
+      />
+      <div class="hero-image-fade" aria-hidden="true"></div>
+    </div>
+    <div class="container-wide relative py-16 lg:py-24 lg:max-w-[48%]">
+      <nav class="flex items-center gap-2 text-xs text-[var(--color-text-on-dark-muted)] mb-5" aria-label="Breadcrumb">
+        <a href="/" class="text-white hover:text-white/80 transition-colors">Home</a>
+        <span aria-hidden="true">›</span>
+        <a href="/services/" class="text-white/80 hover:text-white transition-colors">Services</a>
+        <span aria-hidden="true">›</span>
+        <a href="/services/cosmetic/" class="text-white/80 hover:text-white transition-colors">Cosmetic</a>
+        <span aria-hidden="true">›</span>
+        <span class="text-white">Porcelain Veneers</span>
+      </nav>
+      <p class="eyebrow text-white">Cosmetic Dentistry</p>
+      <h1 class="mt-3 font-display font-semibold text-[length:var(--text-5xl)] leading-tight text-white max-w-2xl">
+        Porcelain Veneers
+      </h1>
+      <p class="mt-4 text-lg text-[var(--color-text-on-dark-muted)] leading-relaxed max-w-xl">
+        Thin shells of porcelain bonded to the front surfaces of teeth can address a range of cosmetic concerns, from discolouration to shape irregularities, in a relatively conservative way.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       MAIN CONTENT + SIDEBAR
+       ============================================================ -->
+  <section class="section-y bg-white">
+    <div class="container-wide">
+      <div class="grid lg:grid-cols-[1fr_300px] gap-12">
+
+        <!-- Main Content -->
+        <div class="space-y-10">
+
+          <!-- What are veneers -->
+          <div>
+            <h2 class="font-display font-semibold text-[length:var(--text-3xl)] text-[var(--color-brand-primary)] leading-tight">
+              What are porcelain veneers?
+            </h2>
+            <p class="mt-4 text-base text-[var(--color-text-muted)] leading-relaxed">
+              Porcelain veneers are thin, custom-made shells of dental porcelain bonded to the front surface of teeth. They can change a tooth's colour, shape, and size, making them a versatile option for addressing several cosmetic concerns at once. Porcelain closely mimics the light-reflecting properties of natural enamel, which is why it is commonly used for this purpose.
+            </p>
+          </div>
+
+          <!-- Image break -->
+          <div class="rounded-2xl overflow-hidden max-h-[700px]">
+            <img
+              src="/images/west-end/thumb-veneers.jpg"
+              alt="Dental veneers at West End Dental Centre"
+              width="800"
+              height="450"
+              loading="lazy"
+              decoding="async"
+              class="w-full h-auto"
+            />
+          </div>
+
+          <!-- Common uses -->
+          <div>
+            <h2 class="font-display font-semibold text-[length:var(--text-3xl)] text-[var(--color-brand-primary)] leading-tight">
+              Common uses
+            </h2>
+            <p class="mt-4 text-base text-[var(--color-text-muted)] leading-relaxed">
+              Veneers are typically considered for:
+            </p>
+            <ul class="mt-4 space-y-3">
+              <li class="flex gap-3">
+                <span class="mt-1 shrink-0 w-5 h-5 rounded-full bg-[var(--color-brand-primary)] flex items-center justify-center">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                </span>
+                <span class="text-base text-[var(--color-text-muted)] leading-relaxed">Discolouration that does not respond well to whitening, including intrinsic staining</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="mt-1 shrink-0 w-5 h-5 rounded-full bg-[var(--color-brand-primary)] flex items-center justify-center">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                </span>
+                <span class="text-base text-[var(--color-text-muted)] leading-relaxed">Chipped or worn teeth where the shape has changed over time</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="mt-1 shrink-0 w-5 h-5 rounded-full bg-[var(--color-brand-primary)] flex items-center justify-center">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                </span>
+                <span class="text-base text-[var(--color-text-muted)] leading-relaxed">Minor gaps between teeth or slight misalignment where orthodontics may not be the preferred approach</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="mt-1 shrink-0 w-5 h-5 rounded-full bg-[var(--color-brand-primary)] flex items-center justify-center">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                </span>
+                <span class="text-base text-[var(--color-text-muted)] leading-relaxed">Uneven tooth size or shape that affects the overall appearance of the smile</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- The procedure -->
+          <div>
+            <h2 class="font-display font-semibold text-[length:var(--text-3xl)] text-[var(--color-brand-primary)] leading-tight">
+              The procedure
+            </h2>
+            <p class="mt-4 text-base text-[var(--color-text-muted)] leading-relaxed">
+              Getting porcelain veneers typically involves two or three appointments:
+            </p>
+            <div class="mt-6 space-y-4">
+              <div class="flex gap-4">
+                <span class="shrink-0 w-8 h-8 rounded-full bg-[var(--color-brand-primary)] text-white flex items-center justify-center font-semibold text-sm">1</span>
+                <div>
+                  <h3 class="font-semibold text-[var(--color-text)]">Consultation</h3>
+                  <p class="mt-1 text-sm text-[var(--color-text-muted)] leading-relaxed">We assess your teeth and discuss your goals. X-rays may be taken to confirm the underlying health of the teeth to be treated. We'll discuss what you can realistically expect from veneers and whether they're appropriate for your situation.</p>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <span class="shrink-0 w-8 h-8 rounded-full bg-[var(--color-brand-primary)] text-white flex items-center justify-center font-semibold text-sm">2</span>
+                <div>
+                  <h3 class="font-semibold text-[var(--color-text)]">Tooth preparation</h3>
+                  <p class="mt-1 text-sm text-[var(--color-text-muted)] leading-relaxed">A small amount of enamel, typically less than a millimetre, is removed from the front surface of each tooth to allow the veneer to sit flush. This step is <strong>irreversible</strong>, which is an important consideration when deciding whether to proceed. Impressions or digital scans are taken, and temporary veneers may be placed while the permanent ones are fabricated in a dental laboratory.</p>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <span class="shrink-0 w-8 h-8 rounded-full bg-[var(--color-brand-primary)] text-white flex items-center justify-center font-semibold text-sm">3</span>
+                <div>
+                  <h3 class="font-semibold text-[var(--color-text)]">Bonding appointment</h3>
+                  <p class="mt-1 text-sm text-[var(--color-text-muted)] leading-relaxed">The permanent veneers are checked for fit and colour, then bonded to the prepared teeth using dental cement and cured with a light. Minor adjustments to fit and bite are made before you leave.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Longevity and care -->
+          <div class="bg-[var(--color-surface-cool)] rounded-2xl p-6 border border-[var(--color-border-soft)]">
+            <h2 class="font-display font-semibold text-[length:var(--text-2xl)] text-[var(--color-brand-primary)] leading-tight">
+              Longevity and care
+            </h2>
+            <p class="mt-4 text-base text-[var(--color-text-muted)] leading-relaxed">
+              With proper care, porcelain veneers can last many years. To protect them:
+            </p>
+            <ul class="mt-4 space-y-2 text-sm text-[var(--color-text-muted)] leading-relaxed">
+              <li class="flex gap-2"><span aria-hidden="true">•</span><span>Avoid biting very hard objects (ice, pen caps, hard candy) directly with veneered teeth</span></li>
+              <li class="flex gap-2"><span aria-hidden="true">•</span><span>Brush and floss as normal; porcelain is stain-resistant but surrounding gum tissue still needs care</span></li>
+              <li class="flex gap-2"><span aria-hidden="true">•</span><span>If you grind or clench your teeth (bruxism), a night guard is often recommended, grinding can crack or wear veneers over time</span></li>
+              <li class="flex gap-2"><span aria-hidden="true">•</span><span>Attend regular dental checkups so we can monitor the condition of the veneers</span></li>
+            </ul>
+          </div>
+
+          <!-- Not suitable -->
+          <div class="bg-[var(--color-surface-alt)] rounded-2xl p-6 border border-[var(--color-border-soft)]">
+            <h2 class="font-display font-semibold text-[length:var(--text-2xl)] text-[var(--color-brand-primary)] leading-tight">
+              When veneers may not be appropriate
+            </h2>
+            <p class="mt-4 text-base text-[var(--color-text-muted)] leading-relaxed">
+              Veneers are not suitable for everyone. They may not be recommended if you have significant tooth misalignment (orthodontics may be a better approach), insufficient enamel remaining on the tooth, active gum disease or decay, or severe grinding or clenching without plans for protection. Your dentist will assess these factors during the consultation.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="space-y-6">
+          <div class="bg-[var(--color-brand-primary)] rounded-2xl p-6 text-white">
+            <h3 class="font-display font-semibold text-lg text-white">Interested?</h3>
+            <p class="mt-2 text-sm text-[var(--color-text-on-dark-muted)] leading-relaxed">A consultation helps us understand your goals and recommend appropriate options.</p>
+            <a href="/book/" class="mt-4 btn btn-primary w-full block text-center">Book a Consultation</a>
+            <a href="tel:+17809442828" class="mt-2 block text-center text-sm text-[var(--color-text-on-dark-muted)] hover:text-white transition-colors">780-944-2828</a>
+          </div>
+          <div class="bg-[var(--color-surface-cool)] rounded-2xl p-6 border border-[var(--color-border-soft)]">
+            <h3 class="font-body text-xs font-semibold uppercase tracking-[0.14em] text-[var(--color-brand-primary)] mb-4">Cosmetic Services</h3>
+            <ul class="space-y-2">
+              <li><a href="/services/cosmetic/whitening/" class="text-sm text-[var(--color-text)] hover:text-[var(--color-brand-accent)] transition-colors">Teeth Whitening</a></li>
+              <li><a href="/services/cosmetic/veneers/" class="text-sm font-semibold text-[var(--color-brand-accent)]">Porcelain Veneers</a></li>
+              <li><a href="/services/cosmetic/bonding/" class="text-sm text-[var(--color-text)] hover:text-[var(--color-brand-accent)] transition-colors">Dental Bonding</a></li>
+              <li><a href="/services/orthodontics/invisalign/" class="text-sm text-[var(--color-text)] hover:text-[var(--color-brand-accent)] transition-colors">Invisalign® Clear Aligners</a></li>
+            </ul>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CTA BAND
+       ============================================================ -->
+  <section class="bg-[var(--color-brand-primary)] py-16 text-center overflow-hidden relative">
+    <svg class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 1440 160" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 60 C 240 20, 480 100, 720 60 C 960 20, 1200 100, 1440 60 L1440 160 L0 160 Z" fill="rgba(255,255,255,0.03)"/>
+    </svg>
+    <div class="relative container-wide">
+      <h2 class="font-display font-semibold text-[length:var(--text-4xl)] text-white leading-tight">Considering a cosmetic treatment?</h2>
+      <p class="mt-4 text-[var(--color-text-on-dark-muted)] text-lg max-w-xl mx-auto">Call <a href="tel:+17809442828" class="text-white font-semibold">780-944-2828</a> to book a consultation.</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <a href="/book/" class="btn btn-primary btn-lg">Book a Consultation</a>
+        <a href="/contact/" class="btn btn-lg border border-white/30 text-white hover:bg-white/10 transition-colors">Contact Us</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

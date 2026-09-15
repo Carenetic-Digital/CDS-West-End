@@ -1,0 +1,384 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const steps = [
+  {
+    number: "01",
+    title: "Request Your Appointment",
+    body: `Call us at <a href="tel:+17809442828" class="font-semibold text-[var(--color-brand-accent)]">780-944-2828</a> or use our online booking system to schedule a time that works for you. Our reception team is happy to answer any questions before your visit.`,
+    icon: `<rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>`,
+  },
+  {
+    number: "02",
+    title: "Complete Your Patient Forms",
+    body: "To make the most of your appointment time, please arrive 10 minutes early to complete your paperwork, or download the new patient forms from this page and bring them filled in on the day.",
+    icon: `<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>`,
+  },
+  {
+    number: "03",
+    title: "Your First Visit",
+    body: "Your dentist will complete a comprehensive oral exam, take x-rays as clinically needed, and either perform a cleaning or discuss a treatment plan with you, depending on your current needs.",
+    icon: `<path d="M9 2C7 2 5 3.5 5 6C5 7.5 5.5 8.5 6 10C6.5 11.5 7 13 7 15C7 17 7.5 20 10 20C11 20 11.5 19 12 18.5C12.5 19 13 20 14 20C16.5 20 17 17 17 15C17 13 17.5 11.5 18 10C18.5 8.5 19 7.5 19 6C19 3.5 17 2 15 2C14 2 13 2.5 12 3C11 2.5 10 2 9 2Z"/>`,
+  },
+  {
+    number: "04",
+    title: "Ongoing Care",
+    body: "We'll schedule your recall appointments based on what your dentist recommends, typically every six months. You'll receive reminders by text so it's easy to stay on track with your oral health.",
+    icon: `<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>`,
+  },
+];
+---
+
+<BaseLayout
+  title="New Patients | West End Dental Centre, Edmonton"
+  description="Forms, insurance, CDCP details, appointment requests, and direct billing information for new and returning patients at West End Dental Centre in West Edmonton."
+>
+
+  <!-- ============================================================
+       HERO BANNER
+       ============================================================ -->
+  <section class="bg-[var(--color-brand-primary)] relative overflow-hidden">
+    <!-- Right-side image panel, desktop only -->
+    <div class="hidden lg:block absolute right-0 top-0 bottom-0 w-[50%] pointer-events-none" aria-hidden="true">
+      <img
+        src="/images/west-end/hero-patient-info.jpg"
+        alt="Front desk team member working at the West End Dental Centre reception desk"
+        width="800"
+        height="600"
+        loading="eager"
+          fetchpriority="high"
+        decoding="async"
+        class="w-full h-full object-cover object-[55%_center]"
+      />
+      <div class="hero-image-fade" aria-hidden="true"></div>
+    </div>
+    <div class="container-wide relative py-16 lg:py-24 lg:max-w-[48%]">
+      <nav class="flex items-center gap-2 text-xs text-[var(--color-text-on-dark-muted)] mb-5" aria-label="Breadcrumb">
+        <a href="/" class="text-white hover:text-white/80 transition-colors">Home</a>
+        <span aria-hidden="true">›</span>
+        <span class="text-white">New Patients</span>
+      </nav>
+      <p class="eyebrow text-white">New Patients</p>
+      <h1 class="mt-3 font-display font-semibold text-[length:var(--text-5xl)] leading-tight text-white max-w-2xl">
+        Everything You Need for Your Visit
+      </h1>
+      <p class="mt-4 text-lg text-[var(--color-text-on-dark-muted)] leading-relaxed max-w-xl">
+        Whether you're visiting us for the first time or you've been a patient for years, this page has everything you need, from patient forms and appointment requests to insurance and payment information.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       NEW PATIENTS: WHAT TO EXPECT
+       ============================================================ -->
+  <section class="section-y bg-white">
+    <div class="container-wide">
+
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <p class="eyebrow">New patients</p>
+        <h2 class="mt-3 font-display font-semibold text-[length:var(--text-4xl)] leading-tight text-[var(--color-brand-primary)]">
+          What to Expect
+        </h2>
+        <p class="mt-3 text-lg text-[var(--color-text-muted)] leading-relaxed">
+          Your first visit at West End Dental Centre sets the foundation for your ongoing care. Here's how it works from start to finish.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {steps.map(step => (
+          <div class="bg-[var(--color-surface-cool)] rounded-xl p-6 border border-[var(--color-border-soft)] flex flex-col gap-4">
+            <div class="flex items-center gap-3">
+              <span class="font-display font-semibold text-[length:var(--text-3xl)] text-[var(--color-brand-accent)] leading-none">{step.number}</span>
+              <div class="w-px h-8 bg-[var(--color-border)]" aria-hidden="true"></div>
+              <div class="w-10 h-10 rounded-full bg-[var(--color-brand-primary)] flex items-center justify-center shrink-0">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={step.icon} />
+              </div>
+            </div>
+            <div>
+              <h3 class="font-display font-semibold text-base text-[var(--color-brand-primary)]">{step.title}</h3>
+              <p class="mt-2 text-sm text-[var(--color-text-muted)] leading-relaxed" set:html={step.body} />
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-10 flex flex-wrap justify-center gap-4">
+        <a href="/book/" class="btn btn-primary btn-lg">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Book Appointment
+        </a>
+        <a href="tel:+17809442828" class="btn btn-outline btn-lg">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Call 780-944-2828
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PATIENT FORMS
+       ============================================================ -->
+  <section id="forms" class="section-y bg-[var(--color-surface-cool)]">
+    <div class="container-wide">
+
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <p class="eyebrow">Patient forms</p>
+        <h2 class="mt-3 font-display font-semibold text-[length:var(--text-4xl)] leading-tight text-[var(--color-brand-primary)]">
+          Complete Your Paperwork Online
+        </h2>
+        <p class="mt-3 text-lg text-[var(--color-text-muted)] leading-relaxed">
+          Save time at your appointment by submitting your information ahead of time. New patients can register below.
+        </p>
+      </div>
+
+      <div class="max-w-xl mx-auto">
+        <!-- New Patient Registration -->
+        <div class="bg-white rounded-2xl shadow-xl border border-[var(--color-border-soft)] p-8 flex flex-col min-w-0">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 rounded-full bg-[var(--color-brand-primary)] flex items-center justify-center shrink-0">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+            </div>
+            <div class="min-w-0">
+              <h3 class="font-display font-semibold text-xl text-[var(--color-brand-primary)]">New Patient Intake Form</h3>
+              <p class="text-sm text-[var(--color-text-muted)]">First time visiting? Start here.</p>
+            </div>
+          </div>
+          <div class="space-y-4 text-sm text-[var(--color-text-muted)] leading-relaxed flex-1">
+            <p>
+              Complete your new patient intake form online before your first visit to save time at the clinic. The form collects your health history, current medications, known allergies, and reason for your visit.
+            </p>
+            <p>
+              You can also complete the form at the clinic, we recommend arriving 10 minutes early on your first visit to allow time for this.
+            </p>
+            <div class="bg-[var(--color-surface-cool)] rounded-xl p-4 border border-[var(--color-border-soft)]">
+              <p class="text-xs font-semibold uppercase tracking-[0.12em] text-[var(--color-brand-primary)] mb-1">Secure &amp; HIPAA-compliant</p>
+              <p class="text-xs text-[var(--color-text-muted)]">This form is hosted by JotForm and transmitted securely. Your health information is handled in accordance with applicable privacy legislation.</p>
+            </div>
+          </div>
+          <a
+            href="/new-patients/forms/#new-patient-form"
+            class="mt-6 btn btn-primary w-full text-center flex items-center justify-center gap-2 whitespace-normal"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/></svg>
+            Complete New Patient Form
+          </a>
+        </div>
+      </div>
+
+      <p class="mt-6 text-center text-sm text-[var(--color-text-muted)]">
+        Questions? Call our reception team at <a href="tel:+17809442828" class="font-semibold text-[var(--color-brand-accent)] hover:text-[var(--color-brand-accent-hover)]">780-944-2828</a>.
+      </p>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       APPOINTMENT REQUEST (EXISTING PATIENTS)
+       ============================================================ -->
+  <section id="request-appointment" class="section-y bg-white">
+    <div class="container-wide">
+
+      <div>
+
+        <div class="text-center mb-10 max-w-2xl mx-auto">
+          <p class="eyebrow">Existing patients</p>
+          <h2 class="mt-3 font-display font-semibold text-[length:var(--text-4xl)] leading-tight text-[var(--color-brand-primary)]">
+            Book an Appointment
+          </h2>
+          <p class="mt-3 text-lg text-[var(--color-text-muted)] leading-relaxed">
+            Use this form to request a convenient time and we'll follow up to confirm your appointment. For urgent dental concerns, please call us directly.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-xl border border-[var(--color-border-soft)] p-8">
+
+          <!-- Urgent care notice -->
+          <div class="flex items-start gap-3 bg-[var(--color-surface-alt)] border border-[var(--color-brand-accent)]/20 rounded-lg px-4 py-3 mb-6">
+            <svg class="shrink-0 mt-0.5 text-[var(--color-brand-accent)]" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <p class="text-sm text-[var(--color-text)]">
+              For urgent dental concerns, please call us directly at <a href="tel:+17809442828" class="font-semibold text-[var(--color-brand-accent)] hover:text-[var(--color-brand-accent-hover)]">780-944-2828</a> rather than booking online.
+            </p>
+          </div>
+
+          <div class="text-center py-4">
+            <p class="text-[var(--color-text-muted)] leading-relaxed max-w-xl mx-auto">
+              Book your next visit online through our appointment scheduler. We’ll confirm your preferred time with you.
+            </p>
+            <a href="/book/" class="mt-6 btn btn-primary btn-lg inline-flex items-center gap-2">
+              Book an Appointment
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       INSURANCE & PAYMENT
+       ============================================================ -->
+  <section id="insurance" class="section-y bg-[var(--color-surface-cool)]">
+    <div class="container-wide">
+
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <p class="eyebrow">Coverage &amp; payment</p>
+        <h2 class="mt-3 font-display font-semibold text-[length:var(--text-4xl)] leading-tight text-[var(--color-brand-primary)]">
+          Insurance &amp; Payment Options
+        </h2>
+        <p class="mt-3 text-lg text-[var(--color-text-muted)] leading-relaxed">
+          We work with most major Canadian dental insurance plans and offer flexible payment options to make your dental care straightforward.
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-8 items-start">
+
+        <!-- Left: general insurance & payment -->
+        <div class="space-y-6">
+
+          <div class="bg-white rounded-xl p-6 border border-[var(--color-border-soft)]">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-10 h-10 rounded-full bg-[var(--color-brand-primary)] flex items-center justify-center shrink-0">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+              </div>
+              <h3 class="font-display font-semibold text-lg text-[var(--color-brand-primary)]">Direct Insurance Billing</h3>
+            </div>
+            <p class="text-sm text-[var(--color-text)] leading-relaxed">
+              We bill most major Canadian dental insurance plans directly, so you don't have to pay the full amount upfront and wait for reimbursement. Simply bring your insurance card and member ID to your appointment and our team will handle the claim on your behalf.
+            </p>
+            <p class="mt-3 text-sm text-[var(--color-text-muted)] leading-relaxed">
+              Accepted plans include most employer group benefit plans and many individual dental plans offered through Canadian carriers. If you're unsure whether your plan is accepted, give us a call before your visit and we'll confirm. Please bring your insurance card to your appointment.
+            </p>
+            <a
+              href="/new-patients/insurance-payment/"
+              class="mt-5 btn btn-primary w-full text-center flex items-center justify-center gap-2 whitespace-normal"
+            >
+              Learn About Insurance &amp; Payment
+            </a>
+          </div>
+
+          <div class="bg-white rounded-xl p-6 border border-[var(--color-border-soft)]">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-10 h-10 rounded-full bg-[var(--color-brand-primary)] flex items-center justify-center shrink-0">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              </div>
+              <h3 class="font-display font-semibold text-lg text-[var(--color-brand-primary)]">Payment Options</h3>
+            </div>
+            <p class="text-sm text-[var(--color-text)] leading-relaxed mb-4">
+              For any balance remaining after insurance, or for patients without coverage, we accept the following forms of payment:
+            </p>
+            <ul class="space-y-2">
+              {["Credit card (Visa, Mastercard)", "Debit (Interac)", "Cash"].map(option => (
+                <li class="flex items-center gap-2.5 text-sm text-[var(--color-text-muted)]">
+                  <svg class="shrink-0 text-[var(--color-brand-accent)]" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="5 12 10 17 19 7"/></svg>
+                  {option}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+        </div>
+
+        <!-- Right: CDCP highlight card -->
+        <div class="bg-[var(--color-brand-primary)] rounded-2xl p-8 text-white shadow-xl">
+          <div class="flex items-center gap-3 mb-5">
+            <svg class="shrink-0" width="40" height="40" viewBox="0 0 56 56" fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M28 6 L10 13 L10 27 C10 38 18 47 28 50 C38 47 46 38 46 27 L46 13 Z" stroke-width="2.5" fill="none"/>
+              <polyline points="20,28 25,33 36,22" stroke-width="3"/>
+            </svg>
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-[0.14em] text-white">Government Program</p>
+              <h3 class="font-display font-semibold text-xl text-white leading-snug">Canadian Dental Care Plan (CDCP)</h3>
+            </div>
+          </div>
+
+          <div class="space-y-4 text-[var(--color-text-on-dark-muted)] text-sm leading-relaxed">
+            <p>
+              The Canadian Dental Care Plan (CDCP) is a federal government program designed to help Canadians who do not have access to private dental insurance. It provides coverage for a range of dental services for eligible individuals and families.
+            </p>
+            <div>
+              <p class="font-semibold text-white mb-2">Who may qualify:</p>
+              <ul class="space-y-1.5">
+                {[
+                  "Canadian residents without existing dental insurance coverage",
+                  "Individuals and families who meet income-testing thresholds set by the federal government",
+                  "Eligible applicants must apply through the Government of Canada"
+                ].map(item => (
+                  <li class="flex items-start gap-2.5">
+                    <svg class="shrink-0 mt-0.5 text-[var(--color-brand-accent-soft)]" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="5 12 10 17 19 7"/></svg>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <p>
+              You can check your eligibility and apply through the Government of Canada. <a href="https://www.canada.ca/en/services/benefits/dental/dental-care-plan.html" target="_blank" rel="noopener noreferrer" class="text-white underline underline-offset-2 hover:text-white/80 transition-colors">Learn More</a>.
+            </p>
+            <div class="mt-4 border-t border-white/20 pt-4">
+              <p class="text-white font-medium">We accept the CDCP at West End Dental Centre.</p>
+              <p class="mt-1 text-[var(--color-text-on-dark-muted)] text-sm">
+                Eligibility is determined by the federal government. We are not able to determine your eligibility on your behalf. However, our team is happy to answer questions about how to use your CDCP benefit for care at our clinic. Please call us or ask at your next visit.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- LendCare financing callout -->
+      <div class="mt-10 rounded-2xl border border-[var(--color-border-soft)] bg-white overflow-hidden">
+        <div class="flex flex-col sm:flex-row sm:items-center gap-5 px-7 py-6">
+          <div class="w-11 h-11 rounded-full bg-[var(--color-brand-primary)] flex items-center justify-center shrink-0">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+          </div>
+          <div class="flex-1 space-y-2">
+            <h3 class="font-display font-semibold text-lg text-[var(--color-brand-primary)]">Patient Financing with LendCare</h3>
+            <p class="text-sm text-[var(--color-text)] leading-relaxed">
+              We offer patient financing through LendCare, a Canadian healthcare financing provider. LendCare lets you spread the cost of dental treatment, including crowns, dentures, orthodontics, and other major procedures, over flexible monthly payments rather than paying everything upfront.
+            </p>
+            <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">
+              Applications can be completed online in minutes or in clinic with help from our team. Financing is subject to credit approval; terms and monthly amounts are presented before you accept any offer.
+            </p>
+          </div>
+          <a href="/new-patients/lendcare/" class="btn btn-outline shrink-0 self-start sm:self-center">
+            Learn About Financing
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CTA BAND
+       ============================================================ -->
+  <section class="bg-[var(--color-brand-primary)] py-16 text-center overflow-hidden relative">
+    <svg class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 1440 160" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 60 C 240 20, 480 100, 720 60 C 960 20, 1200 100, 1440 60 L1440 160 L0 160 Z" fill="rgba(255,255,255,0.03)"/>
+      <path d="M0 80 C 180 40, 360 120, 540 80 C 720 40, 900 120, 1080 80 C 1260 40, 1440 120, 1440 80 L1440 160 L0 160 Z" fill="rgba(255,255,255,0.03)"/>
+    </svg>
+    <div class="relative container-wide">
+      <div class="flex items-center justify-center gap-5 mb-6">
+        <div class="w-14 h-px bg-[var(--color-brand-accent)]"></div>
+        <p class="font-body text-sm font-semibold tracking-[0.2em] uppercase text-white">Accepting New Patients</p>
+        <div class="w-14 h-px bg-[var(--color-brand-accent)]"></div>
+      </div>
+      <h2 class="font-display font-semibold text-[length:var(--text-4xl)] text-white leading-tight">
+        We're accepting new patients.<br class="hidden sm:block" /> Ready when you are.
+      </h2>
+      <p class="mt-4 text-[var(--color-text-on-dark-muted)] text-lg max-w-xl mx-auto leading-relaxed">
+        Call us at <a href="tel:+17809442828" class="text-white font-semibold hover:text-[var(--color-brand-accent-soft)] transition-colors">780-944-2828</a> or book an appointment online. Our team will take care of the rest.
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <a href="/book/" class="btn btn-primary btn-lg">Book Appointment</a>
+        <a href="tel:+17809442828" class="btn btn-lg border border-white/30 text-white hover:bg-white/10 transition-colors">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Call Us
+        </a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

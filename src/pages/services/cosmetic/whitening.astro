@@ -1,0 +1,216 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Teeth Whitening | West End Dental Centre Edmonton"
+  description="Professional teeth whitening at West End Dental Centre in West Edmonton. Learn about in-office and take-home whitening options, what causes discolouration, and what to expect."
+>
+
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <section class="bg-[var(--color-brand-primary)] relative overflow-hidden">
+    <!-- Right-side image panel, desktop only -->
+    <div class="hidden lg:block absolute right-0 top-0 bottom-0 w-[50%] pointer-events-none" aria-hidden="true">
+      <img
+        src="/images/west-end/hero-whitening.jpg"
+        alt="Teeth whitening treatment at West End Dental Centre"
+        width="1536"
+        height="1024"
+        loading="eager"
+          fetchpriority="high"
+        decoding="async"
+        class="w-full h-full object-cover"
+      />
+      <div class="hero-image-fade" aria-hidden="true"></div>
+    </div>
+    <div class="container-wide relative py-16 lg:py-24 lg:max-w-[48%]">
+      <nav class="flex items-center gap-2 text-xs text-[var(--color-text-on-dark-muted)] mb-5" aria-label="Breadcrumb">
+        <a href="/" class="text-white hover:text-white/80 transition-colors">Home</a>
+        <span aria-hidden="true">›</span>
+        <a href="/services/" class="text-white/80 hover:text-white transition-colors">Services</a>
+        <span aria-hidden="true">›</span>
+        <a href="/services/cosmetic/" class="text-white/80 hover:text-white transition-colors">Cosmetic</a>
+        <span aria-hidden="true">›</span>
+        <span class="text-white">Teeth Whitening</span>
+      </nav>
+      <p class="eyebrow text-white">Cosmetic Dentistry</p>
+      <h1 class="mt-3 font-display font-semibold text-[length:var(--text-5xl)] leading-tight text-white max-w-2xl">
+        Professional Teeth Whitening
+      </h1>
+      <p class="mt-4 text-lg text-[var(--color-text-on-dark-muted)] leading-relaxed max-w-xl">
+        Staining and discolouration are common concerns. Professional whitening, carried out under dental supervision, uses higher-concentration agents than over-the-counter products, with a more controlled and consistent approach.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       MAIN CONTENT + SIDEBAR
+       ============================================================ -->
+  <section class="section-y bg-white">
+    <div class="container-wide">
+      <div class="grid lg:grid-cols-[1fr_300px] gap-12">
+
+        <!-- Main Content -->
+        <div class="space-y-10">
+
+          <!-- What causes discolouration -->
+          <div>
+            <h2 class="font-display font-semibold text-[length:var(--text-3xl)] text-[var(--color-brand-primary)] leading-tight">
+              What causes tooth discolouration?
+            </h2>
+            <p class="mt-4 text-base text-[var(--color-text-muted)] leading-relaxed">
+              Tooth discolouration can have several causes, and the underlying cause affects how well whitening will work. Common contributors include:
+            </p>
+            <ul class="mt-4 space-y-3">
+              <li class="flex gap-3">
+                <span class="mt-1 shrink-0 w-5 h-5 rounded-full bg-[var(--color-brand-primary)] flex items-center justify-center">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                </span>
+                <span class="text-base text-[var(--color-text-muted)] leading-relaxed"><strong class="text-[var(--color-text)]">Foods and beverages</strong>, coffee, tea, and red wine are among the most common sources of surface staining over time.</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="mt-1 shrink-0 w-5 h-5 rounded-full bg-[var(--color-brand-primary)] flex items-center justify-center">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                </span>
+                <span class="text-base text-[var(--color-text-muted)] leading-relaxed"><strong class="text-[var(--color-text)]">Tobacco use</strong>, both smoking and chewing tobacco can cause significant staining.</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="mt-1 shrink-0 w-5 h-5 rounded-full bg-[var(--color-brand-primary)] flex items-center justify-center">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                </span>
+                <span class="text-base text-[var(--color-text-muted)] leading-relaxed"><strong class="text-[var(--color-text)]">Aging</strong>, enamel naturally thins over time, allowing the darker dentine beneath to show through more.</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="mt-1 shrink-0 w-5 h-5 rounded-full bg-[var(--color-brand-primary)] flex items-center justify-center">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                </span>
+                <span class="text-base text-[var(--color-text-muted)] leading-relaxed"><strong class="text-[var(--color-text)]">Certain medications</strong>, some antibiotics (such as tetracycline) and other medications can cause intrinsic discolouration that may be harder to address with whitening alone.</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Image break -->
+          <div class="rounded-2xl overflow-hidden max-h-[700px]">
+            <img
+              src="/images/west-end/thumb-whitening.jpg"
+              alt="Teeth whitening procedure at West End Dental Centre"
+              width="800"
+              height="450"
+              loading="lazy"
+              decoding="async"
+              class="w-full h-auto"
+            />
+          </div>
+
+          <!-- Professional vs OTC -->
+          <div class="bg-[var(--color-surface-cool)] rounded-2xl p-6 border border-[var(--color-border-soft)]">
+            <h2 class="font-display font-semibold text-[length:var(--text-2xl)] text-[var(--color-brand-primary)] leading-tight">
+              Professional vs. over-the-counter whitening
+            </h2>
+            <p class="mt-4 text-base text-[var(--color-text-muted)] leading-relaxed">
+              Over-the-counter whitening products, strips, toothpastes, and trays, are widely available and vary considerably in concentration and effectiveness. They can be a starting point for mild staining, but they are generally lower in concentration than professional agents.
+            </p>
+            <p class="mt-3 text-base text-[var(--color-text-muted)] leading-relaxed">
+              Professional whitening uses higher-concentration peroxide gels applied under dental supervision. This allows for a more controlled application, appropriate gum protection, and the ability to tailor treatment to your individual situation. Before any whitening, a dental exam helps confirm that your teeth and gums are healthy enough to proceed.
+            </p>
+          </div>
+
+          <!-- Options -->
+          <div>
+            <h2 class="font-display font-semibold text-[length:var(--text-3xl)] text-[var(--color-brand-primary)] leading-tight">
+              Whitening options we offer
+            </h2>
+            <div class="mt-6 grid sm:grid-cols-2 gap-6">
+              <div class="bg-white rounded-2xl p-6 border border-[var(--color-border-soft)] shadow-sm">
+                <h3 class="font-display font-semibold text-lg text-[var(--color-brand-primary)]">In-Office Whitening</h3>
+                <p class="mt-3 text-sm text-[var(--color-text-muted)] leading-relaxed">
+                  Completed in a single appointment at the clinic. A higher-concentration gel is applied by our team with appropriate protection for the gums. Results are visible after one session, though the degree of change varies by individual.
+                </p>
+              </div>
+              <div class="bg-white rounded-2xl p-6 border border-[var(--color-border-soft)] shadow-sm">
+                <h3 class="font-display font-semibold text-lg text-[var(--color-brand-primary)]">Take-Home Trays</h3>
+                <p class="mt-3 text-sm text-[var(--color-text-muted)] leading-relaxed">
+                  Custom-fitted trays are made from impressions of your teeth, ensuring even coverage. You apply professional-grade gel at home over a period of days to weeks, following the prescribed schedule. This approach allows gradual whitening in a familiar setting.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- What to expect -->
+          <div>
+            <h2 class="font-display font-semibold text-[length:var(--text-3xl)] text-[var(--color-brand-primary)] leading-tight">
+              What to expect
+            </h2>
+            <p class="mt-4 text-base text-[var(--color-text-muted)] leading-relaxed">
+              Some patients experience temporary tooth sensitivity during or after whitening treatment. This is a common and expected response, it typically resolves within a day or two once treatment is complete. If sensitivity is a concern for you, let us know before we begin; there are steps we can take to help manage it.
+            </p>
+            <p class="mt-3 text-base text-[var(--color-text-muted)] leading-relaxed">
+              Results vary from person to person depending on the original shade, the cause of discolouration, and the type of whitening used. We'll give you a realistic picture of what to expect during your consultation.
+            </p>
+          </div>
+
+          <!-- Maintenance -->
+          <div>
+            <h2 class="font-display font-semibold text-[length:var(--text-3xl)] text-[var(--color-brand-primary)] leading-tight">
+              Maintaining your results
+            </h2>
+            <p class="mt-4 text-base text-[var(--color-text-muted)] leading-relaxed">
+              Whitening results are not permanent, teeth can re-stain over time, particularly with ongoing exposure to staining foods and drinks or tobacco. Reducing intake of coffee, tea, and red wine, or rinsing with water after consuming them, can help. Regular professional cleanings also play a role in maintaining tooth appearance.
+            </p>
+          </div>
+
+          <!-- Not suitable -->
+          <div class="bg-[var(--color-surface-alt)] rounded-2xl p-6 border border-[var(--color-border-soft)]">
+            <h2 class="font-display font-semibold text-[length:var(--text-2xl)] text-[var(--color-brand-primary)] leading-tight">
+              When whitening may not be appropriate
+            </h2>
+            <p class="mt-4 text-base text-[var(--color-text-muted)] leading-relaxed">
+              Whitening agents work on natural tooth enamel. They do not change the colour of dental restorations such as crowns, veneers, or bonding, if these are in visible areas, they may appear mismatched after whitening. Additionally, some causes of discolouration (such as intrinsic staining from certain medications) may not respond well to conventional whitening. In these cases, alternative cosmetic options may be worth discussing.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="space-y-6">
+          <div class="bg-[var(--color-brand-primary)] rounded-2xl p-6 text-white">
+            <h3 class="font-display font-semibold text-lg text-white">Interested?</h3>
+            <p class="mt-2 text-sm text-[var(--color-text-on-dark-muted)] leading-relaxed">A consultation helps us understand your goals and recommend appropriate options.</p>
+            <a href="/book/" class="mt-4 btn btn-primary w-full block text-center">Book a Consultation</a>
+            <a href="tel:+17809442828" class="mt-2 block text-center text-sm text-[var(--color-text-on-dark-muted)] hover:text-white transition-colors">780-944-2828</a>
+          </div>
+          <div class="bg-[var(--color-surface-cool)] rounded-2xl p-6 border border-[var(--color-border-soft)]">
+            <h3 class="font-body text-xs font-semibold uppercase tracking-[0.14em] text-[var(--color-brand-primary)] mb-4">Cosmetic Services</h3>
+            <ul class="space-y-2">
+              <li><a href="/services/cosmetic/whitening/" class="text-sm font-semibold text-[var(--color-brand-accent)]">Teeth Whitening</a></li>
+              <li><a href="/services/cosmetic/veneers/" class="text-sm text-[var(--color-text)] hover:text-[var(--color-brand-accent)] transition-colors">Porcelain Veneers</a></li>
+              <li><a href="/services/cosmetic/bonding/" class="text-sm text-[var(--color-text)] hover:text-[var(--color-brand-accent)] transition-colors">Dental Bonding</a></li>
+              <li><a href="/services/orthodontics/invisalign/" class="text-sm text-[var(--color-text)] hover:text-[var(--color-brand-accent)] transition-colors">Invisalign® Clear Aligners</a></li>
+            </ul>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CTA BAND
+       ============================================================ -->
+  <section class="bg-[var(--color-brand-primary)] py-16 text-center overflow-hidden relative">
+    <svg class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 1440 160" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 60 C 240 20, 480 100, 720 60 C 960 20, 1200 100, 1440 60 L1440 160 L0 160 Z" fill="rgba(255,255,255,0.03)"/>
+    </svg>
+    <div class="relative container-wide">
+      <h2 class="font-display font-semibold text-[length:var(--text-4xl)] text-white leading-tight">Considering a cosmetic treatment?</h2>
+      <p class="mt-4 text-[var(--color-text-on-dark-muted)] text-lg max-w-xl mx-auto">Call <a href="tel:+17809442828" class="text-white font-semibold">780-944-2828</a> to book a consultation.</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <a href="/book/" class="btn btn-primary btn-lg">Book a Consultation</a>
+        <a href="/contact/" class="btn btn-lg border border-white/30 text-white hover:bg-white/10 transition-colors">Contact Us</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

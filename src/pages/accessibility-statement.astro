@@ -1,0 +1,185 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Accessibility Statement | West End Dental Centre"
+  description="West End Dental Centre's commitment to accessibility for patients in Edmonton, AB. WCAG 2.1 AA compliance, physical accessibility, and contact information for accessibility inquiries."
+  showPreFooter={true}
+>
+
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <section class="bg-[var(--color-brand-primary)] relative overflow-hidden">
+    <div class="container-wide relative py-14 lg:py-20">
+      <nav class="flex items-center gap-2 text-xs text-[var(--color-text-on-dark-muted)] mb-5" aria-label="Breadcrumb">
+        <a href="/" class="text-white hover:text-white/80 transition-colors">Home</a>
+        <span aria-hidden="true">›</span>
+        <span class="text-white">Accessibility Statement</span>
+      </nav>
+      <p class="eyebrow text-white">West End Dental Centre</p>
+      <h1 class="mt-3 font-display font-semibold text-[length:var(--text-5xl)] leading-tight text-white max-w-2xl">
+        Accessibility Statement
+      </h1>
+      <p class="mt-4 text-lg text-[var(--color-text-on-dark-muted)] leading-relaxed max-w-xl">
+        West End Dental Centre is committed to ensuring our services and website are accessible to everyone, including patients with disabilities.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CONTENT
+       ============================================================ -->
+  <section class="section-y bg-white">
+    <div class="container-wide">
+      <div class="max-w-3xl mx-auto space-y-12">
+
+        <!-- Our commitment -->
+        <div>
+          <h2 class="font-display font-semibold text-[length:var(--text-3xl)] text-[var(--color-brand-primary)] mb-4">
+            Our commitment to accessibility
+          </h2>
+          <div class="space-y-4 text-[var(--color-text)] leading-relaxed">
+            <p>
+              West End Dental Centre is committed to providing an accessible experience for all patients and website visitors, regardless of ability. We strive to ensure our website conforms to the <strong class="text-[var(--color-brand-primary)]">Web Content Accessibility Guidelines (WCAG) 2.1, Level AA</strong>, the internationally recognised standard for web accessibility.
+            </p>
+            <p>
+              These guidelines are designed to make web content more accessible to people with a wide range of disabilities, including visual, auditory, physical, speech, cognitive, language, learning, and neurological disabilities. We believe that access to dental health information and services is important for every member of our community.
+            </p>
+          </div>
+        </div>
+
+        <!-- Website accessibility features -->
+        <div>
+          <h2 class="font-display font-semibold text-[length:var(--text-3xl)] text-[var(--color-brand-primary)] mb-4">
+            Website accessibility features
+          </h2>
+          <div class="space-y-4 text-[var(--color-text)] leading-relaxed">
+            <p>
+              We work to ensure this website includes the following accessibility features:
+            </p>
+            <ul class="space-y-3">
+              {[
+                { label: "Keyboard navigation", note: "All pages and interactive elements can be navigated using a keyboard alone, without requiring a mouse." },
+                { label: "Screen reader compatibility", note: "Pages are structured with semantic HTML and ARIA labels to work with common screen readers." },
+                { label: "Sufficient colour contrast", note: "Text and interactive elements are designed to meet or exceed WCAG 2.1 AA colour contrast ratios." },
+                { label: "Text resizing", note: "Content is designed to remain readable and functional when text size is increased up to 200% without loss of content or functionality." },
+                { label: "Descriptive link text", note: "Links are written to be descriptive and meaningful when read out of context." },
+                { label: "Alternative text for images", note: "Images that convey information include descriptive alternative text. Decorative images are marked appropriately." },
+              ].map(item => (
+                <li class="flex gap-4 items-start">
+                  <div class="w-2 h-2 rounded-full bg-[var(--color-brand-accent)] shrink-0 mt-2" aria-hidden="true"></div>
+                  <div>
+                    <p class="font-semibold text-[var(--color-brand-primary)] text-sm">{item.label}</p>
+                    <p class="mt-0.5 text-sm text-[var(--color-text-muted)] leading-relaxed">{item.note}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <!-- Physical accessibility -->
+        <div>
+          <h2 class="font-display font-semibold text-[length:var(--text-3xl)] text-[var(--color-brand-primary)] mb-4">
+            Physical accessibility at our office
+          </h2>
+          <div class="space-y-4 text-[var(--color-text)] leading-relaxed">
+            <p>
+              Our office is at 9509 156 St NW, Suite #M9, Edmonton, AB T5P 4J5. If you have mobility or access needs, please contact us before your visit so we can help you plan your arrival.
+            </p>
+            <ul class="space-y-3">
+              {[
+                { label: "Public transit", note: "ETS bus stop #5366 is nearby our 156 St NW location." },
+                { label: "Parking and access", note: "Please contact our office if you have specific parking or access needs and we will do our best to help." },
+                { label: "Languages", note: "English and Cantonese are spoken at the clinic." },
+              ].map(item => (
+                <li class="flex gap-4 items-start">
+                  <div class="w-2 h-2 rounded-full bg-[var(--color-brand-accent)] shrink-0 mt-2" aria-hidden="true"></div>
+                  <div>
+                    <p class="font-semibold text-[var(--color-brand-primary)] text-sm">{item.label}</p>
+                    <p class="mt-0.5 text-sm text-[var(--color-text-muted)] leading-relaxed">{item.note}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+            <p>
+              If you have specific accessibility requirements or questions about our facility before your visit, please do not hesitate to contact us in advance so we can prepare appropriately.
+            </p>
+          </div>
+        </div>
+
+        <!-- Known limitations -->
+        <div>
+          <h2 class="font-display font-semibold text-[length:var(--text-3xl)] text-[var(--color-brand-primary)] mb-4">
+            Known limitations and ongoing improvements
+          </h2>
+          <div class="space-y-4 text-[var(--color-text)] leading-relaxed">
+            <p>
+              While we strive to meet WCAG 2.1 AA standards across our entire website, we recognise that accessibility is an ongoing process. Some areas of our website may not yet fully conform to all guidelines. We are actively working to identify and address any gaps as we continue to develop and maintain our site.
+            </p>
+            <p>
+              We conduct periodic accessibility reviews and address issues as they are identified or reported. Third-party content embedded on our website (such as booking tools or forms provided by external vendors) may have their own accessibility limitations that are beyond our direct control, though we work to select accessible tools wherever possible.
+            </p>
+          </div>
+        </div>
+
+        <!-- Contact for accessibility -->
+        <div class="bg-[var(--color-surface-cool)] rounded-2xl p-8 border border-[var(--color-border-soft)]">
+          <h2 class="font-display font-semibold text-[length:var(--text-2xl)] text-[var(--color-brand-primary)] mb-4">
+            Contact us about accessibility
+          </h2>
+          <div class="space-y-4 text-[var(--color-text)] leading-relaxed">
+            <p>
+              If you experience any difficulty accessing our website or office, or if you would like to provide feedback on our accessibility, we want to hear from you. We take all accessibility concerns seriously and will respond promptly.
+            </p>
+            <dl class="space-y-3">
+              <div class="flex gap-3 items-start">
+                <dt class="font-semibold text-[var(--color-brand-primary)] text-sm shrink-0 w-20">Email</dt>
+                <dd class="text-sm text-[var(--color-text-muted)]">
+                  <a href="mailto:info@westenddentalcentre.com" class="text-[var(--color-brand-accent)] hover:text-[var(--color-brand-accent-hover)] transition-colors font-medium">info@westenddentalcentre.com</a>
+                </dd>
+              </div>
+              <div class="flex gap-3 items-start">
+                <dt class="font-semibold text-[var(--color-brand-primary)] text-sm shrink-0 w-20">Phone</dt>
+                <dd class="text-sm text-[var(--color-text-muted)]">
+                  <a href="tel:+17809442828" class="text-[var(--color-brand-accent)] hover:text-[var(--color-brand-accent-hover)] transition-colors font-medium">780-944-2828</a>
+                </dd>
+              </div>
+              <div class="flex gap-3 items-start">
+                <dt class="font-semibold text-[var(--color-brand-primary)] text-sm shrink-0 w-20">Address</dt>
+                <dd class="text-sm text-[var(--color-text-muted)]">9509 156 St NW, Suite #M9, Edmonton, AB T5P 4J5</dd>
+              </div>
+            </dl>
+            <p class="text-sm text-[var(--color-text-muted)]">
+              When contacting us about accessibility, please describe the specific issue you encountered and the assistive technology you are using, if applicable. This helps us investigate and resolve problems as efficiently as possible.
+            </p>
+          </div>
+        </div>
+
+        <!-- Date updated -->
+        <p class="text-xs text-[var(--color-text-muted)]">This accessibility statement was last reviewed and updated in June 2026.</p>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CTA BAND
+       ============================================================ -->
+  <section class="bg-[var(--color-brand-primary)] py-16 text-center overflow-hidden relative">
+    <svg class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 1440 160" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 60 C 240 20, 480 100, 720 60 C 960 20, 1200 100, 1440 60 L1440 160 L0 160 Z" fill="rgba(255,255,255,0.03)"/>
+    </svg>
+    <div class="relative container-wide">
+      <h2 class="font-display font-semibold text-[length:var(--text-4xl)] text-white leading-tight">Ready to book?</h2>
+      <p class="mt-4 text-[var(--color-text-on-dark-muted)] text-lg max-w-xl mx-auto">Call <a href="tel:+17809442828" class="text-white font-semibold hover:text-[var(--color-brand-accent-soft)] transition-colors">780-944-2828</a> or book an appointment online.</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <a href="/book/" class="btn btn-primary btn-lg">Book Appointment</a>
+        <a href="/contact/" class="btn btn-lg border border-white/30 text-white hover:bg-white/10 transition-colors">Contact Us</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

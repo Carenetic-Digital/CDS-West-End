@@ -1,0 +1,113 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const services = [
+  {
+    title: "Dentures",
+    href: "/services/prosthodontics/dentures/",
+    description: "Custom-fitted removable appliances that replace multiple missing teeth, restoring the ability to chew and speak comfortably while supporting facial structure.",
+    icon: `<path d="M6 8h12"/><path d="M6 12h12"/><rect x="3" y="4" width="18" height="16" rx="3"/>`,
+  },
+  {
+    title: "Porcelain Bridges",
+    href: "/services/prosthodontics/porcelain-bridges/",
+    description: "Tooth-coloured bridges that replace missing teeth and blend with the surrounding smile.",
+    icon: `<path d="M12 2a5 5 0 0 1 5 5v3h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2v2a5 5 0 0 1-10 0v-2H5a2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2h2V7a5 5 0 0 1 5-5z"/>`,
+  },
+];
+---
+
+<BaseLayout
+  title="Prosthodontic Care: Tooth Replacement & Smile Restoration | West End Dental Centre"
+  description="Dentures and porcelain bridges at West End Dental Centre in West Edmonton."
+>
+
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <section class="bg-[var(--color-brand-primary)] relative overflow-hidden">
+    <!-- Right-side image panel, desktop only -->
+    <div class="hidden lg:block absolute right-0 top-0 bottom-0 w-[50%] pointer-events-none" aria-hidden="true">
+      <img
+        src="/images/west-end/hero-dentures.jpg"
+        alt="Tooth Replacement & Smile Restoration at West End Dental Centre"
+        width="800"
+        height="600"
+        loading="eager"
+          fetchpriority="high"
+        decoding="async"
+        class="w-full h-full object-cover"
+      />
+      <div class="hero-image-fade" aria-hidden="true"></div>
+    </div>
+    <div class="container-wide relative py-16 lg:py-24 lg:max-w-[48%]">
+      <nav class="flex items-center gap-2 text-xs text-[var(--color-text-on-dark-muted)] mb-5" aria-label="Breadcrumb">
+        <a href="/" class="text-white hover:text-white/80 transition-colors">Home</a>
+        <span aria-hidden="true">›</span>
+        <a href="/services/" class="text-white/80 hover:text-white transition-colors">Services</a>
+        <span aria-hidden="true">›</span>
+        <span class="text-white">Prosthodontic Care</span>
+      </nav>
+      <p class="eyebrow text-white">Prosthodontic Care</p>
+      <h1 class="mt-3 font-display font-semibold text-[length:var(--text-5xl)] leading-tight text-white max-w-2xl">Tooth Replacement &amp; Smile Restoration</h1>
+      <p class="mt-4 text-lg text-[var(--color-text-on-dark-muted)] leading-relaxed max-w-xl">
+        When teeth are damaged, missing, or worn, prosthodontic care brings them back, both in appearance and in how they work. We offer a full range of restorative options tailored to your needs.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       INTRO + SERVICE CARDS
+       ============================================================ -->
+  <section class="section-y bg-[var(--color-surface-cool)]">
+    <div class="container-wide">
+
+      <!-- Intro paragraph -->
+      <div class="max-w-3xl mx-auto text-center mb-14">
+        <p class="eyebrow">Our approach</p>
+        <h2 class="mt-3 font-display font-semibold text-[length:var(--text-4xl)] leading-tight text-[var(--color-brand-primary)]">
+          Comprehensive restorations for Edmonton patients
+        </h2>
+        <p class="mt-4 text-lg text-[var(--color-text-muted)] leading-relaxed">
+          Prosthodontics focuses on restoring and replacing teeth so your smile looks natural and functions the way it should. At West End Dental Centre, we take time to understand each patient's goals and recommend options that balance durability, aesthetics, and value. Whether you need a porcelain bridge or a full or partial denture, our team in West Edmonton will guide you through every step of the process.
+        </p>
+      </div>
+
+      <!-- Service cards -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {services.map(svc => (
+          <div class="bg-white rounded-2xl p-6 border border-[var(--color-border-soft)] shadow-md flex flex-col">
+            <div class="w-12 h-12 rounded-full bg-[var(--color-brand-primary)] flex items-center justify-center mb-4 shrink-0">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={svc.icon} />
+            </div>
+            <h3 class="font-display font-semibold text-lg text-[var(--color-brand-primary)] mb-2">{svc.title}</h3>
+            <p class="text-sm text-[var(--color-text-muted)] leading-relaxed flex-1">{svc.description}</p>
+            <a href={svc.href} class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--color-brand-accent)] hover:text-[var(--color-brand-accent-hover)] transition-colors">
+              Learn More
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CTA BAND
+       ============================================================ -->
+  <section class="bg-[var(--color-brand-primary)] py-16 text-center overflow-hidden relative">
+    <svg class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 1440 160" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 60 C 240 20, 480 100, 720 60 C 960 20, 1200 100, 1440 60 L1440 160 L0 160 Z" fill="rgba(255,255,255,0.03)"/>
+    </svg>
+    <div class="relative container-wide">
+      <h2 class="font-display font-semibold text-[length:var(--text-4xl)] text-white leading-tight">Ready to restore your smile?</h2>
+      <p class="mt-4 text-[var(--color-text-on-dark-muted)] text-lg max-w-xl mx-auto">Call <a href="tel:+17809442828" class="text-white font-semibold hover:text-[var(--color-brand-accent-soft)] transition-colors">780-944-2828</a> or book an appointment online.</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <a href="/book/" class="btn btn-primary btn-lg">Book Appointment</a>
+        <a href="/contact/" class="btn btn-lg border border-white/30 text-white hover:bg-white/10 transition-colors">Contact Us</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

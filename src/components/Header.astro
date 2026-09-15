@@ -1,0 +1,367 @@
+---
+import { clinic } from '../data/clinic';
+import { megaMenuColumns } from '../data/services';
+
+const aboutLinks = [
+  { label: "Our Doctors", href: "/about/our-team/" },
+  { label: "Careers", href: "/about/careers/" },
+  { label: "Dental Tips", href: "/dental-tips/" },
+];
+
+const newPatientLinks = [
+  { label: "What to Expect", href: "/new-patients/what-to-expect/" },
+  { label: "Patient Forms", href: "/new-patients/forms/" },
+  { label: "Insurance & Payment", href: "/new-patients/insurance-payment/" },
+  { label: "Canadian Dental Care Plan", href: "/cdcp/" },
+  { label: "FAQs", href: "/faq/" },
+];
+
+const existingPatientLinks = [
+  { label: "Patient Forms", href: "/existing-patients/forms/" },
+  { label: "Post-Visit Instructions", href: "/existing-patients/post-visit/" },
+];
+
+const allCols = megaMenuColumns;
+---
+
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-[var(--color-border)]" data-header>
+  <!-- Notification bar -->
+  <div class="hidden md:block text-xs" style="background-color: #f0f0f1;">
+    <div class="container-wide flex items-center justify-center py-1.5 gap-3">
+      <span class="font-medium tracking-wide text-[var(--color-brand-heading)]">Now accepting new patients</span>
+      <span aria-hidden="true" class="w-px h-3 bg-[var(--color-brand-primary)]/25 inline-block align-middle"></span>
+      <a
+        href="/book/"
+        class="inline-flex items-center gap-1 font-bold tracking-widest uppercase text-[var(--color-brand-accent)] hover:text-[var(--color-brand-accent-hover)] transition-colors"
+      >
+        BOOK APPOINTMENT
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- Utility bar -->
+  <div class="hidden md:block bg-[var(--color-brand-primary)] text-[var(--color-text-on-dark-muted)] text-sm">
+    <div class="container-wide flex items-center justify-between py-2">
+      <div class="flex items-center gap-1.5 text-xs text-[var(--color-text-on-dark-muted)]">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <span class="text-white">{clinic.hoursSummary}</span>
+      </div>
+      <a href={`tel:${clinic.phoneTel}`} class="inline-flex items-center gap-2 font-semibold text-white tabular-nums hover:text-[var(--color-brand-accent-soft)] text-base">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        {clinic.phoneDisplay}
+      </a>
+    </div>
+  </div>
+
+  <!-- Main nav -->
+  <div class="container-wide flex items-center justify-between gap-6 py-4">
+    <a href="/" class="inline-flex items-center" aria-label={`${clinic.name} home`}>
+      <img
+        src={clinic.logo}
+        alt={clinic.name}
+        width="2089"
+        height="520"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+        class="h-[2.875rem] sm:h-[3.25rem] w-auto"
+      />
+    </a>
+
+    <nav class="hidden lg:flex items-center gap-1" aria-label="Primary">
+      <!-- About dropdown -->
+      <div class="relative" data-dropdown="about">
+        <button
+          type="button"
+          class="px-3 py-2 inline-flex items-center gap-1 text-sm font-medium text-[var(--color-brand-primary)] hover:text-[var(--color-brand-accent-hover)]"
+          aria-expanded="false"
+          aria-controls="about-dropdown"
+          data-dropdown-trigger="about"
+        >
+          About Us
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div
+          id="about-dropdown"
+          class="absolute left-0 top-full mt-1 w-44 bg-white rounded-lg border border-[var(--color-border-soft)] shadow-lg py-1"
+          hidden
+          data-dropdown-panel="about"
+        >
+          <a href="/about/our-clinic/" class="block px-4 py-2 text-sm text-[var(--color-brand-primary)] font-medium hover:bg-[var(--color-surface-alt)]">Our Clinic</a>
+          {aboutLinks.map(link => (
+            <a href={link.href} class="block px-4 py-2 text-sm text-[var(--color-text-muted)] hover:bg-[var(--color-surface-alt)] hover:text-[var(--color-brand-primary)]">{link.label}</a>
+          ))}
+        </div>
+      </div>
+
+      <!-- Services mega-menu trigger -->
+      <div class="relative" data-megamenu>
+        <button
+          type="button"
+          class="px-3 py-2 inline-flex items-center gap-1 text-sm font-medium text-[var(--color-brand-primary)] hover:text-[var(--color-brand-accent-hover)]"
+          aria-expanded="false"
+          aria-controls="services-megamenu"
+          data-megamenu-trigger
+        >
+          Services
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+      </div>
+
+      <!-- New Patients dropdown -->
+      <div class="relative" data-dropdown="new-patients">
+        <button
+          type="button"
+          class="px-3 py-2 inline-flex items-center gap-1 text-sm font-medium text-[var(--color-brand-primary)] hover:text-[var(--color-brand-accent-hover)]"
+          aria-expanded="false"
+          aria-controls="new-patients-dropdown"
+          data-dropdown-trigger="new-patients"
+        >
+          New Patients
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div
+          id="new-patients-dropdown"
+          class="absolute left-0 top-full mt-1 w-52 bg-white rounded-lg border border-[var(--color-border-soft)] shadow-lg py-1"
+          hidden
+          data-dropdown-panel="new-patients"
+        >
+          <a href="/new-patients/" class="block px-4 py-2 text-sm text-[var(--color-brand-primary)] font-medium hover:bg-[var(--color-surface-alt)]">New Patients</a>
+          {newPatientLinks.map(link => (
+            <a href={link.href} class="block px-4 py-2 text-sm text-[var(--color-text-muted)] hover:bg-[var(--color-surface-alt)] hover:text-[var(--color-brand-primary)]">{link.label}</a>
+          ))}
+        </div>
+      </div>
+
+      <!-- Existing Patients dropdown -->
+      <div class="relative" data-dropdown="existing-patients">
+        <button
+          type="button"
+          class="px-3 py-2 inline-flex items-center gap-1 text-sm font-medium text-[var(--color-brand-primary)] hover:text-[var(--color-brand-accent-hover)]"
+          aria-expanded="false"
+          aria-controls="existing-patients-dropdown"
+          data-dropdown-trigger="existing-patients"
+        >
+          Existing Patients
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div
+          id="existing-patients-dropdown"
+          class="absolute left-0 top-full mt-1 w-52 bg-white rounded-lg border border-[var(--color-border-soft)] shadow-lg py-1"
+          hidden
+          data-dropdown-panel="existing-patients"
+        >
+          <a href="/existing-patients/" class="block px-4 py-2 text-sm text-[var(--color-brand-primary)] font-medium hover:bg-[var(--color-surface-alt)]">Existing Patients</a>
+          {existingPatientLinks.map(link => (
+            <a href={link.href} class="block px-4 py-2 text-sm text-[var(--color-text-muted)] hover:bg-[var(--color-surface-alt)] hover:text-[var(--color-brand-primary)]">{link.label}</a>
+          ))}
+        </div>
+      </div>
+      <a href="/contact/" class="px-3 py-2 text-sm font-medium text-[var(--color-brand-primary)] hover:text-[var(--color-brand-accent-hover)]">Contact Us</a>
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <div class="hidden lg:flex items-center gap-2">
+        <a href="/book/" class="btn btn-primary">Book Appointment</a>
+      </div>
+      <button
+        type="button"
+        class="lg:hidden inline-flex items-center justify-center w-11 h-11 rounded-md text-[var(--color-brand-primary)] hover:bg-[var(--color-surface-alt)]"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        data-mobile-toggle
+      >
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mega-menu panel -->
+  <div
+    id="services-megamenu"
+    class="hidden lg:block absolute inset-x-0 top-full bg-white border-t border-b border-[var(--color-border)] shadow-lg max-h-[calc(100dvh-4rem)] overflow-y-auto"
+    data-megamenu-panel
+    hidden
+  >
+    <div class="container-wide py-4">
+      <div class="grid grid-cols-5 gap-6">
+        {allCols.map(col => (
+          <div class="space-y-4">
+            {col.map((cat, catIdx) => (
+              <div class={catIdx > 0 ? "pt-4 border-t border-[var(--color-border-soft)]" : ""}>
+                <a href={cat.href} class="block group mb-2">
+                  <h3 class="font-display text-sm font-semibold text-[var(--color-brand-primary)] group-hover:text-[var(--color-brand-accent-hover)] leading-tight">
+                    {cat.title}
+                  </h3>
+                </a>
+                <ul class="space-y-1">
+                  {cat.items.map(item => (
+                    <li>
+                      <a href={item.href} class="block text-xs text-[var(--color-text-muted)] hover:text-[var(--color-brand-accent-hover)] leading-snug">
+                        {item.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+      <div class="mt-4 pt-4 border-t border-[var(--color-border-soft)] flex flex-wrap items-center justify-between gap-4">
+        <p class="text-sm text-[var(--color-text-muted)]">
+          Not sure which service you need? We'll help you figure it out at your first visit.
+        </p>
+        <div class="flex items-center gap-3">
+          <a href="/services/" class="text-sm font-medium text-[var(--color-brand-primary)] hover:text-[var(--color-brand-accent-hover)]">View all services →</a>
+          <a href="/book/" class="btn btn-primary">Book Appointment</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="lg:hidden hidden border-t border-[var(--color-border)] bg-white overflow-y-auto max-h-[calc(100dvh-4rem)]" data-mobile-menu>
+    <div class="container-wide py-4">
+      <a href={`tel:${clinic.phoneTel}`} class="flex items-center justify-between py-3 border-b border-[var(--color-border-soft)] text-[var(--color-brand-primary)] font-semibold">
+        <span>{clinic.phoneDisplay}</span>
+        <span class="text-xs text-[var(--color-text-muted)] font-normal">Tap to call</span>
+      </a>
+      <nav class="py-2" aria-label="Mobile primary">
+        <details class="border-b border-[var(--color-border-soft)]">
+          <summary class="py-3 flex items-center justify-between cursor-pointer list-none text-[var(--color-brand-primary)] font-medium">
+            About Us
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="pl-3 pb-3 space-y-1">
+            <a href="/about/our-clinic/" class="block py-1 text-sm text-[var(--color-text)]">Our Clinic</a>
+            {aboutLinks.map(link => (
+              <a href={link.href} class="block py-1 text-sm text-[var(--color-text)]">{link.label}</a>
+            ))}
+          </div>
+        </details>
+        <details class="border-b border-[var(--color-border-soft)]">
+          <summary class="py-3 flex items-center justify-between cursor-pointer list-none text-[var(--color-brand-primary)] font-medium">
+            Services
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="pl-3 pb-3 space-y-4">
+            {allCols.flat().map(cat => (
+              <div>
+                <a href={cat.href} class="block py-1 font-semibold text-sm text-[var(--color-brand-primary)]">{cat.title}</a>
+                <ul class="pl-3 space-y-1">
+                  {cat.items.map(item => (
+                    <li><a href={item.href} class="block py-0.5 text-sm text-[var(--color-text)]">{item.label}</a></li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </details>
+        <details class="border-b border-[var(--color-border-soft)]">
+          <summary class="py-3 flex items-center justify-between cursor-pointer list-none text-[var(--color-brand-primary)] font-medium">
+            New Patients
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="pl-3 pb-3 space-y-1">
+            <a href="/new-patients/" class="block py-1 text-sm text-[var(--color-text)]">New Patients</a>
+            {newPatientLinks.map(link => (
+              <a href={link.href} class="block py-1 text-sm text-[var(--color-text)]">{link.label}</a>
+            ))}
+          </div>
+        </details>
+        <details class="border-b border-[var(--color-border-soft)]">
+          <summary class="py-3 flex items-center justify-between cursor-pointer list-none text-[var(--color-brand-primary)] font-medium">
+            Existing Patients
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="pl-3 pb-3 space-y-1">
+            <a href="/existing-patients/" class="block py-1 text-sm text-[var(--color-text)]">Existing Patients</a>
+            {existingPatientLinks.map(link => (
+              <a href={link.href} class="block py-1 text-sm text-[var(--color-text)]">{link.label}</a>
+            ))}
+          </div>
+        </details>
+        <a href="/contact/" class="block py-3 text-[var(--color-brand-primary)] border-b border-[var(--color-border-soft)]">Contact Us</a>
+      </nav>
+      <a href="/book/" class="btn btn-primary w-full mt-3">Book Appointment</a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const trigger = document.querySelector<HTMLButtonElement>('[data-megamenu-trigger]');
+  const panel = document.querySelector<HTMLDivElement>('[data-megamenu-panel]');
+  const wrapper = document.querySelector<HTMLDivElement>('[data-megamenu]');
+
+  if (trigger && panel && wrapper) {
+    let closeTimer: number | undefined;
+
+    const open = () => {
+      if (closeTimer) { window.clearTimeout(closeTimer); closeTimer = undefined; }
+      panel.hidden = false;
+      trigger.setAttribute('aria-expanded', 'true');
+    };
+    const close = () => {
+      panel.hidden = true;
+      trigger.setAttribute('aria-expanded', 'false');
+    };
+    const scheduleClose = () => {
+      closeTimer = window.setTimeout(close, 180);
+    };
+
+    trigger.addEventListener('click', () => {
+      if (panel.hidden) open(); else close();
+    });
+
+    wrapper.addEventListener('mouseenter', open);
+    wrapper.addEventListener('mouseleave', scheduleClose);
+    panel.addEventListener('mouseenter', open);
+    panel.addEventListener('mouseleave', scheduleClose);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !panel.hidden) {
+        close();
+        trigger.focus();
+      }
+    });
+
+    document.addEventListener('click', (e) => {
+      if (panel.hidden) return;
+      if (!wrapper.contains(e.target as Node) && !panel.contains(e.target as Node)) close();
+    });
+  }
+
+  function initDropdown(key: string) {
+    const wrapper = document.querySelector<HTMLDivElement>(`[data-dropdown="${key}"]`);
+    const trigger = document.querySelector<HTMLButtonElement>(`[data-dropdown-trigger="${key}"]`);
+    const panel = document.querySelector<HTMLDivElement>(`[data-dropdown-panel="${key}"]`);
+    if (!wrapper || !trigger || !panel) return;
+    let timer: number | undefined;
+    const open = () => { if (timer) { window.clearTimeout(timer); timer = undefined; } panel.hidden = false; trigger.setAttribute('aria-expanded', 'true'); };
+    const close = () => { panel.hidden = true; trigger.setAttribute('aria-expanded', 'false'); };
+    const schedule = () => { timer = window.setTimeout(close, 180); };
+    trigger.addEventListener('click', () => { if (panel.hidden) open(); else close(); });
+    wrapper.addEventListener('mouseenter', open);
+    wrapper.addEventListener('mouseleave', schedule);
+    panel.addEventListener('mouseenter', open);
+    panel.addEventListener('mouseleave', schedule);
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !panel.hidden) { close(); trigger.focus(); } });
+    document.addEventListener('click', (e) => { if (panel.hidden) return; if (!wrapper.contains(e.target as Node) && !panel.contains(e.target as Node)) close(); });
+  }
+  initDropdown('about');
+  initDropdown('new-patients');
+  initDropdown('existing-patients');
+
+  const mobileToggle = document.querySelector<HTMLButtonElement>('[data-mobile-toggle]');
+  const mobileMenu = document.querySelector<HTMLDivElement>('[data-mobile-menu]');
+  if (mobileToggle && mobileMenu) {
+    mobileToggle.addEventListener('click', () => {
+      const expanded = mobileToggle.getAttribute('aria-expanded') === 'true';
+      mobileToggle.setAttribute('aria-expanded', String(!expanded));
+      mobileMenu.classList.toggle('hidden');
+    });
+  }
+</script>

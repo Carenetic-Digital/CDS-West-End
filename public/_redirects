@@ -1,0 +1,44 @@
+# Legacy WordPress URLs (westenddentalcentre.com) → new West End IA
+/about-us/  /about/our-clinic/  301
+/dental-services/  /services/  301
+/dental-services/general-dentistry/  /services/  301
+/dental-services/preventative-dentistry/  /services/preventive/  301
+/dental-services/cosmetic-dentistry/  /services/cosmetic/  301
+/dental-services/dental-surgery/  /services/oral-surgery/  301
+/services/composite-fillings/  /services/restorative/fillings/  301
+/services/dental-bridges/  /services/restorative/bridges/  301
+/services/dental-crowns/  /services/restorative/crowns/  301
+/services/dental-bonding/  /services/cosmetic/bonding/  301
+/services/veneers/  /services/cosmetic/veneers/  301
+/services/teeth-whitening/  /services/cosmetic/whitening/  301
+/services/dentures/  /services/prosthodontics/dentures/  301
+/services/porcelain-bridges/  /services/prosthodontics/porcelain-bridges/  301
+/services/root-canal-therapy/  /services/endodontics/root-canal/  301
+/services/extractions/  /services/oral-surgery/extractions/  301
+/services/ehygiene-and-cleaning/  /services/preventive/cleanings-exams/  301
+/services/fluoride-treatment/  /services/preventive/fluoride/  301
+/services/dental-sealants/  /services/preventive/sealants/  301
+/services/mouth-guards-and-night-guards/  /services/preventive/guards/  301
+/services/diagnostic-imaging-and-x-rays/  /services/diagnostic/x-rays/  301
+/services/gum-disease/  /services/periodontal/gum-disease/  301
+/services/periodontal-therapy/  /services/periodontal/periodontal-therapy/  301
+/services/restorative-dentistry/  /services/restorative/  301
+/services/invisalign-treatment/  /services/orthodontics/invisalign/  301
+/emergency-service/  /services/emergency/  301
+/financial-options/  /new-patients/insurance-payment/  301
+/digital-patient-forms/  /new-patients/forms/  301
+/patient-forms/  /new-patients/forms/  301
+/patient-info/  /new-patients/  301
+/join-our-team/  /about/careers/  301
+/contact-us/  /contact/  301
+/booking/  /book/  301
+/privacy-policy/  /privacy/  301
+
+# Doctor profile pages → consolidated team page
+/profile/dr-melissa-wong/  /about/our-team/  301
+/profile/dr-denis-redmond/  /about/our-team/  301
+/profile/dr-kenneth-chan/  /about/our-team/  301
+
+# Landing page + blog archive
+/smile-edmonton-dentist/  /smile/  301
+/2026/09/04/preventive-dental-care-everyday-habits-for-a-healthier-smile/  /dental-tips/preventive-dental-care-everyday-habits-for-a-healthier-smile/  301

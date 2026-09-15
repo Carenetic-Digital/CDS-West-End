@@ -1,0 +1,265 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const quickLinks = [
+  {
+    title: "Book an Appointment",
+    body: "Due for your next checkup or hygiene appointment? Request an appointment online or call us to find a time that works.",
+    href: "/book/",
+    cta: "Book Appointment",
+    icon: `<rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>`,
+  },
+  {
+    title: "Post-Visit Instructions",
+    body: "Instructions for after common dental procedures, cleanings, fillings, extractions, crowns, and more.",
+    href: "/existing-patients/post-visit/",
+    cta: "View Instructions",
+    icon: `<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>`,
+  },
+  {
+    title: "Contact Us",
+    body: "Questions about your account, treatment, or insurance? Reach our reception team by phone or email.",
+    href: "/contact/",
+    cta: "Get in Touch",
+    icon: `<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>`,
+  },
+];
+---
+
+<BaseLayout
+  title="Existing Patients | West End Dental Centre Edmonton"
+  description="Resources for existing patients of West End Dental Centre in West Edmonton, book an appointment, post-visit instructions, and patient information."
+>
+
+  <!-- ============================================================
+       HERO BANNER
+       ============================================================ -->
+  <section class="bg-[var(--color-brand-primary)] relative overflow-hidden">
+    <!-- Right-side image panel, desktop only -->
+    <div class="hidden lg:block absolute right-0 top-0 bottom-0 w-[50%] pointer-events-none" aria-hidden="true">
+      <img
+        src="/images/west-end/hero-patient-info.jpg"
+        alt="Existing Patients at West End Dental Centre"
+        width="800"
+        height="600"
+        loading="eager"
+          fetchpriority="high"
+        decoding="async"
+        class="w-full h-full object-cover object-[58%_center]"
+      />
+      <div class="hero-image-fade" aria-hidden="true"></div>
+    </div>
+    <div class="container-wide relative py-16 lg:py-24 lg:max-w-[48%]">
+      <nav class="flex items-center gap-2 text-xs text-[var(--color-text-on-dark-muted)] mb-5" aria-label="Breadcrumb">
+        <a href="/" class="text-white hover:text-white/80 transition-colors">Home</a>
+        <span aria-hidden="true">›</span>
+        <span class="text-white">Existing Patients</span>
+      </nav>
+      <p class="eyebrow text-white">West End Dental Centre</p>
+      <h1 class="mt-3 font-display font-semibold text-[length:var(--text-5xl)] leading-tight text-white max-w-2xl">
+        Existing Patients
+      </h1>
+      <p class="mt-4 text-lg text-[var(--color-text-on-dark-muted)] leading-relaxed max-w-xl">
+        Welcome back. Find quick links to booking, post-visit instructions, and ways to reach our team below.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       QUICK LINKS
+       ============================================================ -->
+  <section class="section-y bg-white">
+    <div class="container-wide">
+
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <p class="eyebrow">Quick access</p>
+        <h2 class="mt-3 font-display font-semibold text-[length:var(--text-4xl)] leading-tight text-[var(--color-brand-primary)]">
+          What can we help with?
+        </h2>
+      </div>
+
+      <div class="grid sm:grid-cols-3 gap-6">
+        {quickLinks.map(link => (
+          <div class="bg-[var(--color-surface-cool)] rounded-2xl p-6 border border-[var(--color-border-soft)] flex flex-col">
+            <div class="w-12 h-12 rounded-full bg-[var(--color-brand-primary)] flex items-center justify-center shrink-0 mb-4">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={link.icon} />
+            </div>
+            <h3 class="font-display font-semibold text-lg text-[var(--color-brand-primary)]">{link.title}</h3>
+            <p class="mt-2 text-sm text-[var(--color-text-muted)] leading-relaxed flex-1">{link.body}</p>
+            <a href={link.href} class="mt-5 btn btn-outline w-full text-center">{link.cta}</a>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PATIENT FORMS
+       ============================================================ -->
+  <section id="forms" class="section-y bg-[var(--color-surface-cool)]">
+    <div class="container-wide">
+
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <p class="eyebrow">Patient forms</p>
+        <h2 class="mt-3 font-display font-semibold text-[length:var(--text-4xl)] leading-tight text-[var(--color-brand-primary)]">
+          Update Your Information Online
+        </h2>
+        <p class="mt-3 text-lg text-[var(--color-text-muted)] leading-relaxed">
+          Save time at your next visit by updating your health history ahead of time.
+        </p>
+      </div>
+
+      <div class="max-w-xl mx-auto">
+
+        <!-- Health History Update -->
+        <div class="bg-white rounded-2xl shadow-xl border border-[var(--color-border-soft)] p-8 flex flex-col min-w-0">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 rounded-full bg-[var(--color-brand-primary)] flex items-center justify-center shrink-0">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            </div>
+            <div class="min-w-0">
+              <h3 class="font-display font-semibold text-xl text-[var(--color-brand-primary)]">Dental Medical History Update</h3>
+              <p class="text-sm text-[var(--color-text-muted)]">Existing patients, update your records.</p>
+            </div>
+          </div>
+          <div class="space-y-4 text-sm text-[var(--color-text-muted)] leading-relaxed flex-1">
+            <p>
+              If your medications, health conditions, or allergies have changed since your last appointment, use this form to update your dental and medical history before your next visit.
+            </p>
+            <p>
+              Keeping your health information current helps our team provide safe, informed care tailored to your current health status.
+            </p>
+            <div class="bg-[var(--color-surface-cool)] rounded-xl p-4 border border-[var(--color-border-soft)]">
+              <p class="text-xs font-semibold uppercase tracking-[0.12em] text-[var(--color-brand-primary)] mb-1">Secure &amp; HIPAA-compliant</p>
+              <p class="text-xs text-[var(--color-text-muted)]">This form is hosted by JotForm and transmitted securely. Your health information is handled in accordance with applicable privacy legislation.</p>
+            </div>
+          </div>
+          <a
+            href="/existing-patients/forms/#health-history-form"
+            class="mt-6 btn btn-primary w-full text-center flex items-center justify-center gap-2 whitespace-normal"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            Update Health History
+          </a>
+        </div>
+
+      </div>
+
+      <p class="mt-6 text-center text-sm text-[var(--color-text-muted)]">
+        Questions? Call our reception team at <a href="tel:+17809442828" class="font-semibold text-[var(--color-brand-accent)] hover:text-[var(--color-brand-accent-hover)]">780-944-2828</a>.
+      </p>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       RECALL INFORMATION
+       ============================================================ -->
+  <section class="section-y bg-white">
+    <div class="container-wide">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-brand-accent)]">Staying on track</p>
+          <div class="mt-1 w-10 h-0.5 bg-[var(--color-brand-accent)]"></div>
+          <h2 class="mt-4 font-display font-semibold text-[length:var(--text-4xl)] leading-tight text-[var(--color-brand-primary)]">
+            Our recall system
+          </h2>
+          <div class="mt-5 space-y-4 text-[var(--color-text)] leading-relaxed">
+            <p>
+              We contact patients when they're due for a recall appointment, typically every six months, though your dentist may recommend a different interval based on your individual oral health needs.
+            </p>
+            <p>
+              If you haven't heard from us, if you'd like to move up your appointment, or if you need to reschedule, please call us directly at <a href="tel:+17809442828" class="font-semibold text-[var(--color-brand-primary)] hover:text-[var(--color-brand-accent)] transition-colors">780-944-2828</a>. We're always happy to help find a time that works.
+            </p>
+            <p>
+              Keeping up with regular checkups and cleanings is one of the most effective ways to catch small issues before they become larger ones, and to maintain the oral health you've worked to build.
+            </p>
+          </div>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="/book/" class="btn btn-primary">Book Appointment</a>
+            <a href="tel:+17809442828" class="btn btn-outline">Call 780-944-2828</a>
+          </div>
+        </div>
+
+        <div class="space-y-4">
+
+          <div class="bg-white rounded-xl p-5 border border-[var(--color-border-soft)] shadow-xl flex gap-4 items-start">
+            <div class="w-10 h-10 rounded-full bg-[var(--color-brand-primary)] flex items-center justify-center shrink-0">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div>
+              <h3 class="font-display font-semibold text-base text-[var(--color-brand-primary)]">Recall reminders</h3>
+              <p class="mt-1 text-sm text-[var(--color-text-muted)] leading-relaxed">We send reminders by text or phone when you're approaching your next due date. If your contact information has changed, let us know so we can keep your records current.</p>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-xl p-5 border border-[var(--color-border-soft)] shadow-xl flex gap-4 items-start">
+            <div class="w-10 h-10 rounded-full bg-[var(--color-brand-primary)] flex items-center justify-center shrink-0">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div>
+              <h3 class="font-display font-semibold text-base text-[var(--color-brand-primary)]">Reschedule or cancel</h3>
+              <p class="mt-1 text-sm text-[var(--color-text-muted)] leading-relaxed">If you need to change an existing appointment, please call us as soon as possible so we can offer the time to another patient and find a new slot for you.</p>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-xl p-5 border border-[var(--color-border-soft)] shadow-xl flex gap-4 items-start">
+            <div class="w-10 h-10 rounded-full bg-[var(--color-brand-primary)] flex items-center justify-center shrink-0">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            </div>
+            <div>
+              <h3 class="font-display font-semibold text-base text-[var(--color-brand-primary)]">Dental concerns between visits</h3>
+              <p class="mt-1 text-sm text-[var(--color-text-muted)] leading-relaxed">If you develop a toothache, notice swelling, break a tooth, or have any other concern between regular appointments, call us. We'll do our best to see you promptly.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       POST-VISIT CALLOUT
+       ============================================================ -->
+  <section class="section-y bg-white">
+    <div class="container-wide">
+      <div class="bg-[var(--color-surface-alt)] rounded-2xl p-8 md:p-10 border border-[var(--color-border-soft)] flex flex-col md:flex-row gap-8 items-center">
+        <div class="w-14 h-14 rounded-full bg-[var(--color-brand-primary)] flex items-center justify-center shrink-0">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <div class="flex-1">
+          <h2 class="font-display font-semibold text-[length:var(--text-2xl)] text-[var(--color-brand-primary)]">Post-visit instructions</h2>
+          <p class="mt-2 text-[var(--color-text-muted)] leading-relaxed">
+            Not sure what to expect after a filling, extraction, crown, or cleaning? Our post-visit instructions page covers what's normal and when to call us.
+          </p>
+        </div>
+        <a href="/existing-patients/post-visit/" class="btn btn-primary shrink-0">View Instructions</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CTA BAND
+       ============================================================ -->
+  <section class="bg-[var(--color-brand-primary)] py-16 text-center overflow-hidden relative">
+    <svg class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 1440 160" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 60 C 240 20, 480 100, 720 60 C 960 20, 1200 100, 1440 60 L1440 160 L0 160 Z" fill="rgba(255,255,255,0.03)"/>
+    </svg>
+    <div class="relative container-wide">
+      <h2 class="font-display font-semibold text-[length:var(--text-4xl)] text-white leading-tight">
+        Need to reach us?
+      </h2>
+      <p class="mt-4 text-[var(--color-text-on-dark-muted)] text-lg max-w-xl mx-auto leading-relaxed">
+        Call us at <a href="tel:+17809442828" class="text-white font-semibold hover:text-[var(--color-brand-accent-soft)] transition-colors">780-944-2828</a> or use the contact form.
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <a href="/book/" class="btn btn-primary btn-lg">Book Appointment</a>
+        <a href="/contact/" class="btn btn-lg border border-white/30 text-white hover:bg-white/10 transition-colors">Contact Us</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

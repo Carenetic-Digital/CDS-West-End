@@ -2,36 +2,68 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
+import { existsSync } from 'fs';
+import { fileURLToPath } from 'url';
+import { createRequire } from 'module';
 
-// In the hosted preview the Astro dev server isn't reachable directly — it's
-// proxied same-origin by the Next.js app under /preview/<projectId>/. The
-// manager injects PREVIEW_BASE so every page and asset URL is emitted under
-// that prefix and stays routable through the proxy. Unset in a normal
-// production build, so base falls back to "/".
 const previewBase = process.env.PREVIEW_BASE;
 
+const require = createRequire(import.meta.url);
+function detectCmsPackage() {
+  try {
+    require.resolve('@sparkable-cms/cms/runtime/site-settings.ts');
+    return true;
+  } catch {
+    return (
+      existsSync(fileURLToPath(new URL('./node_modules/@sparkable-cms/cms', import.meta.url))) ||
+      existsSync(fileURLToPath(new URL('../../node_modules/@sparkable-cms/cms', import.meta.url)))
+    );
+  }
+}
+const hasCmsPackage = detectCmsPackage();
+const cmsAliases = hasCmsPackage
+  ? {}
+  : {
+      '@sparkable-cms/cms/runtime/SparkableHead.astro': fileURLToPath(
+        new URL('./src/stubs/SparkableHead.astro', import.meta.url),
+      ),
+      '@sparkable-cms/cms/runtime/SparkableFooter.astro': fileURLToPath(
+        new URL('./src/stubs/SparkableFooter.astro', import.meta.url),
+      ),
+      '@sparkable-cms/cms/runtime': fileURLToPath(
+        new URL('./src/stubs/sparkable-runtime.ts', import.meta.url),
+      ),
+      '@sparkable-cms/cms/content': fileURLToPath(
+        new URL('./src/stubs/sparkable-content.ts', import.meta.url),
+      ),
+    };
+
+if (!hasCmsPackage) {
+  console.warn('\n⚠️  @sparkable-cms/cms is not installed — using no-op stubs.');
+}
+
+const integrations = [sitemap()];
+
+if (process.env.SPARKABLE_CMS === 'true' && hasCmsPackage) {
+  const { default: sparkableCms } = await import('@sparkable-cms/cms');
+  integrations.push(sparkableCms());
+}
+
 export default defineConfig({
-  // Set this to your production URL (updated during deployment)
-  site: 'https://example.com',
+  site: 'https://www.westenddentalcentre.com',
   base: previewBase || undefined,
   output: 'static',
-  integrations: [sitemap()],
+  integrations,
   devToolbar: {
     enabled: false,
   },
   vite: {
+    resolve: {
+      alias: cmsAliases,
+    },
     plugins: [tailwindcss()],
     server: {
-      // HMR websockets can't traverse the HTTP-only proxy, so disable them
-      // under the preview to stop the client spamming reconnect attempts.
-      // The app instead reloads the iframe on each agent edit (a `reload` SSE
-      // event), and astro dev recompiles per request.
       ...(previewBase && { hmr: false }),
-      // Container volumes (Railway, fly.io) don't reliably fire inotify for
-      // file changes, so Vite wouldn't invalidate its module cache and a
-      // reload would serve stale modules. Polling sidesteps that — required
-      // for the auto-reload to actually reflect edits. Local dev keeps native
-      // watching (neither var is set).
       ...((previewBase || process.env.FLY_APP_NAME) && {
         watch: { usePolling: true, interval: 500 },
       }),

@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { clinic } from '../data/clinic';
+---
+
+<BaseLayout
+  title="Thank You | West End Dental Centre"
+  description="Thank you for reaching out to West End Dental Centre. We've received your submission and will be in touch shortly."
+  noindex={true}
+>
+  <section class="bg-[var(--color-surface-alt)] section-y">
+    <div class="container-narrow text-center">
+      <p class="eyebrow">Message received</p>
+      <h1 class="mt-3 font-display text-[length:var(--text-6xl)] font-semibold text-[var(--color-brand-primary)] leading-tight">
+        Thank you!
+      </h1>
+      <p class="mt-5 max-w-lg mx-auto text-lg text-[var(--color-text-muted)] leading-relaxed">
+        We've received your submission and a member of our team will be in touch shortly — usually within one business day.
+      </p>
+      <p class="mt-4 max-w-lg mx-auto text-lg text-[var(--color-text-muted)] leading-relaxed">
+        Need to reach us sooner? Call <a href={`tel:${clinic.phoneSchema}`} class="font-semibold text-[var(--color-brand-primary)] hover:text-[var(--color-brand-accent-hover)]">{clinic.phoneDisplay}</a> during office hours.
+      </p>
+
+      <div class="mt-10 grid sm:grid-cols-3 gap-4 max-w-2xl mx-auto text-left">
+        <a href="/new-patients/what-to-expect/" class="card">
+          <h2 class="font-display text-lg font-semibold text-[var(--color-brand-primary)]">What to expect</h2>
+          <p class="mt-1.5 text-sm text-[var(--color-text-muted)]">How your first visit with us will go, step by step.</p>
+        </a>
+        <a href="/services/" class="card">
+          <h2 class="font-display text-lg font-semibold text-[var(--color-brand-primary)]">Services</h2>
+          <p class="mt-1.5 text-sm text-[var(--color-text-muted)]">Browse preventive, restorative, cosmetic, and surgical care.</p>
+        </a>
+        <a href="/contact/" class="card">
+          <h2 class="font-display text-lg font-semibold text-[var(--color-brand-primary)]">Contact</h2>
+          <p class="mt-1.5 text-sm text-[var(--color-text-muted)]">Phone, email, hours, and directions to the clinic.</p>
+        </a>
+      </div>
+
+      <div class="mt-10">
+        <a href="/" class="btn btn-primary">Back to homepage</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

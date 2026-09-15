@@ -1,0 +1,211 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Dental Bonding | West End Dental Centre Edmonton"
+  description="Dental bonding at West End Dental Centre in West Edmonton. Tooth-coloured resin to repair chips, fill gaps, and address discolouration, often completed in a single visit."
+>
+
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <section class="bg-[var(--color-brand-primary)] relative overflow-hidden">
+    <!-- Right-side image panel, desktop only -->
+    <div class="hidden lg:block absolute right-0 top-0 bottom-0 w-[50%] pointer-events-none" aria-hidden="true">
+      <img
+        src="/images/west-end/hero-bonding.jpg"
+        alt="Dental Bonding at West End Dental Centre"
+        width="800"
+        height="600"
+        loading="eager"
+          fetchpriority="high"
+        decoding="async"
+        class="w-full h-full object-cover"
+      />
+      <div class="hero-image-fade" aria-hidden="true"></div>
+    </div>
+    <div class="container-wide relative py-16 lg:py-24 lg:max-w-[48%]">
+      <nav class="flex items-center gap-2 text-xs text-[var(--color-text-on-dark-muted)] mb-5" aria-label="Breadcrumb">
+        <a href="/" class="text-white hover:text-white/80 transition-colors">Home</a>
+        <span aria-hidden="true">›</span>
+        <a href="/services/" class="text-white/80 hover:text-white transition-colors">Services</a>
+        <span aria-hidden="true">›</span>
+        <a href="/services/cosmetic/" class="text-white/80 hover:text-white transition-colors">Cosmetic</a>
+        <span aria-hidden="true">›</span>
+        <span class="text-white">Dental Bonding</span>
+      </nav>
+      <p class="eyebrow text-white">Cosmetic Dentistry</p>
+      <h1 class="mt-3 font-display font-semibold text-[length:var(--text-5xl)] leading-tight text-white max-w-2xl">
+        Dental Bonding
+      </h1>
+      <p class="mt-4 text-lg text-[var(--color-text-on-dark-muted)] leading-relaxed max-w-xl">
+        Composite resin can be shaped and colour-matched to your natural teeth to address chips, small gaps, or discolouration, often in a single appointment with little or no tooth preparation required.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       MAIN CONTENT + SIDEBAR
+       ============================================================ -->
+  <section class="section-y bg-white">
+    <div class="container-wide">
+      <div class="grid lg:grid-cols-[1fr_300px] gap-12">
+
+        <!-- Main Content -->
+        <div class="space-y-10">
+
+          <!-- What is dental bonding -->
+          <div>
+            <h2 class="font-display font-semibold text-[length:var(--text-3xl)] text-[var(--color-brand-primary)] leading-tight">
+              What is dental bonding?
+            </h2>
+            <p class="mt-4 text-base text-[var(--color-text-muted)] leading-relaxed">
+              Dental bonding uses composite resin, the same tooth-coloured material used for tooth-coloured fillings, applied directly to the tooth surface and sculpted by hand. The resin is matched to the shade of your surrounding teeth, hardened with a curing light, and polished to blend with the natural tooth.
+            </p>
+            <p class="mt-3 text-base text-[var(--color-text-muted)] leading-relaxed">
+              It is commonly used to repair chipped teeth, fill small gaps between teeth, cover areas of discolouration, and make minor adjustments to tooth shape or length.
+            </p>
+          </div>
+
+          <!-- Image break -->
+          <div class="rounded-2xl overflow-hidden max-h-[700px]">
+            <img
+              src="/images/west-end/thumb-bonding.jpg"
+              alt="Cosmetic teeth whitening treatment at the dental clinic"
+              width="800"
+              height="450"
+              loading="lazy"
+              decoding="async"
+              class="w-full h-auto"
+            />
+          </div>
+
+          <!-- Advantages -->
+          <div>
+            <h2 class="font-display font-semibold text-[length:var(--text-3xl)] text-[var(--color-brand-primary)] leading-tight">
+              Advantages of dental bonding
+            </h2>
+            <ul class="mt-4 space-y-3">
+              <li class="flex gap-3">
+                <span class="mt-1 shrink-0 w-5 h-5 rounded-full bg-[var(--color-brand-primary)] flex items-center justify-center">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                </span>
+                <span class="text-base text-[var(--color-text-muted)] leading-relaxed"><strong class="text-[var(--color-text)]">Minimal tooth preparation</strong>, bonding typically requires little to no removal of natural tooth structure, unlike veneers or crowns.</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="mt-1 shrink-0 w-5 h-5 rounded-full bg-[var(--color-brand-primary)] flex items-center justify-center">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                </span>
+                <span class="text-base text-[var(--color-text-muted)] leading-relaxed"><strong class="text-[var(--color-text)]">Single visit</strong>, the procedure is completed in one appointment, with no need for laboratory fabrication or temporary restorations.</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="mt-1 shrink-0 w-5 h-5 rounded-full bg-[var(--color-brand-primary)] flex items-center justify-center">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                </span>
+                <span class="text-base text-[var(--color-text-muted)] leading-relaxed"><strong class="text-[var(--color-text)]">Reversible in some cases</strong>, because minimal enamel is removed, bonding can sometimes be replaced or removed without significant impact to the underlying tooth, depending on the situation.</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Procedure -->
+          <div>
+            <h2 class="font-display font-semibold text-[length:var(--text-3xl)] text-[var(--color-brand-primary)] leading-tight">
+              What the procedure involves
+            </h2>
+            <p class="mt-4 text-base text-[var(--color-text-muted)] leading-relaxed">
+              Bonding is straightforward for most patients:
+            </p>
+            <div class="mt-6 space-y-4">
+              <div class="flex gap-4">
+                <span class="shrink-0 w-8 h-8 rounded-full bg-[var(--color-brand-primary)] text-white flex items-center justify-center font-semibold text-sm">1</span>
+                <div>
+                  <h3 class="font-semibold text-[var(--color-text)]">Surface preparation</h3>
+                  <p class="mt-1 text-sm text-[var(--color-text-muted)] leading-relaxed">The tooth surface is lightly etched with a mild conditioning liquid to help the resin adhere. A bonding agent is then applied.</p>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <span class="shrink-0 w-8 h-8 rounded-full bg-[var(--color-brand-primary)] text-white flex items-center justify-center font-semibold text-sm">2</span>
+                <div>
+                  <h3 class="font-semibold text-[var(--color-text)]">Resin application and shaping</h3>
+                  <p class="mt-1 text-sm text-[var(--color-text-muted)] leading-relaxed">The composite resin, selected to match your tooth shade, is applied to the tooth and sculpted by hand into the desired shape. This step requires skill and attention to detail to ensure a natural result.</p>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <span class="shrink-0 w-8 h-8 rounded-full bg-[var(--color-brand-primary)] text-white flex items-center justify-center font-semibold text-sm">3</span>
+                <div>
+                  <h3 class="font-semibold text-[var(--color-text)]">Curing and polishing</h3>
+                  <p class="mt-1 text-sm text-[var(--color-text-muted)] leading-relaxed">The resin is hardened with a curing light, then trimmed, shaped, and polished to blend with the surrounding tooth surface.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Limitations -->
+          <div class="bg-[var(--color-surface-cool)] rounded-2xl p-6 border border-[var(--color-border-soft)]">
+            <h2 class="font-display font-semibold text-[length:var(--text-2xl)] text-[var(--color-brand-primary)] leading-tight">
+              Limitations to be aware of
+            </h2>
+            <p class="mt-4 text-base text-[var(--color-text-muted)] leading-relaxed">
+              Composite resin is a durable material but not as strong as porcelain veneers or crowns. There are some practical limitations:
+            </p>
+            <ul class="mt-4 space-y-2 text-sm text-[var(--color-text-muted)] leading-relaxed">
+              <li class="flex gap-2"><span aria-hidden="true">•</span><span>Bonding can chip or fracture under significant force, particularly on teeth that take heavy biting load</span></li>
+              <li class="flex gap-2"><span aria-hidden="true">•</span><span>The resin can stain over time with coffee, tea, red wine, or tobacco, though it can be polished or replaced</span></li>
+              <li class="flex gap-2"><span aria-hidden="true">•</span><span>It is generally most appropriate for smaller cosmetic concerns; larger changes may be better addressed with veneers or other restorations</span></li>
+            </ul>
+          </div>
+
+          <!-- Care -->
+          <div class="bg-[var(--color-surface-alt)] rounded-2xl p-6 border border-[var(--color-border-soft)]">
+            <h2 class="font-display font-semibold text-[length:var(--text-2xl)] text-[var(--color-brand-primary)] leading-tight">
+              Caring for bonded teeth
+            </h2>
+            <p class="mt-4 text-base text-[var(--color-text-muted)] leading-relaxed">
+              Bonded teeth are maintained with normal brushing and flossing. To protect the resin, avoid biting fingernails, chewing ice, or using bonded teeth to open packages. Regular dental checkups allow us to monitor the condition of bonding over time, and touch-ups or replacement can be done if needed.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="space-y-6">
+          <div class="bg-[var(--color-brand-primary)] rounded-2xl p-6 text-white">
+            <h3 class="font-display font-semibold text-lg text-white">Interested?</h3>
+            <p class="mt-2 text-sm text-[var(--color-text-on-dark-muted)] leading-relaxed">A consultation helps us understand your goals and recommend appropriate options.</p>
+            <a href="/book/" class="mt-4 btn btn-primary w-full block text-center">Book a Consultation</a>
+            <a href="tel:+17809442828" class="mt-2 block text-center text-sm text-[var(--color-text-on-dark-muted)] hover:text-white transition-colors">780-944-2828</a>
+          </div>
+          <div class="bg-[var(--color-surface-cool)] rounded-2xl p-6 border border-[var(--color-border-soft)]">
+            <h3 class="font-body text-xs font-semibold uppercase tracking-[0.14em] text-[var(--color-brand-primary)] mb-4">Cosmetic Services</h3>
+            <ul class="space-y-2">
+              <li><a href="/services/cosmetic/whitening/" class="text-sm text-[var(--color-text)] hover:text-[var(--color-brand-accent)] transition-colors">Teeth Whitening</a></li>
+              <li><a href="/services/cosmetic/veneers/" class="text-sm text-[var(--color-text)] hover:text-[var(--color-brand-accent)] transition-colors">Porcelain Veneers</a></li>
+              <li><a href="/services/cosmetic/bonding/" class="text-sm font-semibold text-[var(--color-brand-accent)]">Dental Bonding</a></li>
+              <li><a href="/services/orthodontics/invisalign/" class="text-sm text-[var(--color-text)] hover:text-[var(--color-brand-accent)] transition-colors">Invisalign® Clear Aligners</a></li>
+            </ul>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CTA BAND
+       ============================================================ -->
+  <section class="bg-[var(--color-brand-primary)] py-16 text-center overflow-hidden relative">
+    <svg class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 1440 160" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 60 C 240 20, 480 100, 720 60 C 960 20, 1200 100, 1440 60 L1440 160 L0 160 Z" fill="rgba(255,255,255,0.03)"/>
+    </svg>
+    <div class="relative container-wide">
+      <h2 class="font-display font-semibold text-[length:var(--text-4xl)] text-white leading-tight">Considering a cosmetic treatment?</h2>
+      <p class="mt-4 text-[var(--color-text-on-dark-muted)] text-lg max-w-xl mx-auto">Call <a href="tel:+17809442828" class="text-white font-semibold">780-944-2828</a> to book a consultation.</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <a href="/book/" class="btn btn-primary btn-lg">Book a Consultation</a>
+        <a href="/contact/" class="btn btn-lg border border-white/30 text-white hover:bg-white/10 transition-colors">Contact Us</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

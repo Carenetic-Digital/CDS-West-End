@@ -1,0 +1,261 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { clinic } from '../../../data/clinic';
+
+const siblingServices = [
+  { name: "Invisalign® Clear Aligners", href: "/services/orthodontics/invisalign/", current: true },
+];
+---
+
+<BaseLayout
+  title="Invisalign® Clear Aligners | Orthodontics | West End Dental Centre Edmonton"
+  description="Invisalign® clear aligner treatment at West End Dental Centre in West Edmonton. Removable, discreet aligners for mild to moderate cases, provided by our GP Provider (OAP) team."
+>
+
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <section class="bg-[var(--color-brand-primary)] relative overflow-hidden">
+    <!-- Right-side image panel, desktop only -->
+    <div class="hidden lg:block absolute right-0 top-0 bottom-0 w-[50%] pointer-events-none" aria-hidden="true">
+      <img
+        src="/images/west-end/invisalign-hero-desktop.jpeg"
+        alt="Invisalign provider at West End Dental Centre"
+        width="800"
+        height="600"
+        loading="eager"
+          fetchpriority="high"
+        decoding="async"
+        class="w-full h-full object-cover"
+      />
+      <div class="hero-image-fade" aria-hidden="true"></div>
+    </div>
+    <div class="container-wide relative py-16 lg:py-24 lg:max-w-[48%]">
+      <nav class="flex items-center gap-2 text-xs text-[var(--color-text-on-dark-muted)] mb-5" aria-label="Breadcrumb">
+        <a href="/" class="text-white hover:text-white/80 transition-colors">Home</a>
+        <span aria-hidden="true">›</span>
+        <a href="/services/" class="text-white/80 hover:text-white transition-colors">Services</a>
+        <span aria-hidden="true">›</span>
+        <span class="text-white">Orthodontics · Invisalign®</span>
+      </nav>
+      <p class="eyebrow text-white">Orthodontics</p>
+      <h1 class="mt-3 font-display font-semibold text-[length:var(--text-5xl)] leading-tight text-white max-w-2xl">Invisalign &amp; Clear Aligners, GP Provider (OAP)
+      </h1>
+      <p class="mt-4 text-lg text-[var(--color-text-on-dark-muted)] leading-relaxed max-w-xl">
+        Clear aligner therapy uses a series of removable, nearly invisible trays to gradually move teeth into a better position.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       MAIN CONTENT + SIDEBAR
+       ============================================================ -->
+  <section class="section-y bg-white">
+    <div class="container-wide">
+      <div class="grid lg:grid-cols-[1fr_300px] gap-12">
+
+        <!-- Main Content -->
+        <div class="space-y-10">
+
+          <!-- Specialty disclaimer -->
+          <div class="bg-[var(--color-surface-alt)] rounded-2xl p-5 border border-[var(--color-border-soft)] flex gap-4 items-start">
+            <svg class="shrink-0 mt-0.5 text-[var(--color-brand-primary)]" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">Orthodontic services at West End Dental Centre are provided by our general dentist team as a GP Provider (OAP). Our dentists are not licensed specialists in orthodontics.</p>
+          </div>
+
+          <!-- Image break -->
+          <div class="rounded-2xl overflow-hidden max-h-[700px]">
+            <img
+              src="/images/west-end/invisalign-middle-2.jpg"
+              alt="Invisalign clear aligners for orthodontic treatment"
+              width="800"
+              height="450"
+              loading="lazy"
+              decoding="async"
+              class="w-full h-auto"
+            />
+          </div>
+
+          <!-- What is Invisalign -->
+          <div>
+            <h2 class="font-display font-semibold text-[length:var(--text-3xl)] text-[var(--color-brand-primary)] leading-tight">
+              What is Invisalign?
+            </h2>
+            <p class="mt-4 text-base text-[var(--color-text-muted)] leading-relaxed">
+              Invisalign is a clear aligner system that uses a series of custom-made, removable plastic trays to gradually move teeth. Each set of aligners is worn for approximately one to two weeks before progressing to the next set in the series, with each tray applying gentle, controlled pressure to shift teeth incrementally toward the planned position.
+            </p>
+            <p class="mt-3 text-base text-[var(--color-text-muted)] leading-relaxed">
+              Invisalign is a registered trademark of Align Technology. Results vary by individual case, and not all orthodontic concerns can be addressed with aligners alone.
+            </p>
+          </div>
+
+          <!-- How it works -->
+          <div>
+            <h2 class="font-display font-semibold text-[length:var(--text-3xl)] text-[var(--color-brand-primary)] leading-tight">
+              How the process works
+            </h2>
+            <div class="mt-6 space-y-4">
+              <div class="flex gap-4">
+                <span class="shrink-0 w-8 h-8 rounded-full bg-[var(--color-brand-primary)] text-white flex items-center justify-center font-semibold text-sm">1</span>
+                <div>
+                  <h3 class="font-semibold text-[var(--color-text)]">Consultation and assessment</h3>
+                  <p class="mt-1 text-sm text-[var(--color-text-muted)] leading-relaxed">Your dentist examines your teeth, discusses your goals, and determines whether clear aligners are appropriate for your case. Not all crowding, spacing, or bite issues can be treated with aligners, a thorough assessment is needed to give you accurate information.</p>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <span class="shrink-0 w-8 h-8 rounded-full bg-[var(--color-brand-primary)] text-white flex items-center justify-center font-semibold text-sm">2</span>
+                <div>
+                  <h3 class="font-semibold text-[var(--color-text)]">Digital scan and treatment planning</h3>
+                  <p class="mt-1 text-sm text-[var(--color-text-muted)] leading-relaxed">Digital impressions or scans of your teeth are taken and used to create a 3D treatment plan showing the projected movement of your teeth through each stage. Custom aligners are then fabricated from this plan.</p>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <span class="shrink-0 w-8 h-8 rounded-full bg-[var(--color-brand-primary)] text-white flex items-center justify-center font-semibold text-sm">3</span>
+                <div>
+                  <h3 class="font-semibold text-[var(--color-text)]">Wearing your aligners</h3>
+                  <p class="mt-1 text-sm text-[var(--color-text-muted)] leading-relaxed">You wear each set of aligners for approximately one to two weeks, progressing through the series. Aligners should be worn 20 to 22 hours per day, they are removed for eating, drinking (except water), and brushing. Consistency is essential; results depend on wearing aligners as prescribed.</p>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <span class="shrink-0 w-8 h-8 rounded-full bg-[var(--color-brand-primary)] text-white flex items-center justify-center font-semibold text-sm">4</span>
+                <div>
+                  <h3 class="font-semibold text-[var(--color-text)]">Check-in appointments</h3>
+                  <p class="mt-1 text-sm text-[var(--color-text-muted)] leading-relaxed">Periodic appointments at the clinic allow your dentist to monitor your progress, make any necessary adjustments, and provide the next sets of aligners.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Suitable for -->
+          <div>
+            <h2 class="font-display font-semibold text-[length:var(--text-3xl)] text-[var(--color-brand-primary)] leading-tight">
+              Who are clear aligners suitable for?
+            </h2>
+            <p class="mt-4 text-base text-[var(--color-text-muted)] leading-relaxed">
+              Clear aligners can be a good option for adults and older teenagers with mild to moderate crowding, spacing, or certain bite issues. They are generally less effective for severe malocclusion, significant bite correction, or cases where complex tooth movement is required. A consultation is necessary to determine whether your case is appropriate for this type of treatment.
+            </p>
+          </div>
+
+          <!-- Advantages -->
+          <div class="bg-[var(--color-surface-cool)] rounded-2xl p-6 border border-[var(--color-border-soft)]">
+            <h2 class="font-display font-semibold text-[length:var(--text-2xl)] text-[var(--color-brand-primary)] leading-tight">
+              Advantages of clear aligners
+            </h2>
+            <ul class="mt-4 space-y-3">
+              <li class="flex gap-3">
+                <span class="mt-1 shrink-0 w-5 h-5 rounded-full bg-[var(--color-brand-primary)] flex items-center justify-center">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                </span>
+                <span class="text-base text-[var(--color-text-muted)] leading-relaxed"><strong class="text-[var(--color-text)]">Removable</strong>, aligners are removed for eating, so there are no dietary restrictions. They are also removed for brushing and flossing, making it easier to maintain oral hygiene during treatment.</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="mt-1 shrink-0 w-5 h-5 rounded-full bg-[var(--color-brand-primary)] flex items-center justify-center">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                </span>
+                <span class="text-base text-[var(--color-text-muted)] leading-relaxed"><strong class="text-[var(--color-text)]">Discreet</strong>, the clear plastic is nearly invisible when worn, which many patients appreciate in everyday settings.</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="mt-1 shrink-0 w-5 h-5 rounded-full bg-[var(--color-brand-primary)] flex items-center justify-center">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                </span>
+                <span class="text-base text-[var(--color-text-muted)] leading-relaxed"><strong class="text-[var(--color-text)]">No brackets or wires</strong>, there is no hardware that can cause irritation to the cheeks or lips, and no risk of a wire coming loose.</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Compliance -->
+          <div>
+            <h2 class="font-display font-semibold text-[length:var(--text-3xl)] text-[var(--color-brand-primary)] leading-tight">
+              Compliance matters
+            </h2>
+            <p class="mt-4 text-base text-[var(--color-text-muted)] leading-relaxed">
+              Clear aligner treatment depends heavily on patient compliance. Aligners must be worn 20 to 22 hours per day, removing them only for eating and oral hygiene. Wearing them for shorter periods will slow or prevent the planned tooth movement and can extend treatment time. This is an important consideration before starting.
+            </p>
+          </div>
+
+          <!-- Retainers -->
+          <div class="bg-[var(--color-surface-alt)] rounded-2xl p-6 border border-[var(--color-border-soft)]">
+            <h2 class="font-display font-semibold text-[length:var(--text-2xl)] text-[var(--color-brand-primary)] leading-tight">
+              Retainers after treatment
+            </h2>
+            <p class="mt-4 text-base text-[var(--color-text-muted)] leading-relaxed">
+              Once aligner treatment is complete, teeth have a natural tendency to shift back toward their original positions. Wearing retainers as directed by your dentist is essential to maintain the results. Retainer requirements vary, your dentist will advise on the appropriate schedule for your situation.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="space-y-6">
+          <div class="bg-[var(--color-brand-primary)] rounded-2xl p-6 text-white">
+            <h3 class="font-display font-semibold text-lg text-white">Interested?</h3>
+            <p class="mt-2 text-sm text-[var(--color-text-on-dark-muted)] leading-relaxed">A consultation helps us understand your goals and recommend appropriate options.</p>
+            <a href="#consultation-form" class="mt-4 btn btn-primary w-full block text-center">Book Invisalign Consultation</a>
+            <a href="tel:+17809442828" class="mt-2 block text-center text-sm text-[var(--color-text-on-dark-muted)] hover:text-white transition-colors">780-944-2828</a>
+          </div>
+          <div class="bg-[var(--color-surface-cool)] rounded-2xl p-6 border border-[var(--color-border-soft)]">
+            <h3 class="font-body text-xs font-semibold uppercase tracking-[0.14em] text-[var(--color-brand-primary)] mb-4">Orthodontics</h3>
+            <ul class="space-y-2">
+              {siblingServices.map(svc => (
+                <li>
+                  {svc.current ? (
+                    <span class="flex items-center gap-2 text-sm font-semibold text-[var(--color-brand-accent)]">
+                      <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-brand-accent)] shrink-0" aria-hidden="true"></span>
+                      {svc.name}
+                    </span>
+                  ) : (
+                    <a href={svc.href} class="flex items-center gap-2 text-sm text-[var(--color-text-muted)] hover:text-[var(--color-brand-accent)] transition-colors">
+                      <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-border-soft)] shrink-0" aria-hidden="true"></span>
+                      {svc.name}
+                    </a>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       INVISALIGN CONSULTATION FORM
+       ============================================================ -->
+  <section id="consultation-form" class="section-y bg-[var(--color-surface-cool)]">
+    <div class="container-wide">
+      <div class="max-w-2xl mx-auto">
+        <div class="text-center mb-8">
+          <p class="eyebrow text-[var(--color-brand-accent)]">Get Started</p>
+          <h2 class="mt-2 font-display font-semibold text-[length:var(--text-3xl)] text-[var(--color-brand-primary)]">
+            Book an Invisalign Consultation
+          </h2>
+          <p class="mt-3 text-[var(--color-text-muted)] leading-relaxed">
+            Fill out the form below and our team will be in touch to discuss your smile goals and schedule your consultation.
+          </p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-xl p-8 border border-[var(--color-border-soft)]">
+          <script is:inline type="text/javascript" src={clinic.forms.invisalignConsultationEmbed}></script>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CTA BAND
+       ============================================================ -->
+  <section class="bg-[var(--color-brand-primary)] py-16 text-center overflow-hidden relative">
+    <svg class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 1440 160" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 60 C 240 20, 480 100, 720 60 C 960 20, 1200 100, 1440 60 L1440 160 L0 160 Z" fill="rgba(255,255,255,0.03)"/>
+    </svg>
+    <div class="relative container-wide">
+      <h2 class="font-display font-semibold text-[length:var(--text-4xl)] text-white leading-tight">Considering a cosmetic treatment?</h2>
+      <p class="mt-4 text-[var(--color-text-on-dark-muted)] text-lg max-w-xl mx-auto">Call <a href="tel:+17809442828" class="text-white font-semibold">780-944-2828</a> to book a consultation.</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <a href="#consultation-form" class="btn btn-primary btn-lg">Book Appointment</a>
+        <a href="/contact/" class="btn btn-lg border border-white/30 text-white hover:bg-white/10 transition-colors">Contact Us</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

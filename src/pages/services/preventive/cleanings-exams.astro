@@ -1,0 +1,216 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const siblingServices = [
+  { name: "Fluoride Treatments", href: "/services/preventive/fluoride/" },
+  { name: "Routine Cleanings & Exams", href: "/services/preventive/cleanings-exams/", current: true },
+  { name: "Dental Sealants", href: "/services/preventive/sealants/" },
+  { name: "Night Guards, Mouthguards, Sport Guards", href: "/services/preventive/guards/" },
+];
+---
+
+<BaseLayout
+  title="Routine Cleanings & Exams | Preventive Dentistry | West End Dental Centre"
+  description="Routine dental cleanings and check-ups at West End Dental Centre in West Edmonton. Professional scaling, polishing, exams, and personalised home-care guidance."
+>
+
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <section class="bg-[var(--color-brand-primary)] relative overflow-hidden">
+    <!-- Right-side image panel, desktop only -->
+    <div class="hidden lg:block absolute right-0 top-0 bottom-0 w-[50%] pointer-events-none" aria-hidden="true">
+      <img
+        src="/images/west-end/hero-hygiene.jpg"
+        alt="Routine Cleanings & Exams at West End Dental Centre"
+        width="1536"
+        height="1024"
+        loading="eager"
+          fetchpriority="high"
+        decoding="async"
+        class="w-full h-full object-cover"
+      />
+      <div class="hero-image-fade" aria-hidden="true"></div>
+    </div>
+    <div class="container-wide relative py-16 lg:py-24 lg:max-w-[48%]">
+      <nav class="flex items-center gap-2 text-xs text-[var(--color-text-on-dark-muted)] mb-5" aria-label="Breadcrumb">
+        <a href="/" class="text-white hover:text-white/80 transition-colors">Home</a>
+        <span aria-hidden="true">›</span>
+        <a href="/services/" class="text-white/80 hover:text-white transition-colors">Services</a>
+        <span aria-hidden="true">›</span>
+        <a href="/services/preventive/" class="text-white/80 hover:text-white transition-colors">Preventive</a>
+        <span aria-hidden="true">›</span>
+        <span class="text-white">Cleanings &amp; Check-ups</span>
+      </nav>
+      <p class="eyebrow text-white">Preventive Dentistry</p>
+      <h1 class="mt-3 font-display font-semibold text-[length:var(--text-5xl)] leading-tight text-white max-w-2xl">Routine Cleanings &amp; Exams
+      </h1>
+      <p class="mt-4 text-lg text-[var(--color-text-on-dark-muted)] leading-relaxed max-w-xl">
+        A routine cleaning and exam is one of the most important things you can do for your long-term oral health. We make every visit thorough, comfortable, and informative.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       MAIN CONTENT + SIDEBAR
+       ============================================================ -->
+  <section class="section-y bg-white">
+    <div class="container-wide">
+      <div class="grid lg:grid-cols-[1fr_300px] gap-12">
+
+        <!-- LEFT: Main content -->
+        <div class="space-y-10">
+
+          <!-- What's included -->
+          <div>
+            <h2 class="font-display font-semibold text-[length:var(--text-3xl)] text-[var(--color-brand-primary)] mb-4">
+              What's included in a routine exam and cleaning?
+            </h2>
+            <div class="space-y-4 text-[var(--color-text)] leading-relaxed">
+              <p>
+                A routine dental visit at West End Dental Centre involves both a professional cleaning by our hygienist and a thorough exam by the dentist. Together, these give us a complete picture of your oral health.
+              </p>
+              <p>
+                <strong class="text-[var(--color-brand-primary)]">Professional scaling</strong> removes the plaque and tartar that accumulate on your teeth over time, particularly in areas that are difficult to clean with a toothbrush or floss. Even with excellent home care, mineral deposits can build up along the gumline and between teeth.
+              </p>
+              <p>
+                <strong class="text-[var(--color-brand-primary)]">Polishing</strong> follows scaling to smooth the tooth surfaces and remove light staining, leaving teeth clean and fresh.
+              </p>
+              <p>
+                The <strong class="text-[var(--color-brand-primary)]">dental exam</strong> covers an assessment of each tooth for signs of decay, wear, or cracking; a review of your gums and supporting bone; a bite evaluation; and an oral cancer screening. The dentist will discuss any findings with you and explain your options if any follow-up is recommended.
+              </p>
+              <p>
+                <strong class="text-[var(--color-brand-primary)]">X-rays</strong> are taken when due, based on your individual history. They allow us to detect decay between teeth and monitor bone levels, areas we cannot see during a visual exam alone.
+              </p>
+              <p>
+                Before you leave, your hygienist will offer <strong class="text-[var(--color-brand-primary)]">personalised home-care advice</strong> tailored to your oral health, whether that's brushing technique, flossing, or guidance on specific products.
+              </p>
+            </div>
+          </div>
+
+          <!-- Image break -->
+          <div class="rounded-2xl overflow-hidden max-h-[700px]">
+            <img
+              src="/images/west-end/thumb-hygiene.jpg"
+              alt="Dental cleaning and exam appointment at West End Dental Centre"
+              width="1536"
+              height="1024"
+              loading="lazy"
+              decoding="async"
+              class="w-full h-auto"
+            />
+          </div>
+
+          <!-- How often -->
+          <div>
+            <h2 class="font-display font-semibold text-[length:var(--text-3xl)] text-[var(--color-brand-primary)] mb-4">
+              How often should I come in?
+            </h2>
+            <div class="space-y-4 text-[var(--color-text)] leading-relaxed">
+              <p>
+                For most patients, a cleaning and check-up every six months is a good baseline. This interval allows our team to monitor changes over time and address anything early.
+              </p>
+              <p>
+                Some patients, particularly those with a history of gum disease, higher cavity risk, or certain systemic health conditions, may benefit from more frequent appointments. Your hygienist and dentist will recommend a recall schedule based on your specific needs, and that recommendation may change over time as your oral health evolves.
+              </p>
+            </div>
+          </div>
+
+          <!-- What to expect -->
+          <div>
+            <h2 class="font-display font-semibold text-[length:var(--text-3xl)] text-[var(--color-brand-primary)] mb-4">
+              What to expect at your visit
+            </h2>
+            <ol class="space-y-4">
+              {[
+                { step: "Check-in and health history review", detail: "We update your medical and dental history at each visit. Changes in medications, health conditions, or concerns since your last appointment help us provide safer, more personalised care." },
+                { step: "X-rays if due", detail: "Digital x-rays are taken based on your history and risk level. They use significantly less radiation than older film-based systems and are reviewed by the dentist during your exam." },
+                { step: "Professional cleaning by the hygienist", detail: "Your hygienist performs scaling to remove tartar, followed by polishing. They'll also floss between your teeth and review any areas that may need extra attention at home." },
+                { step: "Exam by the dentist", detail: "The dentist examines your teeth, gums, bite, and oral tissues. They review your x-rays and discuss any findings with you in clear, straightforward terms." },
+                { step: "Treatment recommendations if needed", detail: "If any concerns are identified, the dentist will explain the options, including what happens if you wait. There's no pressure; our goal is to help you make informed decisions." },
+                { step: "Recall appointment scheduled", detail: "Before you leave, we'll book your next appointment at the interval recommended for you, so your care stays on track." },
+              ].map((item, i) => (
+                <li class="flex gap-4">
+                  <div class="w-8 h-8 rounded-full bg-[var(--color-brand-primary)] text-white flex items-center justify-center font-semibold text-sm shrink-0 mt-0.5">{i + 1}</div>
+                  <div>
+                    <p class="font-semibold text-[var(--color-brand-primary)]">{item.step}</p>
+                    <p class="mt-1 text-sm text-[var(--color-text-muted)] leading-relaxed">{item.detail}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
+
+          <!-- New patients note -->
+          <div class="bg-[var(--color-surface-cool)] rounded-2xl p-6 border border-[var(--color-border-soft)]">
+            <div class="flex gap-4 items-start">
+              <div class="w-10 h-10 rounded-full bg-[var(--color-brand-accent)] flex items-center justify-center shrink-0">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              </div>
+              <div>
+                <h3 class="font-display font-semibold text-base text-[var(--color-brand-primary)]">Note for new patients</h3>
+                <p class="mt-1.5 text-sm text-[var(--color-text-muted)] leading-relaxed">
+                  Your first visit at West End Dental Centre may take a little longer than subsequent appointments. We take time to establish baseline records, including a full set of x-rays if you don't have recent ones, so we have a complete picture of your oral health from day one. This investment upfront means future visits can be more focused and efficient.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- RIGHT: Sidebar -->
+        <aside class="space-y-6">
+
+          <!-- Book CTA card -->
+          <div class="bg-[var(--color-brand-primary)] rounded-2xl p-6 text-white">
+            <h3 class="font-display font-semibold text-lg text-white">Ready to Book?</h3>
+            <p class="mt-2 text-sm text-[var(--color-text-on-dark-muted)]">Call us or book an appointment online, new patients welcome.</p>
+            <a href="/book/" class="mt-4 btn btn-primary w-full block text-center">Book Appointment</a>
+            <a href="tel:+17809442828" class="mt-2 block text-center text-sm text-[var(--color-text-on-dark-muted)] hover:text-white transition-colors">780-944-2828</a>
+          </div>
+
+          <!-- Sibling services card -->
+          <div class="bg-[var(--color-surface-cool)] rounded-2xl p-6 border border-[var(--color-border-soft)]">
+            <h3 class="font-body text-sm font-semibold uppercase tracking-[0.14em] text-[var(--color-brand-primary)] mb-4">Preventive Services</h3>
+            <ul class="space-y-2">
+              {siblingServices.map(svc => (
+                <li>
+                  {svc.current ? (
+                    <span class="flex items-center gap-2 text-sm font-semibold text-[var(--color-brand-accent)]">
+                      <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-brand-accent)] shrink-0" aria-hidden="true"></span>
+                      {svc.name}
+                    </span>
+                  ) : (
+                    <a href={svc.href} class="flex items-center gap-2 text-sm text-[var(--color-text-muted)] hover:text-[var(--color-brand-accent)] transition-colors">
+                      <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-border-soft)] shrink-0" aria-hidden="true"></span>
+                      {svc.name}
+                    </a>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CTA BAND
+       ============================================================ -->
+  <section class="bg-[var(--color-brand-primary)] py-16 text-center overflow-hidden relative">
+    <svg class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 1440 160" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 60 C 240 20, 480 100, 720 60 C 960 20, 1200 100, 1440 60 L1440 160 L0 160 Z" fill="rgba(255,255,255,0.03)"/>
+    </svg>
+    <div class="relative container-wide">
+      <h2 class="font-display font-semibold text-[length:var(--text-4xl)] text-white leading-tight">Ready to get started?</h2>
+      <p class="mt-4 text-[var(--color-text-on-dark-muted)] text-lg max-w-xl mx-auto">Call <a href="tel:+17809442828" class="text-white font-semibold hover:text-[var(--color-brand-accent-soft)] transition-colors">780-944-2828</a> or book an appointment online.</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <a href="/book/" class="btn btn-primary btn-lg">Book Appointment</a>
+        <a href="/contact/" class="btn btn-lg border border-white/30 text-white hover:bg-white/10 transition-colors">Contact Us</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

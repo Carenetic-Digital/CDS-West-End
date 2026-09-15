@@ -1,0 +1,55 @@
+/** Canonical clinic contact details — keep hours/phones/address in sync sitewide. */
+export const clinic = {
+  name: 'West End Dental Centre',
+  shortName: 'West End Dental',
+  phoneDisplay: '780-944-2828',
+  phoneTel: '+17809442828',
+  phoneSchema: '+1-780-944-2828',
+  email: 'info@westenddentalcentre.com',
+  streetAddress: '9509 156 St NW, Suite #M9',
+  city: 'Edmonton',
+  region: 'Alberta',
+  regionAbbr: 'AB',
+  postalCode: 'T5P 4J5',
+  country: 'CA',
+  mapsUrl: 'https://www.google.com/maps/search/?api=1&query=West+End+Dental+Centre+9509+156+St+NW+Edmonton+AB',
+  mapsEmbedQuery: 'West+End+Dental+Centre%2C+9509+156+St+NW%2C+Edmonton%2C+AB',
+  facebookUrl: 'https://www.facebook.com/westenddentalcentreedmonton',
+  instagramUrl: 'https://www.instagram.com/westenddentalcentreedmonton/',
+  bookingUrl:
+    'https://can8.recallmax.com/rsm/request/public/bookOnline/patient/layout.html?a=vZ7a2CoMix8MCoa34ZUpJHLfzJ_Rxf0b0Dc',
+  forms: {
+    contact: 'https://form.jotform.com/213494368799274',
+    contactEmbed: 'https://form.jotform.com/jsform/213494368799274',
+    newPatient: 'https://hipaa.jotform.com/212006050464239',
+    existingPatientHistory: 'https://hipaa.jotform.com/212005868711250',
+  },
+  hoursNote: 'Saturdays by appointment only',
+  hours: [
+    { day: 'Monday', hours: '9:00 am – 4:30 pm' },
+    { day: 'Tuesday', hours: '9:00 am – 8:00 pm' },
+    { day: 'Wednesday', hours: '9:00 am – 4:30 pm' },
+    { day: 'Thursday', hours: '9:00 am – 5:00 pm' },
+    { day: 'Friday', hours: '9:00 am – 4:30 pm' },
+    { day: 'Saturday', hours: 'By appointment only' },
+    { day: 'Sunday', hours: 'Closed' },
+  ],
+  hoursSummary: 'Tue until 8:00 pm · Sat by appointment',
+  transitNote: 'ETS bus stop #5366',
+  languages: ['English', 'Cantonese'],
+  geo: {
+    latitude: 53.5318282,
+    longitude: -113.5898329,
+  },
+  gtmId: 'GTM-K9457KP',
+  logo: '/images/logos/west-end-logo.png',
+  logoWhite: '/images/logos/west-end-logo-white.png',
+} as const;
+
+export const openingHoursSpecification = [
+  { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Monday', opens: '09:00', closes: '16:30' },
+  { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Tuesday', opens: '09:00', closes: '20:00' },
+  { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Wednesday', opens: '09:00', closes: '16:30' },
+  { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Thursday', opens: '09:00', closes: '17:00' },
+  { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Friday', opens: '09:00', closes: '16:30' },
+];

@@ -1,0 +1,200 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const subServices = [
+  { name: "Root Canal Treatment", href: "/services/endodontics/root-canal/" },
+];
+
+const services = [
+  {
+    title: "Root Canal Treatment",
+    href: "/services/endodontics/root-canal/",
+    description: "The most common endodontic procedure, removing infected or inflamed pulp tissue, cleaning and shaping the canals, and sealing the tooth to prevent re-infection. Root canal treatment allows the tooth to be retained and restored with a crown.",
+    icon: `<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12h6M12 9v6"/>`,
+  },
+];
+---
+
+<BaseLayout
+  title="Endodontic Services | Root Canal Therapy | West End Dental Centre Edmonton"
+  description="Endodontic services at West End Dental Centre in West Edmonton, root canal therapy, cracked tooth treatment, and care for traumatic dental injuries."
+>
+
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <section class="bg-[var(--color-brand-primary)] relative overflow-hidden">
+    <!-- Right-side image panel, desktop only -->
+    <div class="hidden lg:block absolute right-0 top-0 bottom-0 w-[50%] pointer-events-none" aria-hidden="true">
+      <img
+        src="/images/west-end/hero-root-canal.jpg"
+        alt="Endodontic Services at West End Dental Centre"
+        width="800"
+        height="600"
+        loading="eager"
+          fetchpriority="high"
+        decoding="async"
+        class="w-full h-full object-cover"
+      />
+      <div class="hero-image-fade" aria-hidden="true"></div>
+    </div>
+    <div class="container-wide relative py-16 lg:py-24 lg:max-w-[48%]">
+      <nav class="flex items-center gap-2 text-xs text-[var(--color-text-on-dark-muted)] mb-5" aria-label="Breadcrumb">
+        <a href="/" class="text-white hover:text-white/80 transition-colors">Home</a>
+        <span aria-hidden="true">›</span>
+        <a href="/services/" class="text-white/80 hover:text-white transition-colors">Services</a>
+        <span aria-hidden="true">›</span>
+        <span class="text-white">Endodontic Services</span>
+      </nav>
+      <p class="eyebrow text-white">West End Dental Centre</p>
+      <h1 class="mt-3 font-display font-semibold text-[length:var(--text-5xl)] leading-tight text-white max-w-2xl">
+        Endodontic Services
+      </h1>
+      <p class="mt-4 text-lg text-[var(--color-text-on-dark-muted)] leading-relaxed max-w-xl">
+        Endodontics is the branch of dentistry concerned with the dental pulp, the soft tissue inside the tooth. When infection, inflammation, or injury affects the pulp, endodontic treatment can address these conditions and, in many cases, preserve the natural tooth.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       MAIN CONTENT + SIDEBAR
+       ============================================================ -->
+  <section class="section-y bg-white">
+    <div class="container-wide">
+      <div class="grid lg:grid-cols-[1fr_300px] gap-12">
+
+        <!-- LEFT: Main content -->
+        <div class="space-y-10">
+
+          <!-- What is endodontics -->
+          <div>
+            <h2 class="font-display font-semibold text-[length:var(--text-3xl)] text-[var(--color-brand-primary)] mb-4">
+              What is endodontics?
+            </h2>
+            <div class="space-y-4 text-[var(--color-text)] leading-relaxed">
+              <p>
+                Inside every tooth is a soft tissue called the pulp, which contains the nerve supply and blood vessels that nourished the tooth during its development. The pulp runs from the inner chamber of the tooth down through one or more root canals to the tip of the root.
+              </p>
+              <p>
+                Endodontics deals with conditions that affect this inner tissue. Once a tooth is fully developed, it can survive without the pulp, the surrounding bone and gum tissue continue to provide nourishment. This means that diseased or damaged pulp tissue can often be removed without losing the tooth itself.
+              </p>
+            </div>
+          </div>
+
+          <!-- When endodontic treatment is needed -->
+          <div>
+            <h2 class="font-display font-semibold text-[length:var(--text-3xl)] text-[var(--color-brand-primary)] mb-4">
+              When is endodontic treatment needed?
+            </h2>
+            <div class="space-y-4 text-[var(--color-text)] leading-relaxed">
+              <p>
+                Endodontic treatment is considered when the pulp inside a tooth has been compromised, whether through infection, inflammation, or physical injury. This can occur as a result of:
+              </p>
+              <ul class="mt-3 space-y-3">
+                {[
+                  "Deep decay that has progressed into the pulp chamber",
+                  "A crack or fracture that extends into the pulp",
+                  "Trauma to the tooth, such as a blow that damages the nerve even without visible fracture",
+                  "Repeated dental procedures on the same tooth, which can cumulatively affect the pulp",
+                  "A tooth that has become non-vital over time (the pulp has died)",
+                ].map(item => (
+                  <li class="flex items-start gap-3">
+                    <svg class="mt-1 shrink-0 text-[var(--color-brand-accent)]" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="5 12 10 17 19 7"/></svg>
+                    <span class="text-[var(--color-text)] leading-relaxed">{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <p class="mt-3">
+                In some cases there are noticeable symptoms, pain, swelling, or sensitivity. In others, pulp involvement is identified through x-rays or a clinical examination before any symptoms develop.
+              </p>
+            </div>
+          </div>
+
+          <!-- Services offered -->
+          <div>
+            <h2 class="font-display font-semibold text-[length:var(--text-3xl)] text-[var(--color-brand-primary)] mb-4">
+              Endodontic services at West End Dental Centre
+            </h2>
+            <div class="grid sm:grid-cols-2 gap-6">
+              {services.map(svc => (
+                <div class="bg-white rounded-2xl p-6 border border-[var(--color-border-soft)] shadow-md flex flex-col">
+                  <div class="w-12 h-12 rounded-full bg-[var(--color-brand-primary)] flex items-center justify-center mb-4 shrink-0">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={svc.icon} />
+                  </div>
+                  <h3 class="font-display font-semibold text-lg text-[var(--color-brand-primary)] mb-2">{svc.title}</h3>
+                  <p class="text-sm text-[var(--color-text-muted)] leading-relaxed flex-1">{svc.description}</p>
+                  <a href={svc.href} class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--color-brand-accent)] hover:text-[var(--color-brand-accent-hover)] transition-colors">
+                    Learn More
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Specialty disclaimer -->
+          <div class="bg-[var(--color-surface-alt)] rounded-2xl p-6 border border-[var(--color-border-soft)]">
+            <div class="flex gap-4 items-start">
+              <div class="w-10 h-10 rounded-full bg-[var(--color-brand-accent)] flex items-center justify-center shrink-0">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              </div>
+              <div>
+                <h3 class="font-display font-semibold text-base text-[var(--color-brand-primary)]">About our endodontic services</h3>
+                <p class="mt-1.5 text-sm text-[var(--color-text-muted)] leading-relaxed">
+                  Endodontic services at West End Dental Centre are provided by our general dentist team. Our dentists are not licensed specialists in endodontics.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- RIGHT: Sidebar -->
+        <aside class="space-y-6">
+
+          <!-- Book CTA card -->
+          <div class="bg-[var(--color-brand-primary)] rounded-2xl p-6 text-white">
+            <h3 class="font-display font-semibold text-lg text-white">Ready to Book?</h3>
+            <p class="mt-2 text-sm text-[var(--color-text-on-dark-muted)]">Call us or book an appointment online, new patients welcome.</p>
+            <a href="/book/" class="mt-4 btn btn-primary w-full block text-center">Book Appointment</a>
+            <a href="tel:+17809442828" class="mt-2 block text-center text-sm text-[var(--color-text-on-dark-muted)] hover:text-white transition-colors">780-944-2828</a>
+          </div>
+
+          <!-- Sub-services card -->
+          <div class="bg-[var(--color-surface-cool)] rounded-2xl p-6 border border-[var(--color-border-soft)]">
+            <h3 class="font-body text-xs font-semibold uppercase tracking-[0.14em] text-[var(--color-brand-primary)] mb-4">Endodontic Services</h3>
+            <ul class="space-y-2">
+              {subServices.map(svc => (
+                <li>
+                  <a href={svc.href} class="flex items-center gap-2 text-sm text-[var(--color-text-muted)] hover:text-[var(--color-brand-accent)] transition-colors">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-border-soft)] shrink-0" aria-hidden="true"></span>
+                    {svc.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CTA BAND
+       ============================================================ -->
+  <section class="bg-[var(--color-brand-primary)] py-16 text-center overflow-hidden relative">
+    <svg class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 1440 160" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 60 C 240 20, 480 100, 720 60 C 960 20, 1200 100, 1440 60 L1440 160 L0 160 Z" fill="rgba(255,255,255,0.03)"/>
+    </svg>
+    <div class="relative container-wide">
+      <h2 class="font-display font-semibold text-[length:var(--text-4xl)] text-white leading-tight">Ready to get started?</h2>
+      <p class="mt-4 text-[var(--color-text-on-dark-muted)] text-lg max-w-xl mx-auto">Call <a href="tel:+17809442828" class="text-white font-semibold hover:text-[var(--color-brand-accent-soft)] transition-colors">780-944-2828</a> or book an appointment online.</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <a href="/book/" class="btn btn-primary btn-lg">Book Appointment</a>
+        <a href="/contact/" class="btn btn-lg border border-white/30 text-white hover:bg-white/10 transition-colors">Contact Us</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

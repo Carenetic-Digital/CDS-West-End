@@ -1,28 +1,529 @@
 @import "tailwindcss";
 
 @theme {
-  /* Brand colors - populated from intake/branding/colors.md */
-  --color-primary: oklch(0.5 0.2 250);
-  --color-secondary: oklch(0.7 0.15 200);
-  --color-accent: oklch(0.6 0.25 30);
+  /* ============================================================
+     Brand tokens — West End Dental Centre (from westenddentalcentre.com)
+     Live teal #54add3 is too light for AA text/buttons; UI tokens are darkened.
+     ============================================================ */
+
+  --color-brand-primary: #1d6f8c;
+  --color-brand-primary-deep: #15566d;
+  --color-brand-heading: #0d3d4d;
+  --color-brand-accent: #1d6f8c;
+  --color-brand-accent-btn: #1d6f8c;
+  --color-brand-accent-hover: #15566d;
+  --color-brand-accent-soft: #54add3;
+  --color-brand-secondary: #b7d9e8;
+
+  /* Surfaces */
+  --color-surface: #ffffff;
+  --color-surface-alt: #f0f0f1;          /* Light grey tint from #ABADB0 */
+  --color-surface-cool: #f4f4f5;         /* Cool grey alt surface */
+  --color-surface-muted: #f2f2f2;        /* Alternating section bg */
+  --color-surface-dark: #1d6f8c;         /* Dark teal band sections */
+
+  /* Text */
+  --color-text: #1f1f1f;                 /* Near-black body copy */
+  --color-text-muted: #4d4d4d;           /* Secondary text */
+  --color-text-on-dark: #ffffff;         /* White on green */
+  --color-text-on-dark-muted: #ffffff;    /* Secondary text on green — solid for AA */
+
+  /* Borders */
+  --color-border: #e5e7eb;
+  --color-border-soft: #d8d9db;          /* Soft grey border from #ABADB0 */
+
+  /* Semantic */
+  --color-success: #1d6f8c;
+  --color-warning: #d59639;
+  --color-error: #b91c1c;
+  --color-info: #1d6f8c;
+
+  /* Backwards-compat aliases for default Tailwind color utility names */
+  --color-primary: var(--color-brand-primary);
+  --color-secondary: var(--color-brand-secondary);
+  --color-accent: var(--color-brand-accent);
 
   /* Neutral scale */
-  --color-neutral-50: oklch(0.98 0 0);
-  --color-neutral-100: oklch(0.96 0 0);
-  --color-neutral-200: oklch(0.92 0 0);
-  --color-neutral-300: oklch(0.87 0 0);
-  --color-neutral-400: oklch(0.7 0 0);
-  --color-neutral-500: oklch(0.55 0 0);
-  --color-neutral-600: oklch(0.45 0 0);
-  --color-neutral-700: oklch(0.35 0 0);
-  --color-neutral-800: oklch(0.25 0 0);
-  --color-neutral-900: oklch(0.15 0 0);
+  --color-neutral-50: #fafafa;
+  --color-neutral-100: #f5f5f5;
+  --color-neutral-200: #e5e5e5;
+  --color-neutral-300: #d4d4d4;
+  --color-neutral-400: #a3a3a3;
+  --color-neutral-500: #737373;
+  --color-neutral-600: #525252;
+  --color-neutral-700: #404040;
+  --color-neutral-800: #262626;
+  --color-neutral-900: #171717;
 
-  /* Typography - populated from intake/branding/fonts.md */
-  --font-display: "Inter", system-ui, sans-serif;
-  --font-body: "Inter", system-ui, sans-serif;
+  /* ============================================================
+     Typography
+     ============================================================ */
+  --font-display: "Barlow Condensed", "Avenir Next Condensed", "Helvetica Neue", sans-serif;
+  --font-body: "Roboto", system-ui, -apple-system, "Segoe UI", sans-serif;
 
-  /* Spacing scale */
-  --spacing-section: 5rem;
-  --spacing-content: 2rem;
+  /* Fluid type scale (clamp(min, preferred, max)) */
+  --text-xs: 0.75rem;        /* 12 */
+  --text-sm: 0.875rem;       /* 14 */
+  --text-base: 1rem;         /* 16 */
+  --text-lg: 1.125rem;       /* 18 */
+  --text-xl: 1.25rem;        /* 20 */
+  --text-2xl: clamp(1.375rem, 1.25rem + 0.6vw, 1.625rem);
+  --text-3xl: clamp(1.625rem, 1.4rem + 1.2vw, 2rem);
+  --text-4xl: clamp(1.875rem, 1.5rem + 2vw, 2.5rem);
+  --text-5xl: clamp(2.25rem, 1.7rem + 2.8vw, 3.25rem);
+  --text-6xl: clamp(2.75rem, 2rem + 3.6vw, 4.25rem);
+
+  /* ============================================================
+     Spacing + layout
+     ============================================================ */
+  --spacing-section: clamp(3.5rem, 2.5rem + 3vw, 6rem);
+  --spacing-content: 1.5rem;
+
+  /* Container widths */
+  --container-narrow: 56rem;
+  --container-base: 72rem;
+  --container-wide: 80rem;
+
+  /* Radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+
+  /* Shadows — soft and warm */
+  --shadow-sm: 0 1px 2px rgba(0, 128, 128, 0.06);
+  --shadow-md: 0 4px 14px rgba(0, 128, 128, 0.08);
+  --shadow-lg: 0 12px 32px rgba(0, 128, 128, 0.10);
 }
+
+/* ============================================================
+   Base styles
+   ============================================================ */
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@layer base {
+  body {
+    font-family: var(--font-body);
+    color: var(--color-text);
+    background-color: var(--color-surface);
+    font-feature-settings: "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    color: var(--color-brand-heading);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+    text-wrap: pretty;
+  }
+
+  a {
+    color: var(--color-brand-accent);
+    text-decoration: none;
+    transition: color 150ms ease;
+  }
+
+  a:hover {
+    color: var(--color-brand-accent-hover);
+  }
+}
+
+/* Teal hero breadcrumbs — keep crumbs white/light grey.
+   Global `a` uses brand teal, which disappears on the teal hero band. */
+section[class*="color-brand-primary"] nav[aria-label="Breadcrumb"] {
+  color: var(--color-text-on-dark-muted);
+}
+section[class*="color-brand-primary"] nav[aria-label="Breadcrumb"] a {
+  color: #ffffff;
+}
+section[class*="color-brand-primary"] nav[aria-label="Breadcrumb"] a:hover {
+  color: #ffffff;
+  opacity: 0.92;
+}
+section[class*="color-brand-primary"] nav[aria-label="Breadcrumb"] > .text-white {
+  color: #ffffff;
+}
+
+/* Translucent white text on brand-green bands fails AA at body size.
+   Remap common Tailwind opacity utilities to solid white. */
+[class*="bg-[var(--color-brand-primary)]"] :is([class*="text-white/"], .text-white\/90, .text-white\/80, .text-white\/70, .text-white\/60),
+[class*="bg-[var(--color-brand-primary-deep)]"] :is([class*="text-white/"], .text-white\/90, .text-white\/80, .text-white\/70, .text-white\/60),
+[class*="bg-[var(--color-surface-dark)]"] :is([class*="text-white/"], .text-white\/90, .text-white\/80, .text-white\/70, .text-white\/60) {
+  color: #ffffff;
+}
+
+/* Visible keyboard focus — WCAG 2.4.7 */
+:focus-visible {
+  outline: 2px solid var(--color-brand-accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  background: var(--color-brand-primary);
+  color: var(--color-text-on-dark);
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-md);
+  z-index: 100;
+  font-weight: 600;
+  transition: top 150ms ease;
+}
+
+.skip-link:focus {
+  top: 1rem;
+  color: var(--color-text-on-dark);
+}
+
+/* ============================================================
+   Utility helpers
+   ============================================================ */
+
+.container-narrow { max-width: var(--container-narrow); margin-inline: auto; padding-inline: 1.25rem; }
+.container-base   { max-width: var(--container-base);   margin-inline: auto; padding-inline: 1.25rem; }
+.container-wide   { max-width: var(--container-wide);   margin-inline: auto; padding-inline: 1.25rem; }
+
+@media (min-width: 768px) {
+  .container-narrow, .container-base, .container-wide {
+    padding-inline: 2rem;
+  }
+}
+
+/* Section spacing */
+.section-y { padding-block: var(--spacing-section); }
+
+/* Eyebrow label — in @layer components so Tailwind utilities can override color */
+@layer components {
+  .eyebrow {
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-brand-accent);
+  }
+}
+
+/* WCAG 2.5.8: standalone text CTA links need min 24px touch target */
+a.inline-flex:not(.btn) {
+  padding-block: 0.25rem;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  transition: background-color 180ms ease, color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+  white-space: nowrap;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.btn-primary {
+  background-color: var(--color-brand-accent-btn);
+  color: #fff;
+  box-shadow: var(--shadow-sm);
+}
+.btn-primary:hover {
+  background-color: var(--color-brand-accent-hover);
+  color: #fff;
+}
+
+.btn-secondary {
+  background-color: var(--color-brand-primary);
+  color: var(--color-text-on-dark);
+}
+.btn-secondary:hover {
+  background-color: var(--color-brand-primary-deep);
+  color: var(--color-text-on-dark);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--color-brand-primary);
+  border-color: var(--color-brand-primary);
+}
+.btn-outline:hover {
+  background-color: var(--color-brand-primary);
+  color: var(--color-text-on-dark);
+}
+
+.btn-ghost {
+  background-color: transparent;
+  color: var(--color-brand-primary);
+}
+.btn-ghost:hover {
+  color: var(--color-brand-accent-hover);
+}
+
+.btn-lg { padding: 1rem 1.875rem; font-size: 1rem; }
+
+/*
+  CTAs on dark teal/green bands.
+  btn-primary fill matches --color-brand-primary, so without a border
+  these read as floating white text. Force white label + white rounded border.
+*/
+[class*="bg-[var(--color-brand-primary)]"] .btn:not(.bg-white),
+[class*="bg-[var(--color-brand-primary-deep)]"] .btn:not(.bg-white),
+[class*="bg-[var(--color-surface-dark)]"] .btn:not(.bg-white),
+.on-dark .btn:not(.bg-white) {
+  color: #fff;
+  border-color: #fff;
+  border-width: 1.5px;
+  border-style: solid;
+  border-radius: var(--radius-md);
+}
+[class*="bg-[var(--color-brand-primary)]"] .btn:not(.bg-white):hover,
+[class*="bg-[var(--color-brand-primary-deep)]"] .btn:not(.bg-white):hover,
+[class*="bg-[var(--color-surface-dark)]"] .btn:not(.bg-white):hover,
+.on-dark .btn:not(.bg-white):hover {
+  color: #fff;
+  border-color: #fff;
+}
+[class*="bg-[var(--color-brand-primary)]"] .btn-outline,
+[class*="bg-[var(--color-brand-primary-deep)]"] .btn-outline,
+[class*="bg-[var(--color-surface-dark)]"] .btn-outline,
+.on-dark .btn-outline,
+[class*="bg-[var(--color-brand-primary)]"] .btn.border,
+[class*="bg-[var(--color-brand-primary-deep)]"] .btn.border,
+[class*="bg-[var(--color-surface-dark)]"] .btn.border,
+.on-dark .btn.border {
+  background-color: transparent;
+  color: #fff;
+  border-color: #fff;
+}
+[class*="bg-[var(--color-brand-primary)]"] .btn-outline:hover,
+[class*="bg-[var(--color-brand-primary-deep)]"] .btn-outline:hover,
+[class*="bg-[var(--color-surface-dark)]"] .btn-outline:hover,
+.on-dark .btn-outline:hover,
+[class*="bg-[var(--color-brand-primary)]"] .btn.border:hover,
+[class*="bg-[var(--color-brand-primary-deep)]"] .btn.border:hover,
+[class*="bg-[var(--color-surface-dark)]"] .btn.border:hover,
+.on-dark .btn.border:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  border-color: #fff;
+}
+[class*="bg-[var(--color-brand-primary)]"] .btn-primary,
+[class*="bg-[var(--color-brand-primary-deep)]"] .btn-primary,
+[class*="bg-[var(--color-surface-dark)]"] .btn-primary,
+.on-dark .btn-primary {
+  /* Fill matches the band; keep label white and rely on the border for shape */
+  background-color: transparent;
+  color: #fff;
+  box-shadow: none;
+}
+[class*="bg-[var(--color-brand-primary)]"] .btn-primary:hover,
+[class*="bg-[var(--color-brand-primary-deep)]"] .btn-primary:hover,
+[class*="bg-[var(--color-surface-dark)]"] .btn-primary:hover,
+.on-dark .btn-primary:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+
+/* ============================================================
+   Hero image fades — soft blend at the green/photo seam (mid-viewport)
+   Narrow, long-tail gradient + image mask so the seam never reads as a
+   hard vertical cut, while faces/people stay mostly clear of the overlay.
+   ============================================================ */
+.hero-image-fade {
+  position: absolute;
+  inset-block: 0;
+  left: 0;
+  width: 18%;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    var(--color-brand-primary) 0%,
+    color-mix(in srgb, var(--color-brand-primary) 58%, transparent) 28%,
+    color-mix(in srgb, var(--color-brand-primary) 28%, transparent) 55%,
+    color-mix(in srgb, var(--color-brand-primary) 10%, transparent) 78%,
+    transparent 100%
+  );
+}
+
+/* Soft white bleed used on the homepage light hero */
+.hero-image-fade-light {
+  position: absolute;
+  inset-block: 0;
+  left: 0;
+  width: 20%;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    #ffffff 0%,
+    rgba(255, 255, 255, 0.55) 30%,
+    rgba(255, 255, 255, 0.22) 58%,
+    rgba(255, 255, 255, 0.08) 80%,
+    transparent 100%
+  );
+}
+
+/* Dissolve the photo's own left edge so it never meets the text panel as a hard line */
+div:has(> .hero-image-fade) > img,
+div:has(> .hero-image-fade) > picture {
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.35) 6%,
+    rgba(0, 0, 0, 0.75) 12%,
+    #000 20%,
+    #000 100%
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.35) 6%,
+    rgba(0, 0, 0, 0.75) 12%,
+    #000 20%,
+    #000 100%
+  );
+}
+
+div:has(> .hero-image-fade-light) > img,
+div:has(> .hero-image-fade-light) > picture {
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.4) 8%,
+    rgba(0, 0, 0, 0.8) 14%,
+    #000 22%,
+    #000 100%
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.4) 8%,
+    rgba(0, 0, 0, 0.8) 14%,
+    #000 22%,
+    #000 100%
+  );
+}
+
+/* Cards */
+.card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border-soft);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  transition: box-shadow 200ms ease, transform 200ms ease, border-color 200ms ease;
+}
+.card:hover {
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-brand-secondary);
+}
+
+/* Insurance marquee — infinite horizontal scroll of provider names */
+.insurance-marquee {
+  -webkit-mask-image: linear-gradient(to right, transparent, black 4rem, black calc(100% - 4rem), transparent);
+          mask-image: linear-gradient(to right, transparent, black 4rem, black calc(100% - 4rem), transparent);
+}
+
+.insurance-marquee__track {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  width: max-content;
+  animation: insurance-marquee-scroll 45s linear infinite;
+}
+
+.insurance-marquee:hover .insurance-marquee__track,
+.insurance-marquee:focus-within .insurance-marquee__track {
+  animation-play-state: paused;
+}
+
+.insurance-marquee__item {
+  font-size: 1.125rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+@keyframes insurance-marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ============================================================
+   Blog in-body image alignment (Sparkable CMS contract §8d)
+   The blog editor inserts <img> with these semantic classes (kept by the
+   sanitizer). They must be defined or floated images render full-width.
+   ============================================================ */
+.blog-img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  margin: 1.5rem 0;
+}
+.blog-img--left {
+  float: left;
+  max-width: 50%;
+  margin: 0.5rem 1.5rem 1rem 0;
+}
+.blog-img--right {
+  float: right;
+  max-width: 50%;
+  margin: 0.5rem 0 1rem 1.5rem;
+}
+.blog-img--center {
+  display: block;
+  margin-inline: auto;
+}
+.blog-img--full {
+  width: 100%;
+  max-width: 100%;
+}
+@media (max-width: 640px) {
+  .blog-img--left,
+  .blog-img--right {
+    float: none;
+    max-width: 100%;
+    margin-inline: 0;
+  }
+}
+
+/* Decorative thin teal underline used under headings */
+.heading-rule::after {
+  content: "";
+  display: block;
+  width: 3rem;
+  height: 3px;
+  background-color: var(--color-brand-accent);
+  margin-top: 1rem;
+  border-radius: 2px;
+}
+.heading-rule.center::after { margin-inline: auto; }

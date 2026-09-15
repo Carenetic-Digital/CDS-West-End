@@ -1,11 +1,11 @@
 {
-  "name": "[Business Name]",
-  "short_name": "[Short Name]",
-  "description": "[Business description]",
+  "name": "West End Dental Centre",
+  "short_name": "West End Dental",
+  "description": "General family dental practice in West Edmonton offering preventive, restorative, cosmetic, and orthodontic care.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#000000",
+  "theme_color": "#1d6f8c",
   "icons": [
     {
       "src": "/icon-192.png",

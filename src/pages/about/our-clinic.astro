@@ -1,0 +1,663 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const aboutNav = [
+  { name: "Our Clinic", href: "/about/our-clinic/", current: true },
+  { name: "Our Team", href: "/about/our-team/" },
+  { name: "Careers", href: "/about/careers/" },
+];
+
+const differentiators = [
+  {
+    title: "Family-Oriented Care",
+    body: "We welcome patients of all ages, from young children to seniors, and work to create a comfortable and supportive environment.",
+    icon: `<path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>`,
+  },
+  {
+    title: "Comfortable Experience",
+    body: "Comfortable seating, a calm setting, and a team that takes time to explain each step help ease dental anxiety for patients of all ages.",
+    icon: `<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>`,
+  },
+  {
+    title: "Direct Insurance Billing",
+    body: "We bill most major insurance plans directly so you spend less time on paperwork and more time focused on your health.",
+    icon: `<rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/>`,
+  },
+  {
+    title: "Flexible Hours",
+    body: "Tuesday evenings until 8:00 pm and Saturday appointments by request give working patients and families more flexibility around weekday schedules.",
+    icon: `<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>`,
+  },
+  {
+    title: "Minimal Wait Times",
+    body: "We respect your time. Our scheduling is designed to minimize wait times and get you in and out efficiently.",
+    icon: `<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>`,
+  },
+  {
+    title: "Central Edmonton Location",
+    body: "Our 156 St NW location is central to West Edmonton communities, making it easy to reach us from across the city.",
+    icon: `<circle cx="12" cy="10" r="3"/><path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 6.9 8 11.7z"/>`,
+  },
+];
+
+const technology = [
+  {
+    title: "Monitors in Every Room",
+    body: "There's no room for guesswork. We provide monitors in every exam and hygiene room, so when your dentist is explaining a treatment plan you have all the facts, backed up by visuals, to make informed decisions about your family's oral health.",
+    image: "/images/west-end/clinic-07.jpg",
+    alt: "Exam room with a chairside monitor at West End Dental Centre",
+  },
+  {
+    title: "Digital X-Rays",
+    body: "We use digital x-ray technology. The clarity of the images supports a more accurate diagnosis than typical film, and images are produced instantly so we can make quicker treatment recommendations. Digital x-rays produce around 80% less radiation than a typical film x-ray machine.",
+    image: "/images/west-end/thumb-xrays.jpg",
+    alt: "Digital dental x-ray imaging at West End Dental Centre",
+  },
+  {
+    title: "Laser Gum Recontouring",
+    body: "If you feel you have a \"gummy\" smile, or your gums are receding, you may be a candidate for laser gum recontouring, the process of surgically correcting and reshaping the gums. While often considered cosmetic, gum surgery is frequently an integral part of other surgical and restorative treatments. It is a minor procedure with a typically quick healing time.",
+    image: "/images/west-end/thumb-periodontal.jpg",
+    alt: "Periodontal and gum treatment at West End Dental Centre",
+  },
+];
+
+const aboutSections = [
+  {
+    title: "Our Team",
+    href: "/about/our-team/",
+    body: "Meet Dr. Melissa Wong, Dr. Denis Redmond, and Dr. Kenneth Chan, and learn about the clinical team that supports your care at West End Dental Centre in West Edmonton.",
+    cta: "Meet Our Team",
+    icon: `<path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>`,
+    highlights: [
+      "Four general dentists",
+      "Licensed in Alberta",
+      "Dental hygienists, assistants & admin",
+      "Patient-centred care approach",
+    ],
+  },
+  {
+    title: "Careers",
+    href: "/about/careers/",
+    body: "We're always interested in hearing from qualified dental professionals. Learn about the types of roles at our clinic and how to reach us about current or future opportunities.",
+    cta: "View Careers",
+    icon: `<rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>`,
+    highlights: [
+      "Dentists & dental hygienists",
+      "Dental assistants",
+      "Administrative & reception",
+      "Established Edmonton practice",
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="About West End Dental Centre | Edmonton Family Dentistry"
+  description="Learn about West End Dental Centre in West Edmonton, including our history, patient care approach, facility, technology, and family dentistry team."
+>
+
+  <!-- ============================================================
+       HERO BANNER
+       ============================================================ -->
+  <section class="bg-[var(--color-brand-primary)] relative overflow-hidden">
+    <!-- Right-side image panel, desktop only -->
+    <div class="hidden lg:block absolute right-0 top-0 bottom-0 w-[50%] pointer-events-none" aria-hidden="true">
+      <img
+        src="/images/west-end/hero-about.jpg"
+        alt="West End Dental Centre in West Edmonton"
+        width="800"
+        height="600"
+        loading="eager"
+          fetchpriority="high"
+        decoding="async"
+        class="w-full h-full object-cover object-[68%_center]"
+      />
+      <div class="hero-image-fade" aria-hidden="true"></div>
+    </div>
+    <div class="container-wide relative py-16 lg:py-24 lg:max-w-[48%]">
+      <nav class="flex items-center gap-2 text-xs text-[var(--color-text-on-dark-muted)] mb-5" aria-label="Breadcrumb">
+        <a href="/" class="text-white hover:text-white/80 transition-colors">Home</a>
+        <span aria-hidden="true">›</span>
+        <span class="text-white">About</span>
+      </nav>
+      <p class="eyebrow text-white">An established Edmonton family dental practice</p>
+      <h1 class="mt-3 font-display font-semibold text-[length:var(--text-5xl)] leading-tight text-white max-w-2xl">
+        About West End Dental Centre
+      </h1>
+      <p class="mt-4 text-lg text-[var(--color-text-on-dark-muted)] leading-relaxed max-w-xl">
+        A family-oriented general dental practice on 156 St NW in West Edmonton, focused on preventive care, clear communication, and a welcoming environment for patients of every age.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       OUR STORY
+       ============================================================ -->
+  <section class="section-y bg-white">
+    <div class="container-wide grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-brand-accent)]">Our Story</p>
+        <div class="mt-1 w-10 h-0.5 bg-[var(--color-brand-accent)]"></div>
+        <h2 class="mt-4 font-display font-semibold text-[length:var(--text-4xl)] leading-tight text-[var(--color-brand-primary)]">
+          An Edmonton dental home for your whole family
+        </h2>
+        <div class="mt-5 space-y-4 text-[var(--color-text)] leading-relaxed">
+          <p>
+            West End Dental Centre is a general family practice in West Edmonton. Dr. Brenda Lau, Dr. Melissa Wong, and their team have been serving patients at 9509 156 St NW, Suite #M9, since 1996.
+          </p>
+          <p>
+            Our team of general dentists provides a comprehensive range of dental services under one roof: from routine checkups and cleanings to Invisalign®, restorations, and more. Whether you're a new patient or a familiar face, you'll find a professional, friendly environment designed around your comfort and your health.
+          </p>
+          <p>
+            We're a proud part of the Edmonton community, and we take that seriously, from the clinical training our dentists bring to the professional standards we uphold through the Alberta Dental Association and College.
+          </p>
+        </div>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="/book/" class="btn btn-primary">Book Appointment</a>
+          <a href="/contact/" class="btn btn-outline">Get in Touch</a>
+        </div>
+      </div>
+
+      <div>
+        <img
+          src="/images/west-end/clinic-01.jpg"
+          alt="West End Dental Centre clinic in West Edmonton"
+          width="1449"
+          height="1086"
+          loading="lazy"
+          decoding="async"
+          class="w-full rounded-2xl shadow-xl object-cover"
+        />
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       MAIN CONTENT + SIDEBAR
+       ============================================================ -->
+  <section class="section-y bg-[var(--color-surface-cool)]">
+    <div class="container-wide">
+      <div class="grid lg:grid-cols-[1fr_300px] gap-12">
+
+        <!-- Main content -->
+        <div class="space-y-10">
+
+          <!-- Our approach -->
+          <div>
+            <h2 class="font-display font-semibold text-[length:var(--text-3xl)] text-[var(--color-brand-primary)] mb-4">
+              Our approach to care
+            </h2>
+            <div class="space-y-4 text-[var(--color-text)] leading-relaxed">
+              <p>
+                We believe good dental care begins with clear communication. When we find something at your exam, we take the time to explain what it is, what it means, and what the options are, including what happens if you decide to wait. Our goal is to give you the information you need to make decisions that work for your life.
+              </p>
+              <p>
+                Prevention is central to how we practice. Regular checkups and cleanings are the foundation of long-term oral health, and we focus on helping patients understand the habits and routines that support healthy teeth and gums between visits.
+              </p>
+              <p>
+                We also understand that dental visits can feel stressful for some patients. We work to make every appointment as comfortable as possible through clear communication, pacing, and a calm clinical environment.
+              </p>
+            </div>
+          </div>
+
+          <!-- Clinic photos carousel -->
+          <div>
+            <h2 class="font-display font-semibold text-[length:var(--text-3xl)] text-[var(--color-brand-primary)] mb-6">
+              Our space
+            </h2>
+            <div class="flex items-center gap-3" aria-roledescription="carousel" aria-label="Clinic photos">
+              <button id="space-prev" aria-label="Previous" class="shrink-0 w-9 h-9 rounded-full border border-[var(--color-border-soft)] bg-white shadow-sm flex items-center justify-center text-[var(--color-brand-primary)] hover:bg-[var(--color-surface-cool)] transition-colors">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+              </button>
+              <!-- 4-slot sliding track: s0(off-left) | s1(visible) | s2(visible) | s3(off-right) -->
+              <div class="overflow-hidden flex-1" id="space-viewport" style="opacity:0">
+                <div class="flex gap-4" id="space-track">
+                  <img id="space-s0" src="/images/west-end/clinic-11.jpg" alt="West End Dental Centre treatment area" aria-hidden="true" width="800" height="600" loading="lazy" decoding="async" class="shrink-0 w-[calc(50%-8px)] rounded-xl shadow-xl object-cover aspect-[4/3]" />
+                  <img id="space-s1" src="/images/west-end/clinic-01.jpg" alt="West End Dental Centre clinic" width="800" height="600" loading="lazy" decoding="async" class="shrink-0 w-[calc(50%-8px)] rounded-xl shadow-xl object-cover aspect-[4/3]" />
+                  <img id="space-s2" src="/images/west-end/clinic-02.jpg" alt="Inside West End Dental Centre" width="800" height="600" loading="lazy" decoding="async" class="shrink-0 w-[calc(50%-8px)] rounded-xl shadow-xl object-cover aspect-[4/3]" />
+                  <img id="space-s3" src="/images/west-end/clinic-03.jpg" alt="West End Dental Centre operatory" aria-hidden="true" width="800" height="600" loading="lazy" decoding="async" class="shrink-0 w-[calc(50%-8px)] rounded-xl shadow-xl object-cover aspect-[4/3]" />
+                </div>
+              </div>
+              <button id="space-next" aria-label="Next" class="shrink-0 w-9 h-9 rounded-full border border-[var(--color-border-soft)] bg-white shadow-sm flex items-center justify-center text-[var(--color-brand-primary)] hover:bg-[var(--color-surface-cool)] transition-colors">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <script is:inline>
+            (function () {
+              var slides = [
+                { src: '/images/west-end/clinic-01.jpg', alt: 'West End Dental Centre clinic' },
+                { src: '/images/west-end/clinic-02.jpg', alt: 'Inside West End Dental Centre' },
+                { src: '/images/west-end/clinic-03.jpg', alt: 'West End Dental Centre operatory' },
+                { src: '/images/west-end/clinic-04.jpg', alt: 'West End Dental Centre treatment room' },
+                { src: '/images/west-end/clinic-05.jpg', alt: 'West End Dental Centre clinic space' },
+                { src: '/images/west-end/clinic-06.jpg', alt: 'West End Dental Centre patient care area' },
+                { src: '/images/west-end/clinic-07.jpg', alt: 'West End Dental Centre exam room' },
+                { src: '/images/west-end/clinic-08.jpg', alt: 'West End Dental Centre hallway and operatories' },
+                { src: '/images/west-end/clinic-09.jpg', alt: 'West End Dental Centre reception area' },
+                { src: '/images/west-end/clinic-10.jpg', alt: 'West End Dental Centre treatment chairs' },
+                { src: '/images/west-end/clinic-11.jpg', alt: 'West End Dental Centre interior' },
+              ];
+              var N = slides.length;
+              var current = 0;
+              var busy = false;
+              var track    = document.getElementById('space-track');
+              var viewport = document.getElementById('space-viewport');
+              var s = [
+                document.getElementById('space-s0'),
+                document.getElementById('space-s1'),
+                document.getElementById('space-s2'),
+                document.getElementById('space-s3'),
+              ];
+
+              function idx(n) { return ((n % N) + N) % N; }
+
+              function assign(el, n, ghost) {
+                var d = slides[idx(n)];
+                el.src = d.src;
+                el.alt = ghost ? '' : d.alt;
+                ghost ? el.setAttribute('aria-hidden', 'true') : el.removeAttribute('aria-hidden');
+              }
+
+              function getStep() {
+                var gap = parseFloat(window.getComputedStyle(track).columnGap) || 16;
+                return s[1].offsetWidth + gap;
+              }
+
+              function snap() {
+                track.style.transition = 'none';
+                track.offsetHeight;
+                track.style.transform = 'translateX(-' + getStep() + 'px)';
+              }
+
+              function go(dir) {
+                if (busy) return;
+                busy = true;
+                assign(dir === 1 ? s[3] : s[0], current + (dir === 1 ? 2 : -1), true);
+                var step = getStep();
+                track.style.transition = 'transform 0.4s ease-in-out';
+                track.style.transform = dir === 1
+                  ? 'translateX(-' + (2 * step) + 'px)'
+                  : 'translateX(0px)';
+                track.addEventListener('transitionend', function h(e) {
+                  if (e.propertyName !== 'transform') return;
+                  track.removeEventListener('transitionend', h);
+                  current = idx(current + dir);
+                  assign(s[1], current,     false);
+                  assign(s[2], current + 1, false);
+                  assign(s[0], current - 1, true);
+                  assign(s[3], current + 2, true);
+                  snap();
+                  busy = false;
+                });
+              }
+
+              requestAnimationFrame(function () {
+                snap();
+                viewport.style.opacity = '1';
+              });
+
+              document.getElementById('space-prev').addEventListener('click', function () { go(-1); });
+              document.getElementById('space-next').addEventListener('click', function () { go(1); });
+            })();
+          </script>
+
+          <!-- Differentiators grid -->
+          <div>
+            <h2 class="font-display font-semibold text-[length:var(--text-3xl)] text-[var(--color-brand-primary)] mb-6">
+              What patients can expect
+            </h2>
+            <div class="grid sm:grid-cols-2 gap-5">
+              {differentiators.map(item => (
+                <div class="bg-white rounded-xl p-5 border border-[var(--color-border-soft)] flex gap-4 items-start">
+                  <div class="w-10 h-10 rounded-full bg-[var(--color-brand-primary)] flex items-center justify-center shrink-0">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={item.icon} />
+                  </div>
+                  <div>
+                    <h3 class="font-display font-semibold text-sm text-[var(--color-brand-primary)]">{item.title}</h3>
+                    <p class="mt-1 text-sm text-[var(--color-text-muted)] leading-relaxed">{item.body}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Our Technology -->
+          <div>
+            <h2 class="font-display font-semibold text-[length:var(--text-3xl)] text-[var(--color-brand-primary)] mb-4">
+              Our Technology
+            </h2>
+            <p class="text-[var(--color-text)] leading-relaxed mb-6">
+              West End Dental Centre uses modern dental technology to support accurate diagnosis, clear communication, and patient-centred care.
+            </p>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {technology.map(item => (
+                <div class="bg-white rounded-2xl overflow-hidden border border-[var(--color-border-soft)] flex flex-col">
+                  <img
+                    src={item.image}
+                    alt={item.alt}
+                    width="800"
+                    height="600"
+                    loading="lazy"
+                    decoding="async"
+                    class="w-full h-44 object-cover"
+                  />
+                  <div class="p-5 flex flex-col flex-1">
+                    <h3 class="font-display font-semibold text-lg text-[var(--color-brand-primary)]">{item.title}</h3>
+                    <p class="mt-2 text-sm text-[var(--color-text-muted)] leading-relaxed">{item.body}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Infection control & sterilization -->
+          <div class="bg-white rounded-2xl p-6 border border-[var(--color-border-soft)]">
+            <h2 class="font-display font-semibold text-[length:var(--text-2xl)] text-[var(--color-brand-primary)] mb-4">
+              Infection control &amp; sterilization
+            </h2>
+            <div class="space-y-3 text-[var(--color-text)] leading-relaxed">
+              <p>
+                The health and safety of our patients is our top priority. We go above and beyond to ensure our instruments and operatories are disinfected and sterilized according to provincial and national infection prevention guidelines.
+              </p>
+              <p>
+                Sterilization is a complex process requiring specialized equipment, adequate space, qualified staff, and regular monitoring for quality assurance.
+              </p>
+              <p>
+                We package and seal our instruments, then sterilize them in an autoclave using steam under pressure. Biological indicators are used on a daily basis to confirm that proper sterilization has been achieved.
+              </p>
+            </div>
+          </div>
+
+          <!-- Location & access -->
+          <div class="bg-white rounded-2xl p-6 border border-[var(--color-border-soft)]">
+            <h2 class="font-display font-semibold text-[length:var(--text-2xl)] text-[var(--color-brand-primary)] mb-4">
+              Location &amp; accessibility
+            </h2>
+            <div class="space-y-3 text-[var(--color-text)] leading-relaxed">
+              <p>
+                We're located at <strong>9509 156 St NW, Suite #M9, Edmonton, AB T5P 4J5</strong>.
+              </p>
+              <ul class="space-y-2 mt-3">
+                {[
+                  "ETS bus stop #5366 nearby",
+                  "English and Cantonese spoken",
+                  "Call 780-944-2828 if you have questions about parking or access",
+                ].map(item => (
+                  <li class="flex items-center gap-2.5 text-sm text-[var(--color-text-muted)]">
+                    <svg class="shrink-0 text-[var(--color-brand-accent)]" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="5 12 10 17 19 7"/></svg>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <div class="mt-4">
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=West+End+Dental+Centre+9509+156+St+NW+Edmonton+AB"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--color-brand-accent)] hover:text-[var(--color-brand-accent-hover)] transition-colors"
+                >
+                  Get Directions
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="space-y-6">
+
+          <!-- Booking card -->
+          <div class="bg-[var(--color-brand-primary)] rounded-2xl p-6 text-white">
+            <h3 class="font-display font-semibold text-lg text-white">Ready to Book?</h3>
+            <p class="mt-2 text-sm text-[var(--color-text-on-dark-muted)]">Call us or book an appointment online, new patients welcome.</p>
+            <a href="/book/" class="mt-4 btn btn-primary w-full block text-center">Book Appointment</a>
+            <a href="tel:+17809442828" class="mt-2 block text-center text-sm text-[var(--color-text-on-dark-muted)] hover:text-white transition-colors">780-944-2828</a>
+          </div>
+
+          <!-- About nav -->
+          <div class="bg-white rounded-2xl p-6 border border-[var(--color-border-soft)]">
+            <h3 class="font-body text-sm font-semibold uppercase tracking-[0.14em] text-[var(--color-brand-primary)] mb-4">About West End Dental Centre</h3>
+            <ul class="space-y-2">
+              {aboutNav.map(item => (
+                <li>
+                  {item.current ? (
+                    <span class="flex items-center gap-2 text-sm font-semibold text-[var(--color-brand-accent)]">
+                      <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-brand-accent)] shrink-0" aria-hidden="true"></span>
+                      {item.name}
+                    </span>
+                  ) : (
+                    <a href={item.href} class="flex items-center gap-2 text-sm text-[var(--color-text-muted)] hover:text-[var(--color-brand-accent)] transition-colors">
+                      <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-border-soft)] shrink-0" aria-hidden="true"></span>
+                      {item.name}
+                    </a>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Contact card -->
+          <div class="bg-white rounded-2xl p-6 shadow-xl border border-[var(--color-border-soft)]">
+            <h3 class="font-display font-semibold text-base text-[var(--color-brand-primary)] mb-3">Get in Touch</h3>
+            <div class="space-y-2 text-sm text-[var(--color-text-muted)]">
+              <p><strong class="text-[var(--color-text)]">West End Dental Centre</strong></p>
+              <p>9509 156 St NW, Suite #M9<br/>Edmonton, AB T5P 4J5</p>
+              <p>
+                <a href="tel:+17809442828" class="font-semibold text-[var(--color-brand-primary)] hover:text-[var(--color-brand-accent)] transition-colors">780-944-2828</a>
+              </p>
+            </div>
+            <a href="/contact/" class="mt-4 inline-block text-sm font-semibold text-[var(--color-brand-accent)] hover:text-[var(--color-brand-accent-hover)] transition-colors">Contact Us →</a>
+          </div>
+
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PROFESSIONAL STANDARDS & CREDENTIALS
+       ============================================================ -->
+  <section class="pt-[var(--spacing-section)] pb-0 bg-[var(--color-surface)] relative overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse at 30% 30%, rgba(74,118,210,0.08) 0%, transparent 58%);" aria-hidden="true"></div>
+
+    <div class="container-wide relative grid lg:grid-cols-[40fr_60fr] gap-10 lg:gap-14 items-start pb-2">
+
+      <!-- LEFT: Copy -->
+      <div>
+        <p class="eyebrow">Patient Care Standards</p>
+        <div class="mt-3 w-12 h-[3px] bg-[var(--color-brand-accent)] rounded-sm"></div>
+        <h2 class="mt-5 font-display font-semibold text-[length:var(--text-4xl)] leading-tight text-[var(--color-brand-primary)]">
+          Committed to Safe, Professional Dental Care
+        </h2>
+        <div class="mt-5 space-y-4 text-[var(--color-text-muted)] leading-[1.7]">
+          <p>At West End Dental Centre, we are committed to providing patient-centred dental care in a professional, respectful, and compliant environment.</p>
+          <p>Our team follows the guidelines set by the Alberta Dental Association and College and references trusted national dental resources to support patient education.</p>
+          <p>We uphold cleanliness, sterilization, and infection prevention standards aligned with provincial and national dental regulatory requirements.</p>
+        </div>
+      </div>
+
+      <!-- RIGHT: Credential cards + skyline -->
+      <div class="flex flex-col gap-0">
+
+        <div class="grid grid-cols-3 max-[559px]:grid-cols-1 gap-4">
+
+          <!-- ADAC -->
+          <div class="rounded-[var(--radius-lg)] bg-white flex flex-col items-center shadow-md">
+            <div class="w-full aspect-square bg-white rounded-[var(--radius-lg)] overflow-hidden flex items-center justify-center p-4">
+              <img
+                src="/images/logos/cdsa-college-dental-surgeons-alberta.png"
+                alt="College of Dental Surgeons of Alberta"
+                width="800"
+                height="274"
+                loading="lazy"
+                decoding="async"
+                class="w-full h-full object-contain"
+              />
+            </div>
+          </div>
+
+          <!-- CDA -->
+          <div class="rounded-[var(--radius-lg)] bg-white flex flex-col items-center shadow-md">
+            <div class="w-full aspect-square bg-white rounded-[var(--radius-lg)] overflow-hidden flex items-center justify-center p-4">
+              <img
+                src="/images/logos/canadian-dental-association.png"
+                alt="Canadian Dental Association"
+                width="301"
+                height="168"
+                loading="lazy"
+                decoding="async"
+                class="w-full h-full object-contain"
+              />
+            </div>
+          </div>
+
+          <!-- Commitment to Clean -->
+          <div class="rounded-[var(--radius-lg)] bg-white flex flex-col items-center shadow-md">
+            <div class="w-full aspect-square bg-white rounded-[var(--radius-lg)] overflow-hidden flex items-center justify-center p-4">
+              <img
+                src="/images/logos/Commitment-to-Clean-shield.png"
+                alt="Commitment to Clean"
+                width="400"
+                height="400"
+                loading="lazy"
+                decoding="async"
+                class="w-[75%] h-[75%] object-contain"
+              />
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Skyline graphic -->
+        <div class="w-full" style="aspect-ratio: 16/5;">
+          <img
+            src="/images/brand/edmonton-landmarks-line-art.png"
+            alt=""
+            aria-hidden="true"
+            width="1536"
+            height="690"
+            loading="lazy"
+            decoding="async"
+            class="w-full h-full object-contain object-bottom"
+            style="opacity: 0.28;"
+          />
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       VISIT INFORMATION
+       ============================================================ -->
+  <section class="section-y bg-[var(--color-surface-cool)]">
+    <div class="container-wide">
+      <div class="mb-8">
+        <h2 class="font-display font-semibold text-[length:var(--text-3xl)] text-[var(--color-brand-primary)]">Visit Information</h2>
+        <p class="mt-2 text-[var(--color-text-muted)]">Everything you need to know before your visit.</p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {[
+          {
+            label: "Accepting New Patients",
+            note: "We welcome new patients and families.",
+            icon: `<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/>`,
+          },
+          {
+            label: "Direct Billing Available",
+            note: "We bill most major insurance carriers directly.",
+            icon: `<rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/>`,
+          },
+          {
+            label: "Public Transit",
+            note: "ETS bus stop #5366 is nearby our 156 St NW location.",
+            icon: `<circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8v8"/>`,
+          },
+          {
+            label: "Languages",
+            note: "English and Cantonese spoken.",
+            icon: `<path d="M12 22V12"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/><circle cx="12" cy="5" r="3"/>`,
+          },
+        ].map(item => (
+          <div class="bg-white rounded-2xl p-5 border border-[var(--color-border-soft)] flex items-start gap-4">
+            <div class="w-10 h-10 rounded-full bg-[var(--color-brand-primary)] flex items-center justify-center shrink-0">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <Fragment set:html={item.icon} />
+              </svg>
+            </div>
+            <div>
+              <p class="font-semibold text-sm text-[var(--color-brand-primary)]">{item.label}</p>
+              <p class="mt-0.5 text-xs text-[var(--color-text-muted)] leading-relaxed">{item.note}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       EXPLORE MORE
+       ============================================================ -->
+  <section class="section-y bg-white">
+    <div class="container-wide">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <p class="eyebrow">Learn more</p>
+        <h2 class="mt-3 font-display font-semibold text-[length:var(--text-4xl)] leading-tight text-[var(--color-brand-primary)]">
+          More About West End Dental Centre
+        </h2>
+        <p class="mt-3 text-lg text-[var(--color-text-muted)] leading-relaxed">
+          Meet the team behind your care or find out about joining us.
+        </p>
+      </div>
+      <div class="grid sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
+        {aboutSections.map(section => (
+          <div class="bg-white rounded-2xl shadow-xl border border-[var(--color-border-soft)] flex flex-col overflow-hidden">
+            <div class="bg-[var(--color-brand-primary)] px-6 pt-6 pb-5 flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={section.icon} />
+              </div>
+              <h3 class="font-display font-semibold text-xl text-white">{section.title}</h3>
+            </div>
+            <div class="p-6 flex flex-col flex-1">
+              <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">{section.body}</p>
+              <ul class="mt-4 space-y-1.5">
+                {section.highlights.map(item => (
+                  <li class="flex items-center gap-2 text-xs text-[var(--color-text-muted)]">
+                    <svg class="shrink-0 text-[var(--color-brand-accent)]" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="5 12 10 17 19 7"/></svg>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <a href={section.href} class="mt-6 btn btn-outline w-full text-center text-sm">{section.cta} →</a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CTA BAND
+       ============================================================ -->
+  <section class="bg-[var(--color-brand-primary)] py-16 text-center overflow-hidden relative">
+    <svg class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 1440 160" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 60 C 240 20, 480 100, 720 60 C 960 20, 1200 100, 1440 60 L1440 160 L0 160 Z" fill="rgba(255,255,255,0.03)"/>
+    </svg>
+    <div class="relative container-wide">
+      <h2 class="font-display font-semibold text-[length:var(--text-4xl)] text-white leading-tight">Ready to make West End Dental Centre your dental home?</h2>
+      <p class="mt-4 text-[var(--color-text-on-dark-muted)] text-lg max-w-xl mx-auto">Call <a href="tel:+17809442828" class="text-white font-semibold hover:text-[var(--color-brand-accent-soft)] transition-colors">780-944-2828</a> or book an appointment online.</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <a href="/book/" class="btn btn-primary btn-lg">Book Appointment</a>
+        <a href="/contact/" class="btn btn-lg border border-white/30 text-white hover:bg-white/10 transition-colors">Contact Us</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

@@ -1,0 +1,238 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const siblingServices = [
+  { name: "Root Canal Treatment", href: "/services/endodontics/root-canal/", current: true },
+];
+---
+
+<BaseLayout
+  title="Root Canal Treatment | Endodontic Services | West End Dental Centre Edmonton"
+  description="Root canal treatment at West End Dental Centre in West Edmonton. Learn what the procedure involves, when it is needed, what to expect during recovery, and why saving the natural tooth matters."
+>
+
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <section class="bg-[var(--color-brand-primary)] relative overflow-hidden">
+    <!-- Right-side image panel, desktop only -->
+    <div class="hidden lg:block absolute right-0 top-0 bottom-0 w-[50%] pointer-events-none" aria-hidden="true">
+      <img
+        src="/images/west-end/hero-root-canal.jpg"
+        alt="Root canal treatment at West End Dental Centre"
+        width="800"
+        height="600"
+        loading="eager"
+          fetchpriority="high"
+        decoding="async"
+        class="w-full h-full object-cover"
+      />
+      <div class="hero-image-fade" aria-hidden="true"></div>
+    </div>
+    <div class="container-wide relative py-16 lg:py-24 lg:max-w-[48%]">
+      <nav class="flex items-center gap-2 text-xs text-[var(--color-text-on-dark-muted)] mb-5" aria-label="Breadcrumb">
+        <a href="/" class="text-white hover:text-white/80 transition-colors">Home</a>
+        <span aria-hidden="true">›</span>
+        <a href="/services/" class="text-white/80 hover:text-white transition-colors">Services</a>
+        <span aria-hidden="true">›</span>
+        <a href="/services/endodontics/" class="text-white/80 hover:text-white transition-colors">Endodontic Services</a>
+        <span aria-hidden="true">›</span>
+        <span class="text-white">Root Canal Treatment</span>
+      </nav>
+      <p class="eyebrow text-white">Endodontic Services</p>
+      <h1 class="mt-3 font-display font-semibold text-[length:var(--text-5xl)] leading-tight text-white max-w-2xl">
+        Root Canal Treatment
+      </h1>
+      <p class="mt-4 text-lg text-[var(--color-text-on-dark-muted)] leading-relaxed max-w-xl">
+        Root canal treatment removes infected or inflamed tissue from inside a tooth, relieving the pain caused by infection and saving the tooth from extraction.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       MAIN CONTENT + SIDEBAR
+       ============================================================ -->
+  <section class="section-y bg-white">
+    <div class="container-wide">
+      <div class="grid lg:grid-cols-[1fr_300px] gap-12">
+
+        <!-- Main content -->
+        <div class="space-y-10">
+
+          <!-- Specialty disclaimer -->
+          <div class="bg-[var(--color-surface-alt)] rounded-2xl p-5 border border-[var(--color-border-soft)] flex gap-4 items-start">
+            <svg class="shrink-0 mt-0.5 text-[var(--color-brand-primary)]" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">Endodontic services at West End Dental Centre are provided by our general dentist team. Our dentists are not licensed specialists in endodontics.</p>
+          </div>
+
+          <!-- Image break -->
+          <div class="rounded-2xl overflow-hidden max-h-[700px]">
+            <img
+              src="/images/west-end/thumb-root-canal.jpg"
+              alt="Root canal procedure at West End Dental Centre"
+              width="800"
+              height="450"
+              loading="lazy"
+              decoding="async"
+              class="w-full h-auto"
+            />
+          </div>
+
+          <!-- What is root canal treatment? -->
+          <div>
+            <h2 class="font-display font-semibold text-[length:var(--text-3xl)] text-[var(--color-brand-primary)] leading-tight">
+              What is root canal treatment?
+            </h2>
+            <div class="mt-4 space-y-4 text-[var(--color-text)] leading-relaxed">
+              <p>
+                Inside every tooth is a soft tissue called the pulp, which contains nerves and blood vessels. When the pulp becomes infected or severely inflamed, due to deep decay, a crack, repeated dental procedures on the tooth, or trauma, root canal treatment can remove that damaged tissue and save the tooth.
+              </p>
+              <p>
+                A common misconception is that root canal treatment is an especially painful procedure. In fact, the treatment is performed under local anesthetic and is intended to relieve the significant pain that comes from an infected tooth. Most patients describe the procedure as comparable to having a filling placed.
+              </p>
+            </div>
+          </div>
+
+          <!-- When is it needed? -->
+          <div>
+            <h2 class="font-display font-semibold text-[length:var(--text-3xl)] text-[var(--color-brand-primary)] leading-tight">
+              When is root canal treatment needed?
+            </h2>
+            <p class="mt-4 text-[var(--color-text)] leading-relaxed">
+              Root canal treatment is typically recommended when the pulp inside a tooth is infected or has died. Signs that may indicate pulp involvement include:
+            </p>
+            <ul class="mt-5 space-y-3">
+              {[
+                "Severe or persistent toothache, particularly when biting or applying pressure",
+                "Prolonged sensitivity to heat or cold that lingers after the source is removed",
+                "Swelling or tenderness in the gum near a tooth",
+                "A visible abscess (a pimple-like bump on the gum)",
+                "Darkening or discolouration of the tooth",
+                "Deep decay that has reached the inner pulp",
+              ].map(item => (
+                <li class="flex items-start gap-3">
+                  <svg class="mt-1 shrink-0 text-[var(--color-brand-accent)]" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="5 12 10 17 19 7"/></svg>
+                  <span class="text-[var(--color-text)] leading-relaxed">{item}</span>
+                </li>
+              ))}
+            </ul>
+            <p class="mt-5 text-[var(--color-text-muted)] text-sm leading-relaxed">
+              Not all of these symptoms are definitive, a dental examination and X-rays are required to confirm whether root canal treatment is necessary.
+            </p>
+          </div>
+
+          <!-- Procedure -->
+          <div>
+            <h2 class="font-display font-semibold text-[length:var(--text-3xl)] text-[var(--color-brand-primary)] leading-tight">
+              The root canal procedure
+            </h2>
+            <p class="mt-4 text-[var(--color-text)] leading-relaxed">
+              Root canal treatment is typically completed in one or two appointments:
+            </p>
+            <ol class="mt-5 space-y-5">
+              {[
+                ["Local anesthetic", "The tooth and surrounding area are numbed. You should feel pressure during the procedure but not pain. An anxious patient can discuss comfort options with the dentist before beginning."],
+                ["Access opening", "A small opening is made through the crown of the tooth to access the pulp chamber and root canals."],
+                ["Pulp removal and canal cleaning", "The infected or inflamed pulp tissue is carefully removed. The canals are then cleaned, shaped, and disinfected to remove bacteria and debris."],
+                ["Filling the canals", "The cleaned canals are filled with a biocompatible material called gutta-percha, which seals the space and prevents re-infection."],
+                ["Sealing and crown placement", "The access opening is sealed. Because the tooth is now more brittle without its pulp, it is typically protected with a dental crown, usually placed at a separate appointment."],
+              ].map(([title, text], i) => (
+                <li class="flex gap-4">
+                  <span class="shrink-0 w-8 h-8 rounded-full bg-[var(--color-brand-primary)] text-white text-sm font-semibold flex items-center justify-center mt-0.5" aria-hidden="true">{i + 1}</span>
+                  <div>
+                    <p class="font-semibold text-[var(--color-text)]">{title}</p>
+                    <p class="mt-1 text-[var(--color-text-muted)] leading-relaxed">{text}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
+
+          <!-- After treatment -->
+          <div class="bg-[var(--color-surface-cool)] rounded-2xl p-7 border border-[var(--color-border-soft)]">
+            <h2 class="font-display font-semibold text-[length:var(--text-2xl)] text-[var(--color-brand-primary)] leading-tight">
+              After treatment
+            </h2>
+            <div class="mt-4 space-y-3 text-[var(--color-text)] leading-relaxed">
+              <p>
+                Some tenderness in the treated tooth and surrounding area for a few days after root canal treatment is normal. Over-the-counter pain relievers are usually sufficient for managing any discomfort. Avoid chewing hard foods on the treated side until the permanent crown is in place.
+              </p>
+              <p>
+                Once the crown is fitted, care for the tooth as you would any other, brush, floss, and attend regular checkups. The treated tooth can function well for many years with proper care.
+              </p>
+            </div>
+          </div>
+
+          <!-- Alternatives -->
+          <div class="bg-[var(--color-surface-alt)] rounded-2xl p-7 border border-[var(--color-border-soft)]">
+            <h2 class="font-display font-semibold text-[length:var(--text-2xl)] text-[var(--color-brand-primary)] leading-tight">
+              What if I choose not to have root canal treatment?
+            </h2>
+            <div class="mt-4 space-y-3 text-[var(--color-text)] leading-relaxed">
+              <p>
+                When root canal treatment is recommended, the primary alternative is extraction, removing the tooth entirely. While extraction resolves the infection, it leaves a gap that can affect bite, jaw alignment, and bone health over time. Replacing the extracted tooth with a bridge or denture involves additional time and cost.
+              </p>
+              <p>
+                Saving a natural tooth through root canal treatment is generally the preferred approach when the tooth can be successfully treated and restored. Your dentist will discuss all options with you so you can make an informed decision.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="space-y-6">
+
+          <!-- Booking card -->
+          <div class="bg-[var(--color-brand-primary)] rounded-2xl p-6 text-white">
+            <h3 class="font-display font-semibold text-lg text-white">Ready to Book?</h3>
+            <p class="mt-2 text-sm text-[var(--color-text-on-dark-muted)] leading-relaxed">Call us or book your appointment online.</p>
+            <a href="/book/" class="mt-4 btn btn-primary w-full block text-center">Book Appointment</a>
+            <a href="tel:+17809442828" class="mt-2 block text-center text-sm text-[var(--color-text-on-dark-muted)] hover:text-white transition-colors">780-944-2828</a>
+          </div>
+
+          <!-- Sibling services -->
+          <div class="bg-[var(--color-surface-cool)] rounded-2xl p-6 border border-[var(--color-border-soft)]">
+            <h3 class="font-body text-xs font-semibold uppercase tracking-[0.14em] text-[var(--color-brand-primary)] mb-4">Endodontic Services</h3>
+            <ul class="space-y-2">
+              {siblingServices.map(svc => (
+                <li>
+                  {svc.current ? (
+                    <span class="flex items-center gap-2 text-sm font-semibold text-[var(--color-brand-accent)]">
+                      <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-brand-accent)] shrink-0" aria-hidden="true"></span>
+                      {svc.name}
+                    </span>
+                  ) : (
+                    <a href={svc.href} class="flex items-center gap-2 text-sm text-[var(--color-text-muted)] hover:text-[var(--color-brand-accent)] transition-colors">
+                      <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-border-soft)] shrink-0" aria-hidden="true"></span>
+                      {svc.name}
+                    </a>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CTA BAND
+       ============================================================ -->
+  <section class="bg-[var(--color-brand-primary)] py-16 text-center overflow-hidden relative">
+    <svg class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 1440 160" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 60 C 240 20, 480 100, 720 60 C 960 20, 1200 100, 1440 60 L1440 160 L0 160 Z" fill="rgba(255,255,255,0.03)"/>
+    </svg>
+    <div class="relative container-wide">
+      <h2 class="font-display font-semibold text-[length:var(--text-4xl)] text-white leading-tight">Ready to restore your smile?</h2>
+      <p class="mt-4 text-[var(--color-text-on-dark-muted)] text-lg max-w-xl mx-auto">Call <a href="tel:+17809442828" class="text-white font-semibold hover:text-[var(--color-brand-accent-soft)] transition-colors">780-944-2828</a> or book an appointment online.</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <a href="/book/" class="btn btn-primary btn-lg">Book Appointment</a>
+        <a href="/contact/" class="btn btn-lg border border-white/30 text-white hover:bg-white/10 transition-colors">Contact Us</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

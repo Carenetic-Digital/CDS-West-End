@@ -1,58 +1,165 @@
 ---
 import '../styles/global.css';
+import SparkableHead from '@sparkable-cms/cms/runtime/SparkableHead.astro';
+import SparkableFooter from '@sparkable-cms/cms/runtime/SparkableFooter.astro';
 import SEOHead from '../components/SEOHead.astro';
 import StructuredData from '../components/StructuredData.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import PreFooter from '../components/PreFooter.astro';
+import { clinic, openingHoursSpecification } from '../data/clinic';
+interface ExtraSchema {
+  type: string | string[];
+  data: Record<string, unknown>;
+}
 
 interface Props {
   title: string;
   description?: string;
   image?: string;
   noindex?: boolean;
+  showMobileBar?: boolean;
+  showPreFooter?: boolean;
+  showHeader?: boolean;
+  showFooter?: boolean;
+  /** Mobile sticky bar Book CTA href (default /book/). */
+  mobileRequestHref?: string;
+  /** Additional page-level JSON-LD graphs (Service, BlogPosting, Person, etc.). */
+  schemas?: ExtraSchema[];
 }
 
 const {
   title,
-  description = 'Site Factory generated website',
-  image,
+  description = `West End Dental Centre offers family dentistry in West Edmonton. We welcome new patients of all ages, call ${clinic.phoneDisplay} to book.`,
+  image = '/images/og-default.jpg',
   noindex = false,
+  showMobileBar = true,
+  showPreFooter = true,
+  showHeader = true,
+  showFooter = true,
+  mobileRequestHref = '/book/',
+  schemas = [],
 } = Astro.props;
 
-// Site-wide structured data (customize in intake/INTAKE.md)
-const organizationData = {
-  name: "[Business Name]",
-  url: Astro.site?.href,
-  logo: new URL('/images/logo.png', Astro.site).href,
-  // Add more fields from INTAKE.md: address, phone, email, social profiles
+const siteURL = Astro.site ?? new URL('https://www.westenddentalcentre.com/');
+const siteRoot = new URL('/', siteURL).href;
+const organizationId = `${siteRoot}#organization`;
+const websiteId = `${siteRoot}#website`;
+const dentistId = `${siteRoot}#dentist`;
+const logoURL = new URL(clinic.logo, siteURL).href;
+const ogImageURL = new URL('/images/og-default.jpg', siteURL).href;
+const pageURL = new URL(Astro.url.pathname, siteURL).href;
+const pagePath = Astro.url.pathname.endsWith('/')
+  ? Astro.url.pathname
+  : `${Astro.url.pathname}/`;
+const isServicePage = pagePath.startsWith('/services/');
+const serviceName = title.split('|')[0].trim();
+
+const businessData = {
+  "@id": dentistId,
+  name: clinic.name,
+  url: siteRoot,
+  telephone: clinic.phoneSchema,
+  email: clinic.email,
+  image: ogImageURL,
+  logo: logoURL,
+  parentOrganization: { "@id": organizationId },
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: clinic.streetAddress,
+    addressLocality: clinic.city,
+    addressRegion: clinic.regionAbbr,
+    postalCode: clinic.postalCode,
+    addressCountry: clinic.country,
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: clinic.geo.latitude,
+    longitude: clinic.geo.longitude,
+  },
+  openingHoursSpecification,
+  areaServed: { "@type": "City", name: clinic.city },
 };
+
+const organizationData = {
+  "@id": organizationId,
+  name: clinic.name,
+  url: siteRoot,
+  logo: logoURL,
+  image: ogImageURL,
+  telephone: clinic.phoneSchema,
+  email: clinic.email,
+  sameAs: [
+    clinic.facebookUrl,
+    clinic.instagramUrl,
+  ],
+};
+
+const websiteData = {
+  "@id": websiteId,
+  name: "West End Dental Centre",
+  url: siteRoot,
+  publisher: { "@id": organizationId },
+  inLanguage: "en-CA",
+};
+
+const autoServiceSchema: ExtraSchema | null = isServicePage
+  ? {
+      type: 'Service',
+      data: {
+        name: serviceName,
+        description,
+        url: pageURL,
+        serviceType: serviceName,
+        provider: { "@id": dentistId },
+        areaServed: {
+          "@type": "City",
+          name: clinic.city,
+          containedInPlace: {
+            "@type": "AdministrativeArea",
+            name: clinic.regionAbbr,
+          },
+        },
+      },
+    }
+  : null;
+
+const pageSchemas = [
+  ...(autoServiceSchema ? [autoServiceSchema] : []),
+  ...schemas,
+];
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en-CA">
   <head>
+    <!-- Google Tag Manager (container carried over from westenddentalcentre.com) -->
+    <script is:inline>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-K9457KP');
+    </script>
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Preconnect to external origins (fonts, analytics) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-    <!-- Google Fonts with font-display: swap for performance -->
-    <!-- Update this URL based on intake/branding/fonts.md -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-
-    <!-- Complete Favicon Set -->
-    <link rel="icon" href="/favicon.ico" sizes="32x32" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="16x16 32x32 48x48" />
+    <link rel="icon" type="image/png" href="/icon-192.png" sizes="192x192" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/manifest.webmanifest" />
 
-    <!-- Theme color for browser UI -->
-    <meta name="theme-color" content="#ffffff" />
+    <meta name="theme-color" content="#1d6f8c" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Roboto:wght@400;500;600&display=swap" rel="stylesheet" />
 
-    <!-- SEO Meta Tags (includes Open Graph and Twitter Cards) -->
     <SEOHead
       title={title}
       description={description}
@@ -60,10 +167,54 @@ const organizationData = {
       noindex={noindex}
     />
 
-    <!-- Organization Structured Data (site-wide) -->
     <StructuredData type="Organization" data={organizationData} />
+    <StructuredData type="WebSite" data={websiteData} />
+    <StructuredData type="LocalBusiness" data={businessData} />
+    {pageSchemas.map((schema) => (
+      <StructuredData type={schema.type} data={schema.data} />
+    ))}
+
+
+    <SparkableHead />
   </head>
-  <body class="font-body text-neutral-900 bg-neutral-50 antialiased">
-    <slot />
+  <body class="font-body text-[var(--color-text)] bg-[var(--color-surface)] antialiased overflow-x-hidden">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+      <iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-K9457KP"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"
+        title="Google Tag Manager"
+      ></iframe>
+    </noscript>
+
+    <a href="#main" class="skip-link">Skip to main content</a>
+
+    {showHeader && <Header />}
+
+    <main id="main" tabindex="-1">
+      <slot />
+    </main>
+
+    {showPreFooter && <PreFooter />}
+
+    {showFooter && <Footer />}
+
+    {showMobileBar && (
+      <div class="md:hidden fixed bottom-0 inset-x-0 z-40 grid grid-cols-2 border-t border-[var(--color-border)] bg-white shadow-[0_-4px_16px_rgba(30,51,82,0.10)]" aria-label="Quick contact actions">
+        <a href={`tel:${clinic.phoneTel}`} class="flex items-center justify-center gap-2 py-3.5 text-[var(--color-brand-primary)] font-semibold border-r border-[var(--color-border)]">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Call
+        </a>
+        <a href={mobileRequestHref} class="flex items-center justify-center gap-2 py-3.5 bg-[var(--color-brand-accent-btn)] text-white font-semibold">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Book
+        </a>
+      </div>
+      <div class="md:hidden h-16" aria-hidden="true"></div>
+    )}
+
+    <SparkableFooter />
   </body>
 </html>

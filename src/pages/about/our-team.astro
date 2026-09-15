@@ -1,0 +1,242 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { doctors } from '../../data/team';
+
+const aboutNav = [
+  { name: "Our Clinic", href: "/about/our-clinic/" },
+  { name: "Our Doctors", href: "/about/our-team/", current: true },
+  { name: "Careers", href: "/about/careers/" },
+];
+
+const siteURL = Astro.site ?? new URL('https://www.westenddentalcentre.com/');
+const dentistId = `${new URL('/', siteURL).href}#dentist`;
+const teamSchemas = [
+  {
+    type: 'ItemList' as const,
+    data: {
+      name: "West End Dental Centre Doctors",
+      numberOfItems: doctors.length,
+      itemListElement: doctors.map((doc, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        item: {
+          "@type": ["Person", "Dentist"],
+          name: doc.name,
+          jobTitle: doc.credentials,
+          description: doc.bio[0],
+          image: new URL(doc.photo, siteURL).href,
+          worksFor: { "@id": dentistId },
+          alumniOf: doc.education,
+        },
+      })),
+    },
+  },
+];
+---
+
+<BaseLayout
+  title="Meet Our Doctors | West End Dental Centre Edmonton"
+  description="Meet our doctors at West End Dental Centre in West Edmonton, experienced dentists dedicated to comprehensive, patient-centred care."
+  schemas={teamSchemas}
+>
+
+  <!-- ============================================================
+       HERO BANNER
+       ============================================================ -->
+  <section class="bg-[var(--color-brand-primary)] relative overflow-hidden">
+    <div class="hidden lg:block absolute right-0 top-0 bottom-0 w-[50%] pointer-events-none" aria-hidden="true">
+      <img
+        src="/images/team/dr-melissa-wong.png"
+        alt="Dr. Melissa Wong, general dentist at West End Dental Centre"
+        width="1774"
+        height="887"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+        class="w-full h-full object-cover object-[center_40%]"
+      />
+      <div class="hero-image-fade" aria-hidden="true"></div>
+    </div>
+    <div class="container-wide relative py-16 lg:py-20 lg:max-w-[48%]">
+      <nav class="flex items-center gap-2 text-xs text-[var(--color-text-on-dark-muted)] mb-5" aria-label="Breadcrumb">
+        <a href="/" class="text-white hover:text-white/80 transition-colors">Home</a>
+        <span aria-hidden="true">›</span>
+        <a href="/about/our-clinic/" class="text-white/80 hover:text-white transition-colors">About</a>
+        <span aria-hidden="true">›</span>
+        <span class="text-white">Our Doctors</span>
+      </nav>
+      <p class="eyebrow text-white">West End Dental Centre</p>
+      <h1 class="mt-3 font-display font-semibold text-[length:var(--text-5xl)] leading-tight text-white max-w-2xl">
+        Our Doctors
+      </h1>
+      <p class="mt-4 text-lg text-[var(--color-text-on-dark-muted)] leading-relaxed max-w-xl">
+        Our dentists are licensed by the Alberta Dental Association and College and are committed to compassionate, patient-centred care for families throughout West Edmonton and the surrounding communities.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       MAIN CONTENT + SIDEBAR
+       ============================================================ -->
+  <section class="section-y bg-white">
+    <div class="container-wide">
+      <div class="grid lg:grid-cols-[1fr_300px] gap-12">
+
+        <!-- LEFT: Main content -->
+        <div class="space-y-10">
+
+          <!-- Intro -->
+          <div>
+            <h2 class="font-display font-semibold text-[length:var(--text-3xl)] text-[var(--color-brand-primary)] mb-4">
+              Our dentists
+            </h2>
+            <p class="text-[var(--color-text)] leading-relaxed">
+              Dr. Brenda Lau and Dr. Melissa Wong have been serving patients at our current location since 1996. They are joined by Dr. Denis Redmond and Dr. Kenneth Chan. Together, our dentists provide preventive, restorative, cosmetic, and family care for West Edmonton patients.
+            </p>
+          </div>
+
+          <!-- Doctor grid -->
+          <div class="grid sm:grid-cols-2 gap-8">
+            {doctors.map(doc => (
+              <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-[var(--color-border-soft)] flex flex-col">
+                {doc.photo ? (
+                  <picture>
+                    {doc.photoWebp && <source type="image/webp" srcset={doc.photoWebp} />}
+                    <img
+                      src={doc.photo}
+                      alt={doc.name}
+                      width="600"
+                      height="600"
+                      loading="lazy"
+                      decoding="async"
+                      class="w-full aspect-square object-cover object-center"
+                    />
+                  </picture>
+                ) : (
+                  <div class="w-full aspect-square bg-[var(--color-surface-cool)] flex items-center justify-center">
+                    <span class="font-display font-semibold text-[length:var(--text-4xl)] text-[var(--color-brand-primary)] opacity-30" aria-hidden="true">{doc.initials}</span>
+                  </div>
+                )}
+                <div class="p-6 flex flex-col flex-1">
+                  <div>
+                    <h3 class="font-display font-semibold text-lg text-[var(--color-brand-primary)]">{doc.name}</h3>
+                    <p class="text-sm font-medium text-[var(--color-brand-accent)]">{doc.credentials}{doc.education ? `; ${doc.education}` : ''}</p>
+                  </div>
+                  {doc.bio.length > 0 && <div class="mt-3 h-px bg-[var(--color-border-soft)]"></div>}
+                  <div class="mt-3 flex-1 space-y-3">
+                    {doc.bio.map(para => (
+                      <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">{para}</p>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <!-- Supporting staff note -->
+          <div class="bg-[var(--color-surface-cool)] rounded-2xl p-6 border border-[var(--color-border-soft)]">
+            <div class="flex gap-4 items-start">
+              <div class="w-10 h-10 rounded-full bg-[var(--color-brand-accent)] flex items-center justify-center shrink-0">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              </div>
+              <div>
+                <h3 class="font-display font-semibold text-base text-[var(--color-brand-primary)]">Our full clinical team</h3>
+                <p class="mt-1.5 text-sm text-[var(--color-text-muted)] leading-relaxed">
+                  In addition to our dentists, West End Dental Centre is supported by a team of dental hygienists, dental assistants, and administrative staff who work together to ensure every visit runs smoothly. Our hygienists play a central role in preventive care, and our reception team is always happy to answer questions about appointments, insurance, and patient forms.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- RIGHT: Sidebar -->
+        <aside class="space-y-6">
+
+          <div class="bg-white rounded-2xl p-4 shadow-xl border border-[var(--color-border-soft)] text-center">
+            <img
+              src="/images/west-end/clinic-01.jpg"
+              alt="West End Dental Centre in West Edmonton"
+              width="240"
+              height="240"
+              loading="lazy"
+              decoding="async"
+              class="mx-auto w-48 h-48 rounded-xl object-cover object-center"
+            />
+            <h3 class="mt-3 font-display font-semibold text-base text-[var(--color-brand-primary)]">West End Dental Centre</h3>
+            <p class="mt-0.5 text-sm font-medium text-[var(--color-brand-accent)]">Serving West Edmonton since 1996</p>
+          </div>
+
+          <!-- Book CTA card -->
+          <div class="bg-[var(--color-brand-primary)] rounded-2xl p-6 text-white">
+            <h3 class="font-display font-semibold text-lg text-white">Ready to Book?</h3>
+            <p class="mt-2 text-sm text-[var(--color-text-on-dark-muted)]">Call us or book an appointment online, new patients welcome.</p>
+            <a href="/book/" class="mt-4 btn btn-primary w-full block text-center">Book Appointment</a>
+            <a href="tel:+17809442828" class="mt-2 block text-center text-sm text-[var(--color-text-on-dark-muted)] hover:text-white transition-colors">780-944-2828</a>
+          </div>
+
+          <!-- About nav -->
+          <div class="bg-[var(--color-surface-cool)] rounded-2xl p-6 border border-[var(--color-border-soft)]">
+            <h3 class="font-body text-sm font-semibold uppercase tracking-[0.14em] text-[var(--color-brand-primary)] mb-4">About West End Dental Centre</h3>
+            <ul class="space-y-2">
+              {aboutNav.map(item => (
+                <li>
+                  {item.current ? (
+                    <span class="flex items-center gap-2 text-sm font-semibold text-[var(--color-brand-accent)]">
+                      <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-brand-accent)] shrink-0" aria-hidden="true"></span>
+                      {item.name}
+                    </span>
+                  ) : (
+                    <a href={item.href} class="flex items-center gap-2 text-sm text-[var(--color-text-muted)] hover:text-[var(--color-brand-accent)] transition-colors">
+                      <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-border-soft)] shrink-0" aria-hidden="true"></span>
+                      {item.name}
+                    </a>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Credentials -->
+          <div class="bg-white rounded-2xl p-6 shadow-xl border border-[var(--color-border-soft)]">
+            <h3 class="font-display font-semibold text-sm text-[var(--color-brand-primary)] mb-3">Professional Standards</h3>
+            <ul class="space-y-2 text-sm text-[var(--color-text-muted)]">
+              {[
+                "Licensed by the Alberta Dental Association and College",
+                "Members of the Canadian Dental Association",
+              ].map(item => (
+                <li class="flex items-start gap-2">
+                  <svg class="shrink-0 mt-0.5 text-[var(--color-brand-accent)]" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="5 12 10 17 19 7"/></svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CTA BAND
+       ============================================================ -->
+  <section class="bg-[var(--color-brand-primary)] py-16 text-center overflow-hidden relative">
+    <svg class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 1440 160" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 60 C 240 20, 480 100, 720 60 C 960 20, 1200 100, 1440 60 L1440 160 L0 160 Z" fill="rgba(255,255,255,0.03)"/>
+    </svg>
+    <div class="relative container-wide">
+      <h2 class="font-display font-semibold text-[length:var(--text-4xl)] text-white leading-tight">
+        Meet your dentist in person
+      </h2>
+      <p class="mt-4 text-[var(--color-text-on-dark-muted)] text-lg max-w-xl mx-auto leading-relaxed">
+        Call us at <a href="tel:+17809442828" class="text-white font-semibold hover:text-[var(--color-brand-accent-soft)] transition-colors">780-944-2828</a> or schedule an appointment using our online booking system, new patients are welcome.
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <a href="/book/" class="btn btn-primary btn-lg">Book Appointment</a>
+        <a href="/contact/" class="btn btn-lg border border-white/30 text-white hover:bg-white/10 transition-colors">Contact Us</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
