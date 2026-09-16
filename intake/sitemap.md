@@ -54,6 +54,8 @@ Scaled-back Crestwood information architecture. Services match the live West End
 - Terms of Service (`/terms`)
 - Accessibility (`/accessibility-statement`)
 - Thank You (`/thank-you`)
+- Marketing landing (`/marketing`)
+- Smile landing (`/smile`)
 
 ## Navigation Structure
 
@@ -65,7 +67,7 @@ Services mega-menu lists only the categories above. Sub-pages are listed under e
 
 ## Dropped from Crestwood (not on the West End site)
 
-Children's dentistry hub, sedation, TMJ/Botox, sleep apnea, implants, inlays & onlays, smile makeovers, gum contouring, CBCT, intraoral cameras, oral cancer screening pages, emergency sub-pages, blog/news, Crestwood marketing landing pages.
+Children's dentistry hub, sedation, TMJ/Botox, sleep apnea, implants, inlays & onlays, smile makeovers, gum contouring, CBCT, intraoral cameras, oral cancer screening pages, emergency sub-pages, blog/news.
 
 ## Legacy redirects (cutover)
 
